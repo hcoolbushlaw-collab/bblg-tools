@@ -1,0 +1,523 @@
+Case Number,Case Name,Case Manager,Case Status,Case Type,State,Date Opened
+2026-100513,Sample Client 524,"Lozano, Beatriz",Open - Negotiation,Auto Accident,TX,6/28/2026
+2026-100275,Sample Client 286,"Guzman, Elena",Open - Negotiation,Dog Bite,WA,1/20/2026
+2026-100074,Sample Client 85,"Boone, Dana",Open - Litigation,Dog Bite,NV,6/5/2025
+2026-100520,Sample Client 531,"Whitfield, Erin",Open - Demand Sent,Auto Accident,CA,5/5/2025
+2026-100262,Sample Client 273,"Fontaine, Marcus",Open - Investigation,Slip and Fall,OR,7/19/2025
+2026-100361,Sample Client 372,"Iyer, Nikhil",Open - Demand Sent,Slip and Fall,WA,2/19/2026
+2026-100269,Sample Client 280,"Fontaine, Marcus",Open - Investigation,Dog Bite,CA,1/25/2026
+2026-100432,Sample Client 443,"Kowalski, Tomasz",Open - Negotiation,Auto Accident,FL,6/29/2026
+2026-100147,Sample Client 158,"Dutta, Priya",Open - Investigation,Dog Bite,IL,10/11/2025
+2026-100249,Sample Client 260,"Fontaine, Marcus",Open - Treating,Auto Accident,TX,7/18/2025
+2026-100217,Sample Client 228,"Ellison, Grace",Open - Demand Sent,Auto Accident,CO,9/2/2025
+2026-100157,Sample Client 168,"Dutta, Priya",Open - Litigation,Wrongful Death,TX,4/24/2026
+2026-100170,Sample Client 181,"Dutta, Priya",Open - Demand Sent,Auto Accident,TX,6/12/2026
+2026-100438,Sample Client 449,"Kowalski, Tomasz",Open - Investigation,Slip and Fall,NY,7/15/2025
+2026-100015,Sample Client 26,"Alvarez, Marisol",Open - Negotiation,Wrongful Death,CA,7/22/2025
+2026-100381,Sample Client 392,"Iyer, Nikhil",Open - Litigation,Premises Liability,CO,3/1/2026
+2026-100321,Sample Client 332,"Hollis, Wren",Open - Demand Sent,Premises Liability,OR,4/22/2026
+2026-100474,Sample Client 485,"Kowalski, Tomasz",Open - Demand Sent,Premises Liability,GA,2/24/2026
+2026-100153,Sample Client 164,"Dutta, Priya",Open - Negotiation,Dog Bite,IL,2/1/2025
+2026-100014,Sample Client 25,"Alvarez, Marisol",Open - Negotiation,Premises Liability,AZ,6/15/2026
+2026-100143,Sample Client 154,"Dutta, Priya",Open - Negotiation,Dog Bite,AZ,11/4/2025
+2026-100311,Sample Client 322,"Hollis, Wren",Open - Investigation,Slip and Fall,NV,11/23/2025
+2026-100416,Sample Client 427,"Jarrett, Colleen",Open - Demand Sent,Dog Bite,CO,11/20/2025
+2026-100103,Sample Client 114,"Castellanos, Rafael",Open - Demand Sent,Premises Liability,TX,11/18/2025
+2026-100253,Sample Client 264,"Fontaine, Marcus",Open - Demand Sent,Wrongful Death,CO,7/5/2025
+2026-100252,Sample Client 263,"Fontaine, Marcus",Open - Investigation,Wrongful Death,AZ,7/9/2025
+2026-100133,Sample Client 144,"Dutta, Priya",Open - Negotiation,Wrongful Death,NM,8/15/2025
+2026-100309,Sample Client 320,"Hollis, Wren",Open - Demand Sent,Slip and Fall,CA,5/19/2026
+2026-100222,Sample Client 233,"Ellison, Grace",Closed,Wrongful Death,FL,1/29/2025
+2026-100195,Sample Client 206,"Ellison, Grace",Open - Negotiation,Premises Liability,NM,12/20/2025
+2026-100325,Sample Client 336,"Hollis, Wren",Open - Demand Sent,Auto Accident,CO,9/8/2025
+2026-100384,Sample Client 395,"Iyer, Nikhil",Open - Demand Sent,Auto Accident,AZ,6/20/2025
+2026-100450,Sample Client 461,"Kowalski, Tomasz",Open - Litigation,Wrongful Death,NM,6/5/2025
+2026-100035,Sample Client 46,"Alvarez, Marisol",Open - Treating,Slip and Fall,WA,6/15/2025
+2026-100465,Sample Client 476,"Kowalski, Tomasz",Open - Investigation,Wrongful Death,CO,1/18/2026
+2026-100373,Sample Client 384,"Iyer, Nikhil",Open - Demand Sent,Dog Bite,GA,10/26/2025
+2026-100144,Sample Client 155,"Dutta, Priya",Open - Treating,Auto Accident,CO,4/6/2026
+2026-100210,Sample Client 221,"Ellison, Grace",Open - Investigation,Wrongful Death,GA,10/1/2025
+2026-100066,Sample Client 77,"Boone, Dana",Open - Litigation,Wrongful Death,GA,5/26/2026
+2026-100165,Sample Client 176,"Dutta, Priya",Open - Demand Sent,Slip and Fall,FL,1/25/2026
+2026-100002,Sample Client 13,"Alvarez, Marisol",Open - Demand Sent,Slip and Fall,FL,4/5/2025
+2026-100500,Sample Client 511,"Lozano, Beatriz",Open - Demand Sent,Premises Liability,CA,1/1/2025
+2026-100358,Sample Client 369,"Iyer, Nikhil",Open - Demand Sent,Dog Bite,FL,4/28/2026
+2026-100169,Sample Client 180,"Dutta, Priya",Open - Litigation,Slip and Fall,OR,1/2/2025
+2026-100039,Sample Client 50,"Alvarez, Marisol",Open - Investigation,Auto Accident,TX,3/3/2026
+2026-100457,Sample Client 468,"Kowalski, Tomasz",Open - Treating,Slip and Fall,NY,3/8/2026
+2026-100026,Sample Client 37,"Alvarez, Marisol",Open - Litigation,Wrongful Death,NV,3/5/2026
+2026-100464,Sample Client 475,"Kowalski, Tomasz",Open - Investigation,Wrongful Death,NY,4/3/2026
+2026-100431,Sample Client 442,"Kowalski, Tomasz",Open - Demand Sent,Auto Accident,FL,1/1/2026
+2026-100006,Sample Client 17,"Alvarez, Marisol",Open - Demand Sent,Wrongful Death,CO,7/27/2025
+2026-100060,Sample Client 71,"Boone, Dana",Open - Demand Sent,Wrongful Death,NM,4/27/2025
+2026-100403,Sample Client 414,"Jarrett, Colleen",Open - Negotiation,Auto Accident,CO,7/27/2025
+2026-100079,Sample Client 90,"Boone, Dana",Open - Negotiation,Dog Bite,CA,9/22/2025
+2026-100278,Sample Client 289,"Guzman, Elena",Open - Litigation,Auto Accident,WA,6/13/2026
+2026-100334,Sample Client 345,"Hollis, Wren",Open - Demand Sent,Dog Bite,NY,5/7/2025
+2026-100248,Sample Client 259,"Fontaine, Marcus",Open - Litigation,Slip and Fall,NY,4/13/2025
+2026-100070,Sample Client 81,"Boone, Dana",Open - Demand Sent,Premises Liability,FL,5/20/2025
+2026-100272,Sample Client 283,"Fontaine, Marcus",Settled,Premises Liability,TX,11/28/2025
+2026-100462,Sample Client 473,"Kowalski, Tomasz",Open - Demand Sent,Dog Bite,OR,9/19/2025
+2026-100274,Sample Client 285,"Guzman, Elena",Open - Demand Sent,Premises Liability,NM,12/9/2025
+2026-100007,Sample Client 18,"Alvarez, Marisol",Open - Negotiation,Wrongful Death,NV,7/19/2025
+2026-100376,Sample Client 387,"Iyer, Nikhil",Open - Investigation,Slip and Fall,OR,12/24/2025
+2026-100050,Sample Client 61,"Boone, Dana",Open - Investigation,Premises Liability,IL,1/15/2026
+2026-100346,Sample Client 357,"Hollis, Wren",Settled,Premises Liability,WA,6/9/2026
+2026-100046,Sample Client 57,"Boone, Dana",Open - Investigation,Wrongful Death,OR,6/16/2026
+2026-100115,Sample Client 126,"Castellanos, Rafael",Open - Treating,Slip and Fall,GA,2/27/2025
+2026-100084,Sample Client 95,"Boone, Dana",Open - Demand Sent,Dog Bite,CO,1/24/2026
+2026-100154,Sample Client 165,"Dutta, Priya",Open - Litigation,Dog Bite,CO,8/28/2025
+2026-100476,Sample Client 487,"Kowalski, Tomasz",Closed,Wrongful Death,FL,6/24/2026
+2026-100320,Sample Client 331,"Hollis, Wren",Open - Litigation,Wrongful Death,CA,1/7/2026
+2026-100514,Sample Client 525,"Lozano, Beatriz",Open - Negotiation,Wrongful Death,IL,3/16/2026
+2026-100385,Sample Client 396,"Iyer, Nikhil",Open - Treating,Auto Accident,AZ,9/8/2025
+2026-100369,Sample Client 380,"Iyer, Nikhil",Open - Negotiation,Auto Accident,FL,4/16/2026
+2026-100430,Sample Client 441,"Kowalski, Tomasz",Open - Demand Sent,Premises Liability,CO,9/11/2025
+2026-100461,Sample Client 472,"Kowalski, Tomasz",Open - Litigation,Wrongful Death,IL,2/20/2025
+2026-100340,Sample Client 351,"Hollis, Wren",Open - Litigation,Dog Bite,OR,11/29/2025
+2026-100008,Sample Client 19,"Alvarez, Marisol",Open - Litigation,Slip and Fall,TX,10/23/2025
+2026-100174,Sample Client 185,"Dutta, Priya",Open - Demand Sent,Premises Liability,NV,12/15/2025
+2026-100073,Sample Client 84,"Boone, Dana",Open - Litigation,Dog Bite,TX,3/23/2026
+2026-100068,Sample Client 79,"Boone, Dana",Open - Investigation,Auto Accident,AZ,12/12/2025
+2026-100030,Sample Client 41,"Alvarez, Marisol",Open - Litigation,Auto Accident,IL,12/13/2025
+2026-100350,Sample Client 361,"Iyer, Nikhil",Open - Treating,Premises Liability,OR,1/25/2026
+2026-100379,Sample Client 390,"Iyer, Nikhil",Open - Negotiation,Auto Accident,GA,4/15/2025
+2026-100389,Sample Client 400,"Iyer, Nikhil",Dropped - Client Request,Wrongful Death,WA,6/27/2025
+2026-100209,Sample Client 220,"Ellison, Grace",Open - Negotiation,Dog Bite,GA,5/27/2025
+2026-100255,Sample Client 266,"Fontaine, Marcus",Open - Negotiation,Premises Liability,CA,11/22/2025
+2026-100211,Sample Client 222,"Ellison, Grace",Open - Treating,Wrongful Death,CA,6/25/2026
+2026-100055,Sample Client 66,"Boone, Dana",Open - Demand Sent,Premises Liability,NM,7/31/2025
+2026-100036,Sample Client 47,"Alvarez, Marisol",Open - Demand Sent,Slip and Fall,NV,6/15/2026
+2026-100359,Sample Client 370,"Iyer, Nikhil",Open - Litigation,Wrongful Death,IL,8/14/2025
+2026-100155,Sample Client 166,"Dutta, Priya",Open - Investigation,Auto Accident,IL,6/3/2025
+2026-100519,Sample Client 530,"Whitfield, Erin",Open - Negotiation,Dog Bite,GA,5/30/2026
+2026-100001,Sample Client 12,"Alvarez, Marisol",Open - Demand Sent,Dog Bite,WA,5/6/2025
+2026-100199,Sample Client 210,"Ellison, Grace",Open - Treating,Slip and Fall,NM,5/17/2025
+2026-100176,Sample Client 187,"Dutta, Priya",Open - Litigation,Premises Liability,GA,6/12/2026
+2026-100257,Sample Client 268,"Fontaine, Marcus",Open - Investigation,Auto Accident,OR,9/5/2025
+2026-100011,Sample Client 22,"Alvarez, Marisol",Open - Demand Sent,Premises Liability,CA,6/16/2025
+2026-100090,Sample Client 101,"Boone, Dana",Closed,Auto Accident,FL,6/23/2026
+2026-100473,Sample Client 484,"Kowalski, Tomasz",Open - Litigation,Dog Bite,OR,5/6/2025
+2026-100271,Sample Client 282,"Fontaine, Marcus",Dropped - No Contact,Slip and Fall,IL,3/17/2026
+2026-100266,Sample Client 277,"Fontaine, Marcus",Open - Litigation,Auto Accident,OR,7/10/2026
+2026-100411,Sample Client 422,"Jarrett, Colleen",Open - Negotiation,Premises Liability,WA,11/20/2025
+2026-100196,Sample Client 207,"Ellison, Grace",Open - Litigation,Wrongful Death,GA,6/3/2025
+2026-100172,Sample Client 183,"Dutta, Priya",Open - Demand Sent,Slip and Fall,CA,3/21/2025
+2026-100051,Sample Client 62,"Boone, Dana",Open - Investigation,Auto Accident,AZ,6/17/2026
+2026-100447,Sample Client 458,"Kowalski, Tomasz",Open - Investigation,Premises Liability,NY,7/4/2025
+2026-100353,Sample Client 364,"Iyer, Nikhil",Open - Treating,Slip and Fall,IL,2/11/2025
+2026-100279,Sample Client 290,"Guzman, Elena",Open - Litigation,Dog Bite,AZ,4/12/2026
+2026-100042,Sample Client 53,"Alvarez, Marisol",Closed,Auto Accident,CO,4/2/2025
+2026-100357,Sample Client 368,"Iyer, Nikhil",Open - Investigation,Auto Accident,CA,5/16/2025
+2026-100516,Sample Client 527,"Lozano, Beatriz",Dropped - No Contact,Slip and Fall,OR,2/19/2026
+2026-100072,Sample Client 83,"Boone, Dana",Open - Investigation,Dog Bite,CA,10/6/2025
+2026-100044,Sample Client 55,"Boone, Dana",Open - Negotiation,Premises Liability,NY,6/18/2026
+2026-100407,Sample Client 418,"Jarrett, Colleen",Open - Treating,Premises Liability,GA,7/17/2025
+2026-100175,Sample Client 186,"Dutta, Priya",Open - Demand Sent,Premises Liability,NY,7/29/2025
+2026-100047,Sample Client 58,"Boone, Dana",Open - Negotiation,Slip and Fall,IL,1/10/2026
+2026-100349,Sample Client 360,"Iyer, Nikhil",Open - Litigation,Dog Bite,NY,8/30/2025
+2026-100049,Sample Client 60,"Boone, Dana",Open - Negotiation,Dog Bite,TX,6/2/2026
+2026-100306,Sample Client 317,"Guzman, Elena",Settled,Premises Liability,CA,8/15/2025
+2026-100277,Sample Client 288,"Guzman, Elena",Open - Demand Sent,Wrongful Death,FL,8/23/2025
+2026-100443,Sample Client 454,"Kowalski, Tomasz",Open - Demand Sent,Wrongful Death,GA,1/4/2026
+2026-100029,Sample Client 40,"Alvarez, Marisol",Open - Demand Sent,Slip and Fall,CA,6/29/2026
+2026-100494,Sample Client 505,"Lozano, Beatriz",Open - Treating,Wrongful Death,NY,1/23/2025
+2026-100243,Sample Client 254,"Fontaine, Marcus",Open - Treating,Premises Liability,OR,1/24/2025
+2026-100452,Sample Client 463,"Kowalski, Tomasz",Open - Demand Sent,Dog Bite,OR,3/5/2026
+2026-100400,Sample Client 411,"Jarrett, Colleen",Open - Investigation,Dog Bite,WA,3/18/2025
+2026-100235,Sample Client 246,"Fontaine, Marcus",Open - Negotiation,Wrongful Death,NM,4/15/2025
+2026-100120,Sample Client 131,"Castellanos, Rafael",Open - Negotiation,Auto Accident,CA,3/16/2025
+2026-100052,Sample Client 63,"Boone, Dana",Open - Litigation,Dog Bite,CA,11/6/2025
+2026-100184,Sample Client 195,"Dutta, Priya",Settled,Auto Accident,AZ,1/7/2025
+2026-100405,Sample Client 416,"Jarrett, Colleen",Open - Litigation,Auto Accident,CO,4/29/2026
+2026-100304,Sample Client 315,"Guzman, Elena",Settled,Dog Bite,WA,10/9/2025
+2026-100231,Sample Client 242,"Fontaine, Marcus",Open - Treating,Premises Liability,OR,1/27/2025
+2026-100031,Sample Client 42,"Alvarez, Marisol",Open - Negotiation,Auto Accident,GA,6/17/2025
+2026-100186,Sample Client 197,"Dutta, Priya",Referred Out,Premises Liability,IL,2/18/2026
+2026-100456,Sample Client 467,"Kowalski, Tomasz",Open - Litigation,Auto Accident,NV,11/7/2025
+2026-100159,Sample Client 170,"Dutta, Priya",Open - Investigation,Dog Bite,NV,9/21/2025
+2026-100426,Sample Client 437,"Jarrett, Colleen",Dropped - Client Request,Dog Bite,NV,3/20/2025
+2026-100092,Sample Client 103,"Castellanos, Rafael",Open - Demand Sent,Auto Accident,GA,4/8/2025
+2026-100033,Sample Client 44,"Alvarez, Marisol",Open - Litigation,Wrongful Death,AZ,1/29/2025
+2026-100234,Sample Client 245,"Fontaine, Marcus",Open - Demand Sent,Premises Liability,FL,9/29/2025
+2026-100423,Sample Client 434,"Jarrett, Colleen",Settled,Premises Liability,NM,5/9/2026
+2026-100260,Sample Client 271,"Fontaine, Marcus",Open - Litigation,Premises Liability,GA,1/7/2025
+2026-100477,Sample Client 488,"Kowalski, Tomasz",Settled,Auto Accident,GA,5/14/2026
+2026-100254,Sample Client 265,"Fontaine, Marcus",Open - Investigation,Premises Liability,NV,3/2/2026
+2026-100065,Sample Client 76,"Boone, Dana",Open - Litigation,Dog Bite,WA,3/3/2026
+2026-100080,Sample Client 91,"Boone, Dana",Open - Negotiation,Premises Liability,CA,1/22/2025
+2026-100005,Sample Client 16,"Alvarez, Marisol",Open - Litigation,Wrongful Death,NM,7/13/2025
+2026-100282,Sample Client 293,"Guzman, Elena",Open - Demand Sent,Slip and Fall,AZ,10/29/2025
+2026-100102,Sample Client 113,"Castellanos, Rafael",Open - Treating,Slip and Fall,IL,6/10/2026
+2026-100339,Sample Client 350,"Hollis, Wren",Open - Demand Sent,Slip and Fall,GA,3/15/2026
+2026-100188,Sample Client 199,"Ellison, Grace",Open - Investigation,Dog Bite,FL,6/14/2025
+2026-100319,Sample Client 330,"Hollis, Wren",Open - Treating,Auto Accident,GA,11/5/2025
+2026-100435,Sample Client 446,"Kowalski, Tomasz",Open - Negotiation,Dog Bite,CO,5/18/2026
+2026-100355,Sample Client 366,"Iyer, Nikhil",Open - Investigation,Auto Accident,NM,2/14/2025
+2026-100116,Sample Client 127,"Castellanos, Rafael",Open - Investigation,Wrongful Death,AZ,3/14/2025
+2026-100308,Sample Client 319,"Hollis, Wren",Open - Treating,Wrongful Death,TX,5/23/2025
+2026-100071,Sample Client 82,"Boone, Dana",Open - Negotiation,Auto Accident,NV,6/4/2026
+2026-100285,Sample Client 296,"Guzman, Elena",Open - Negotiation,Dog Bite,AZ,5/6/2026
+2026-100219,Sample Client 230,"Ellison, Grace",Dropped - Client Request,Premises Liability,NY,3/10/2025
+2026-100124,Sample Client 135,"Castellanos, Rafael",Open - Negotiation,Premises Liability,TX,3/16/2026
+2026-100329,Sample Client 340,"Hollis, Wren",Open - Litigation,Dog Bite,OR,3/31/2026
+2026-100108,Sample Client 119,"Castellanos, Rafael",Open - Demand Sent,Auto Accident,GA,3/7/2026
+2026-100013,Sample Client 24,"Alvarez, Marisol",Open - Negotiation,Wrongful Death,CA,1/16/2026
+2026-100454,Sample Client 465,"Kowalski, Tomasz",Open - Negotiation,Slip and Fall,WA,12/25/2025
+2026-100436,Sample Client 447,"Kowalski, Tomasz",Open - Investigation,Wrongful Death,GA,11/30/2025
+2026-100229,Sample Client 240,"Fontaine, Marcus",Open - Litigation,Premises Liability,OR,5/8/2025
+2026-100233,Sample Client 244,"Fontaine, Marcus",Open - Demand Sent,Slip and Fall,OR,4/30/2025
+2026-100501,Sample Client 512,"Lozano, Beatriz",Open - Litigation,Auto Accident,NV,6/11/2026
+2026-100109,Sample Client 120,"Castellanos, Rafael",Open - Negotiation,Auto Accident,FL,9/26/2025
+2026-100250,Sample Client 261,"Fontaine, Marcus",Open - Demand Sent,Premises Liability,AZ,8/13/2025
+2026-100185,Sample Client 196,"Dutta, Priya",Closed,Slip and Fall,CA,7/11/2026
+2026-100313,Sample Client 324,"Hollis, Wren",Open - Investigation,Wrongful Death,CO,3/7/2026
+2026-100371,Sample Client 382,"Iyer, Nikhil",Open - Demand Sent,Premises Liability,IL,4/9/2025
+2026-100367,Sample Client 378,"Iyer, Nikhil",Open - Investigation,Premises Liability,CO,10/1/2025
+2026-100433,Sample Client 444,"Kowalski, Tomasz",Open - Litigation,Dog Bite,NM,6/10/2026
+2026-100129,Sample Client 140,"Castellanos, Rafael",Dropped - Client Request,Premises Liability,IL,11/1/2025
+2026-100424,Sample Client 435,"Jarrett, Colleen",Closed,Wrongful Death,IL,5/23/2025
+2026-100291,Sample Client 302,"Guzman, Elena",Open - Negotiation,Auto Accident,GA,12/2/2025
+2026-100273,Sample Client 284,"Guzman, Elena",Open - Investigation,Auto Accident,FL,6/1/2026
+2026-100327,Sample Client 338,"Hollis, Wren",Open - Investigation,Dog Bite,CO,6/25/2025
+2026-100468,Sample Client 479,"Kowalski, Tomasz",Open - Negotiation,Auto Accident,FL,3/22/2026
+2026-100375,Sample Client 386,"Iyer, Nikhil",Open - Treating,Wrongful Death,CO,1/3/2026
+2026-100512,Sample Client 523,"Lozano, Beatriz",Open - Investigation,Slip and Fall,CO,11/14/2025
+2026-100214,Sample Client 225,"Ellison, Grace",Open - Negotiation,Dog Bite,OR,7/10/2026
+2026-100048,Sample Client 59,"Boone, Dana",Open - Negotiation,Dog Bite,IL,5/20/2025
+2026-100059,Sample Client 70,"Boone, Dana",Open - Litigation,Auto Accident,CO,8/20/2025
+2026-100138,Sample Client 149,"Dutta, Priya",Open - Treating,Premises Liability,NV,2/9/2025
+2026-100189,Sample Client 200,"Ellison, Grace",Open - Negotiation,Slip and Fall,TX,12/24/2025
+2026-100467,Sample Client 478,"Kowalski, Tomasz",Open - Negotiation,Slip and Fall,IL,3/26/2025
+2026-100113,Sample Client 124,"Castellanos, Rafael",Open - Demand Sent,Wrongful Death,GA,6/30/2026
+2026-100057,Sample Client 68,"Boone, Dana",Open - Investigation,Premises Liability,IL,12/14/2025
+2026-100307,Sample Client 318,"Hollis, Wren",Open - Treating,Wrongful Death,CO,3/29/2026
+2026-100105,Sample Client 116,"Castellanos, Rafael",Open - Treating,Slip and Fall,FL,5/8/2026
+2026-100393,Sample Client 404,"Jarrett, Colleen",Open - Demand Sent,Wrongful Death,NV,8/19/2025
+2026-100312,Sample Client 323,"Hollis, Wren",Open - Treating,Slip and Fall,GA,10/22/2025
+2026-100236,Sample Client 247,"Fontaine, Marcus",Open - Investigation,Dog Bite,TX,7/3/2026
+2026-100107,Sample Client 118,"Castellanos, Rafael",Open - Treating,Auto Accident,NM,6/9/2026
+2026-100496,Sample Client 507,"Lozano, Beatriz",Open - Litigation,Wrongful Death,TX,4/18/2026
+2026-100399,Sample Client 410,"Jarrett, Colleen",Open - Litigation,Auto Accident,WA,9/30/2025
+2026-100240,Sample Client 251,"Fontaine, Marcus",Open - Negotiation,Slip and Fall,AZ,9/9/2025
+2026-100179,Sample Client 190,"Dutta, Priya",Open - Investigation,Wrongful Death,CO,4/17/2026
+2026-100302,Sample Client 313,"Guzman, Elena",Open - Demand Sent,Premises Liability,CO,7/4/2026
+2026-100305,Sample Client 316,"Guzman, Elena",Referred Out,Premises Liability,NM,5/26/2025
+2026-100127,Sample Client 138,"Castellanos, Rafael",Dropped - Client Request,Premises Liability,CA,11/8/2025
+2026-100037,Sample Client 48,"Alvarez, Marisol",Open - Negotiation,Auto Accident,NM,6/8/2025
+2026-100041,Sample Client 52,"Alvarez, Marisol",Closed,Slip and Fall,WA,1/10/2026
+2026-100398,Sample Client 409,"Jarrett, Colleen",Open - Demand Sent,Premises Liability,NV,3/4/2026
+2026-100149,Sample Client 160,"Dutta, Priya",Open - Demand Sent,Dog Bite,CA,10/24/2025
+2026-100294,Sample Client 305,"Guzman, Elena",Open - Treating,Auto Accident,CA,4/16/2025
+2026-100491,Sample Client 502,"Lozano, Beatriz",Open - Treating,Auto Accident,NV,6/11/2025
+2026-100258,Sample Client 269,"Fontaine, Marcus",Open - Treating,Premises Liability,TX,4/26/2025
+2026-100215,Sample Client 226,"Ellison, Grace",Open - Investigation,Auto Accident,IL,6/11/2025
+2026-100096,Sample Client 107,"Castellanos, Rafael",Open - Negotiation,Dog Bite,NY,1/5/2026
+2026-100017,Sample Client 28,"Alvarez, Marisol",Open - Demand Sent,Premises Liability,TX,5/18/2025
+2026-100085,Sample Client 96,"Boone, Dana",Open - Investigation,Premises Liability,TX,1/21/2025
+2026-100337,Sample Client 348,"Hollis, Wren",Open - Litigation,Dog Bite,NM,8/28/2025
+2026-100264,Sample Client 275,"Fontaine, Marcus",Open - Demand Sent,Wrongful Death,NV,2/8/2026
+2026-100418,Sample Client 429,"Jarrett, Colleen",Open - Negotiation,Premises Liability,AZ,10/25/2025
+2026-100289,Sample Client 300,"Guzman, Elena",Open - Litigation,Premises Liability,FL,2/15/2025
+2026-100224,Sample Client 235,"Ellison, Grace",Dropped - Client Request,Slip and Fall,AZ,11/8/2025
+2026-100187,Sample Client 198,"Ellison, Grace",Open - Negotiation,Dog Bite,IL,11/25/2025
+2026-100511,Sample Client 522,"Lozano, Beatriz",Open - Treating,Premises Liability,GA,9/10/2025
+2026-100280,Sample Client 291,"Guzman, Elena",Open - Demand Sent,Premises Liability,NM,7/4/2026
+2026-100459,Sample Client 470,"Kowalski, Tomasz",Open - Treating,Wrongful Death,NM,3/19/2025
+2026-100344,Sample Client 355,"Hollis, Wren",Open - Treating,Wrongful Death,CO,11/30/2025
+2026-100145,Sample Client 156,"Dutta, Priya",Open - Demand Sent,Dog Bite,NV,1/8/2026
+2026-100303,Sample Client 314,"Guzman, Elena",Dropped - Client Request,Wrongful Death,NV,3/17/2025
+2026-100166,Sample Client 177,"Dutta, Priya",Open - Negotiation,Auto Accident,IL,10/20/2025
+2026-100064,Sample Client 75,"Boone, Dana",Open - Negotiation,Premises Liability,NY,4/29/2026
+2026-100205,Sample Client 216,"Ellison, Grace",Open - Litigation,Dog Bite,AZ,9/27/2025
+2026-100216,Sample Client 227,"Ellison, Grace",Open - Investigation,Auto Accident,CA,1/7/2026
+2026-100088,Sample Client 99,"Boone, Dana",Referred Out,Premises Liability,NM,6/15/2026
+2026-100034,Sample Client 45,"Alvarez, Marisol",Open - Treating,Slip and Fall,NM,6/21/2026
+2026-100097,Sample Client 108,"Castellanos, Rafael",Open - Investigation,Slip and Fall,WA,8/24/2025
+2026-100287,Sample Client 298,"Guzman, Elena",Open - Investigation,Dog Bite,CO,5/18/2026
+2026-100220,Sample Client 231,"Ellison, Grace",Closed,Dog Bite,NM,5/5/2025
+2026-100444,Sample Client 455,"Kowalski, Tomasz",Open - Investigation,Auto Accident,GA,10/18/2025
+2026-100000,Sample Client 11,"Alvarez, Marisol",Open - Negotiation,Auto Accident,CO,3/8/2025
+2026-100081,Sample Client 92,"Boone, Dana",Open - Investigation,Wrongful Death,CA,7/31/2025
+2026-100395,Sample Client 406,"Jarrett, Colleen",Open - Litigation,Premises Liability,TX,4/15/2026
+2026-100293,Sample Client 304,"Guzman, Elena",Open - Negotiation,Premises Liability,OR,3/1/2026
+2026-100038,Sample Client 49,"Alvarez, Marisol",Open - Demand Sent,Dog Bite,TX,6/16/2026
+2026-100114,Sample Client 125,"Castellanos, Rafael",Open - Demand Sent,Slip and Fall,GA,1/28/2025
+2026-100495,Sample Client 506,"Lozano, Beatriz",Open - Investigation,Dog Bite,CO,5/5/2026
+2026-100101,Sample Client 112,"Castellanos, Rafael",Open - Treating,Wrongful Death,OR,8/20/2025
+2026-100299,Sample Client 310,"Guzman, Elena",Open - Litigation,Auto Accident,AZ,1/23/2025
+2026-100173,Sample Client 184,"Dutta, Priya",Open - Demand Sent,Wrongful Death,NY,1/28/2025
+2026-100082,Sample Client 93,"Boone, Dana",Open - Investigation,Slip and Fall,WA,6/30/2026
+2026-100388,Sample Client 399,"Iyer, Nikhil",Open - Treating,Wrongful Death,AZ,7/13/2026
+2026-100053,Sample Client 64,"Boone, Dana",Open - Investigation,Premises Liability,TX,9/9/2025
+2026-100140,Sample Client 151,"Dutta, Priya",Open - Litigation,Slip and Fall,NY,4/30/2026
+2026-100256,Sample Client 267,"Fontaine, Marcus",Open - Negotiation,Dog Bite,CA,6/1/2026
+2026-100493,Sample Client 504,"Lozano, Beatriz",Open - Litigation,Dog Bite,AZ,7/3/2026
+2026-100472,Sample Client 483,"Kowalski, Tomasz",Open - Demand Sent,Premises Liability,FL,8/22/2025
+2026-100362,Sample Client 373,"Iyer, Nikhil",Open - Treating,Premises Liability,NV,4/10/2025
+2026-100119,Sample Client 130,"Castellanos, Rafael",Open - Litigation,Wrongful Death,IL,11/27/2025
+2026-100098,Sample Client 109,"Castellanos, Rafael",Open - Treating,Wrongful Death,NY,1/1/2025
+2026-100392,Sample Client 403,"Iyer, Nikhil",Settled,Wrongful Death,CA,5/5/2025
+2026-100177,Sample Client 188,"Dutta, Priya",Open - Negotiation,Dog Bite,IL,1/31/2026
+2026-100213,Sample Client 224,"Ellison, Grace",Open - Investigation,Premises Liability,GA,3/25/2026
+2026-100471,Sample Client 482,"Kowalski, Tomasz",Open - Investigation,Slip and Fall,GA,2/4/2026
+2026-100160,Sample Client 171,"Dutta, Priya",Open - Treating,Auto Accident,GA,4/21/2026
+2026-100380,Sample Client 391,"Iyer, Nikhil",Open - Litigation,Dog Bite,TX,8/6/2025
+2026-100192,Sample Client 203,"Ellison, Grace",Open - Treating,Slip and Fall,CA,6/6/2025
+2026-100363,Sample Client 374,"Iyer, Nikhil",Open - Investigation,Wrongful Death,OR,11/29/2025
+2026-100125,Sample Client 136,"Castellanos, Rafael",Dropped - Client Request,Slip and Fall,CO,1/27/2025
+2026-100324,Sample Client 335,"Hollis, Wren",Open - Negotiation,Auto Accident,CA,1/25/2025
+2026-100180,Sample Client 191,"Dutta, Priya",Open - Litigation,Dog Bite,CO,5/29/2026
+2026-100069,Sample Client 80,"Boone, Dana",Open - Litigation,Premises Liability,OR,10/11/2025
+2026-100484,Sample Client 495,"Lozano, Beatriz",Open - Treating,Dog Bite,FL,12/30/2025
+2026-100106,Sample Client 117,"Castellanos, Rafael",Open - Negotiation,Auto Accident,TX,11/8/2025
+2026-100040,Sample Client 51,"Alvarez, Marisol",Referred Out,Slip and Fall,CO,3/7/2026
+2026-100171,Sample Client 182,"Dutta, Priya",Open - Negotiation,Dog Bite,IL,5/21/2025
+2026-100455,Sample Client 466,"Kowalski, Tomasz",Open - Treating,Dog Bite,IL,10/22/2025
+2026-100077,Sample Client 88,"Boone, Dana",Open - Litigation,Wrongful Death,OR,2/26/2026
+2026-100328,Sample Client 339,"Hollis, Wren",Open - Demand Sent,Auto Accident,CO,4/14/2025
+2026-100242,Sample Client 253,"Fontaine, Marcus",Open - Litigation,Premises Liability,GA,1/11/2026
+2026-100158,Sample Client 169,"Dutta, Priya",Open - Demand Sent,Auto Accident,CO,8/9/2025
+2026-100028,Sample Client 39,"Alvarez, Marisol",Open - Investigation,Dog Bite,AZ,6/15/2025
+2026-100063,Sample Client 74,"Boone, Dana",Open - Demand Sent,Slip and Fall,FL,2/1/2026
+2026-100267,Sample Client 278,"Fontaine, Marcus",Open - Litigation,Dog Bite,AZ,6/12/2025
+2026-100223,Sample Client 234,"Ellison, Grace",Closed,Auto Accident,NM,1/27/2025
+2026-100075,Sample Client 86,"Boone, Dana",Open - Litigation,Dog Bite,AZ,6/26/2025
+2026-100218,Sample Client 229,"Ellison, Grace",Open - Demand Sent,Wrongful Death,GA,11/26/2025
+2026-100091,Sample Client 102,"Castellanos, Rafael",Open - Negotiation,Dog Bite,CA,12/24/2025
+2026-100310,Sample Client 321,"Hollis, Wren",Open - Negotiation,Wrongful Death,FL,4/5/2026
+2026-100012,Sample Client 23,"Alvarez, Marisol",Open - Demand Sent,Slip and Fall,AZ,2/26/2026
+2026-100448,Sample Client 459,"Kowalski, Tomasz",Open - Treating,Dog Bite,OR,4/24/2026
+2026-100360,Sample Client 371,"Iyer, Nikhil",Open - Investigation,Slip and Fall,OR,9/15/2025
+2026-100515,Sample Client 526,"Lozano, Beatriz",Closed,Wrongful Death,OR,9/24/2025
+2026-100245,Sample Client 256,"Fontaine, Marcus",Open - Treating,Dog Bite,IL,7/24/2025
+2026-100374,Sample Client 385,"Iyer, Nikhil",Open - Litigation,Auto Accident,WA,9/24/2025
+2026-100479,Sample Client 490,"Kowalski, Tomasz",Dropped - Client Request,Auto Accident,CO,5/12/2025
+2026-100401,Sample Client 412,"Jarrett, Colleen",Open - Investigation,Auto Accident,CO,6/25/2025
+2026-100021,Sample Client 32,"Alvarez, Marisol",Open - Litigation,Dog Bite,AZ,10/7/2025
+2026-100370,Sample Client 381,"Iyer, Nikhil",Open - Demand Sent,Dog Bite,GA,10/16/2025
+2026-100332,Sample Client 343,"Hollis, Wren",Open - Litigation,Premises Liability,CA,4/13/2026
+2026-100137,Sample Client 148,"Dutta, Priya",Open - Investigation,Premises Liability,CA,6/1/2025
+2026-100226,Sample Client 237,"Fontaine, Marcus",Open - Treating,Slip and Fall,OR,3/24/2025
+2026-100412,Sample Client 423,"Jarrett, Colleen",Open - Negotiation,Premises Liability,OR,1/13/2025
+2026-100505,Sample Client 516,"Lozano, Beatriz",Open - Treating,Auto Accident,NV,1/6/2026
+2026-100022,Sample Client 33,"Alvarez, Marisol",Open - Negotiation,Dog Bite,IL,4/21/2025
+2026-100335,Sample Client 346,"Hollis, Wren",Open - Litigation,Dog Bite,FL,11/23/2025
+2026-100425,Sample Client 436,"Jarrett, Colleen",Closed,Wrongful Death,WA,6/2/2025
+2026-100276,Sample Client 287,"Guzman, Elena",Open - Negotiation,Wrongful Death,OR,6/21/2026
+2026-100521,Sample Client 532,"Whitfield, Erin",Open - Negotiation,Dog Bite,GA,3/18/2025
+2026-100419,Sample Client 430,"Jarrett, Colleen",Open - Treating,Dog Bite,CO,1/15/2026
+2026-100168,Sample Client 179,"Dutta, Priya",Open - Investigation,Wrongful Death,FL,4/12/2026
+2026-100020,Sample Client 31,"Alvarez, Marisol",Open - Investigation,Dog Bite,NM,5/1/2026
+2026-100415,Sample Client 426,"Jarrett, Colleen",Open - Litigation,Auto Accident,CO,9/26/2025
+2026-100292,Sample Client 303,"Guzman, Elena",Open - Negotiation,Slip and Fall,WA,12/27/2025
+2026-100024,Sample Client 35,"Alvarez, Marisol",Open - Treating,Auto Accident,GA,9/22/2025
+2026-100429,Sample Client 440,"Kowalski, Tomasz",Open - Litigation,Auto Accident,IL,4/18/2025
+2026-100296,Sample Client 307,"Guzman, Elena",Open - Demand Sent,Slip and Fall,FL,7/26/2025
+2026-100156,Sample Client 167,"Dutta, Priya",Open - Treating,Auto Accident,NY,6/1/2025
+2026-100486,Sample Client 497,"Lozano, Beatriz",Open - Investigation,Slip and Fall,TX,1/27/2025
+2026-100497,Sample Client 508,"Lozano, Beatriz",Open - Litigation,Slip and Fall,FL,12/13/2025
+2026-100288,Sample Client 299,"Guzman, Elena",Open - Demand Sent,Premises Liability,WA,2/28/2025
+2026-100259,Sample Client 270,"Fontaine, Marcus",Open - Investigation,Slip and Fall,TX,8/5/2025
+2026-100045,Sample Client 56,"Boone, Dana",Open - Negotiation,Dog Bite,CA,6/6/2026
+2026-100136,Sample Client 147,"Dutta, Priya",Open - Negotiation,Slip and Fall,CO,2/10/2026
+2026-100178,Sample Client 189,"Dutta, Priya",Open - Negotiation,Auto Accident,IL,2/2/2026
+2026-100100,Sample Client 111,"Castellanos, Rafael",Open - Treating,Wrongful Death,CO,2/7/2025
+2026-100480,Sample Client 491,"Lozano, Beatriz",Open - Demand Sent,Wrongful Death,OR,6/15/2025
+2026-100023,Sample Client 34,"Alvarez, Marisol",Open - Treating,Auto Accident,IL,4/8/2026
+2026-100227,Sample Client 238,"Fontaine, Marcus",Open - Treating,Wrongful Death,TX,2/21/2026
+2026-100207,Sample Client 218,"Ellison, Grace",Open - Demand Sent,Auto Accident,TX,9/20/2025
+2026-100134,Sample Client 145,"Dutta, Priya",Open - Litigation,Dog Bite,IL,5/29/2026
+2026-100244,Sample Client 255,"Fontaine, Marcus",Open - Treating,Wrongful Death,CO,1/19/2026
+2026-100056,Sample Client 67,"Boone, Dana",Open - Demand Sent,Premises Liability,NM,7/14/2026
+2026-100202,Sample Client 213,"Ellison, Grace",Open - Demand Sent,Wrongful Death,NY,8/22/2025
+2026-100058,Sample Client 69,"Boone, Dana",Open - Investigation,Auto Accident,OR,1/28/2026
+2026-100093,Sample Client 104,"Castellanos, Rafael",Open - Litigation,Wrongful Death,NV,2/23/2025
+2026-100466,Sample Client 477,"Kowalski, Tomasz",Open - Negotiation,Auto Accident,OR,5/8/2026
+2026-100095,Sample Client 106,"Castellanos, Rafael",Open - Demand Sent,Slip and Fall,NY,2/14/2026
+2026-100010,Sample Client 21,"Alvarez, Marisol",Open - Negotiation,Premises Liability,GA,5/4/2026
+2026-100164,Sample Client 175,"Dutta, Priya",Open - Demand Sent,Auto Accident,NV,1/28/2026
+2026-100396,Sample Client 407,"Jarrett, Colleen",Open - Litigation,Auto Accident,CO,8/29/2025
+2026-100318,Sample Client 329,"Hollis, Wren",Open - Litigation,Dog Bite,NM,3/23/2026
+2026-100437,Sample Client 448,"Kowalski, Tomasz",Open - Negotiation,Dog Bite,CA,1/22/2025
+2026-100377,Sample Client 388,"Iyer, Nikhil",Open - Treating,Premises Liability,CA,3/10/2026
+2026-100451,Sample Client 462,"Kowalski, Tomasz",Open - Litigation,Slip and Fall,NV,9/11/2025
+2026-100004,Sample Client 15,"Alvarez, Marisol",Open - Treating,Premises Liability,CA,3/14/2025
+2026-100508,Sample Client 519,"Lozano, Beatriz",Open - Investigation,Premises Liability,CO,4/5/2026
+2026-100142,Sample Client 153,"Dutta, Priya",Open - Demand Sent,Auto Accident,IL,8/16/2025
+2026-100083,Sample Client 94,"Boone, Dana",Open - Negotiation,Dog Bite,CA,10/28/2025
+2026-100402,Sample Client 413,"Jarrett, Colleen",Open - Treating,Wrongful Death,OR,3/27/2025
+2026-100148,Sample Client 159,"Dutta, Priya",Open - Treating,Slip and Fall,NM,5/9/2025
+2026-100336,Sample Client 347,"Hollis, Wren",Open - Litigation,Slip and Fall,CA,6/6/2025
+2026-100251,Sample Client 262,"Fontaine, Marcus",Open - Negotiation,Auto Accident,FL,1/30/2026
+2026-100228,Sample Client 239,"Fontaine, Marcus",Open - Treating,Wrongful Death,AZ,3/9/2026
+2026-100043,Sample Client 54,"Alvarez, Marisol",Referred Out,Premises Liability,OR,10/23/2025
+2026-100351,Sample Client 362,"Iyer, Nikhil",Open - Negotiation,Premises Liability,GA,6/9/2025
+2026-100409,Sample Client 420,"Jarrett, Colleen",Open - Demand Sent,Slip and Fall,NV,2/13/2025
+2026-100135,Sample Client 146,"Dutta, Priya",Open - Negotiation,Dog Bite,NM,4/5/2025
+2026-100283,Sample Client 294,"Guzman, Elena",Open - Investigation,Slip and Fall,NV,9/30/2025
+2026-100150,Sample Client 161,"Dutta, Priya",Open - Litigation,Dog Bite,IL,3/1/2025
+2026-100391,Sample Client 402,"Iyer, Nikhil",Dropped - No Contact,Premises Liability,NV,9/13/2025
+2026-100341,Sample Client 352,"Hollis, Wren",Open - Demand Sent,Auto Accident,OR,2/3/2025
+2026-100151,Sample Client 162,"Dutta, Priya",Open - Litigation,Wrongful Death,FL,4/10/2025
+2026-100263,Sample Client 274,"Fontaine, Marcus",Open - Investigation,Slip and Fall,TX,1/9/2025
+2026-100099,Sample Client 110,"Castellanos, Rafael",Open - Negotiation,Auto Accident,NY,5/14/2025
+2026-100507,Sample Client 518,"Lozano, Beatriz",Open - Investigation,Auto Accident,IL,1/7/2025
+2026-100241,Sample Client 252,"Fontaine, Marcus",Open - Litigation,Auto Accident,WA,6/3/2026
+2026-100390,Sample Client 401,"Iyer, Nikhil",Closed,Auto Accident,FL,11/7/2025
+2026-100408,Sample Client 419,"Jarrett, Colleen",Open - Negotiation,Wrongful Death,NV,6/28/2025
+2026-100383,Sample Client 394,"Iyer, Nikhil",Open - Litigation,Wrongful Death,IL,9/30/2025
+2026-100422,Sample Client 433,"Jarrett, Colleen",Settled,Wrongful Death,TX,5/24/2026
+2026-100094,Sample Client 105,"Castellanos, Rafael",Open - Treating,Slip and Fall,FL,7/23/2025
+2026-100352,Sample Client 363,"Iyer, Nikhil",Open - Litigation,Slip and Fall,AZ,4/6/2025
+2026-100420,Sample Client 431,"Jarrett, Colleen",Open - Demand Sent,Auto Accident,NY,5/24/2026
+2026-100331,Sample Client 342,"Hollis, Wren",Open - Investigation,Premises Liability,NY,1/17/2026
+2026-100247,Sample Client 258,"Fontaine, Marcus",Open - Investigation,Dog Bite,NY,1/26/2026
+2026-100506,Sample Client 517,"Lozano, Beatriz",Open - Litigation,Wrongful Death,NV,4/16/2026
+2026-100232,Sample Client 243,"Fontaine, Marcus",Open - Negotiation,Auto Accident,WA,6/25/2026
+2026-100509,Sample Client 520,"Lozano, Beatriz",Open - Demand Sent,Wrongful Death,TX,3/12/2025
+2026-100025,Sample Client 36,"Alvarez, Marisol",Open - Treating,Auto Accident,GA,5/29/2026
+2026-100510,Sample Client 521,"Lozano, Beatriz",Open - Litigation,Wrongful Death,GA,3/4/2025
+2026-100239,Sample Client 250,"Fontaine, Marcus",Open - Treating,Slip and Fall,TX,4/29/2025
+2026-100470,Sample Client 481,"Kowalski, Tomasz",Open - Treating,Premises Liability,FL,10/19/2025
+2026-100212,Sample Client 223,"Ellison, Grace",Open - Demand Sent,Slip and Fall,CO,9/7/2025
+2026-100343,Sample Client 354,"Hollis, Wren",Open - Treating,Auto Accident,FL,2/15/2026
+2026-100428,Sample Client 439,"Kowalski, Tomasz",Open - Demand Sent,Slip and Fall,WA,2/14/2025
+2026-100131,Sample Client 142,"Castellanos, Rafael",Closed,Premises Liability,CO,2/18/2025
+2026-100410,Sample Client 421,"Jarrett, Colleen",Open - Negotiation,Slip and Fall,WA,4/2/2026
+2026-100237,Sample Client 248,"Fontaine, Marcus",Open - Demand Sent,Wrongful Death,CO,2/3/2026
+2026-100386,Sample Client 397,"Iyer, Nikhil",Open - Investigation,Auto Accident,NY,3/8/2026
+2026-100162,Sample Client 173,"Dutta, Priya",Open - Investigation,Premises Liability,NM,1/18/2025
+2026-100348,Sample Client 359,"Iyer, Nikhil",Open - Treating,Slip and Fall,NM,2/4/2026
+2026-100315,Sample Client 326,"Hollis, Wren",Open - Demand Sent,Auto Accident,NM,3/16/2026
+2026-100190,Sample Client 201,"Ellison, Grace",Open - Treating,Dog Bite,NV,4/29/2025
+2026-100330,Sample Client 341,"Hollis, Wren",Open - Litigation,Dog Bite,IL,5/24/2025
+2026-100345,Sample Client 356,"Hollis, Wren",Dropped - No Contact,Auto Accident,TX,8/2/2025
+2026-100067,Sample Client 78,"Boone, Dana",Open - Demand Sent,Auto Accident,NV,6/28/2025
+2026-100054,Sample Client 65,"Boone, Dana",Open - Investigation,Auto Accident,AZ,6/13/2025
+2026-100265,Sample Client 276,"Fontaine, Marcus",Open - Demand Sent,Slip and Fall,WA,1/23/2025
+2026-100404,Sample Client 415,"Jarrett, Colleen",Open - Investigation,Slip and Fall,GA,5/21/2025
+2026-100123,Sample Client 134,"Castellanos, Rafael",Open - Litigation,Slip and Fall,WA,7/21/2025
+2026-100387,Sample Client 398,"Iyer, Nikhil",Open - Treating,Slip and Fall,NM,3/9/2025
+2026-100076,Sample Client 87,"Boone, Dana",Open - Investigation,Wrongful Death,TX,5/3/2026
+2026-100194,Sample Client 205,"Ellison, Grace",Open - Treating,Premises Liability,NV,11/1/2025
+2026-100322,Sample Client 333,"Hollis, Wren",Open - Demand Sent,Auto Accident,CO,3/11/2026
+2026-100364,Sample Client 375,"Iyer, Nikhil",Open - Treating,Premises Liability,TX,2/14/2025
+2026-100326,Sample Client 337,"Hollis, Wren",Open - Investigation,Dog Bite,FL,11/2/2025
+2026-100489,Sample Client 500,"Lozano, Beatriz",Open - Demand Sent,Auto Accident,GA,11/20/2025
+2026-100300,Sample Client 311,"Guzman, Elena",Open - Litigation,Premises Liability,CO,2/23/2026
+2026-100086,Sample Client 97,"Boone, Dana",Open - Litigation,Dog Bite,IL,7/13/2025
+2026-100485,Sample Client 496,"Lozano, Beatriz",Open - Treating,Auto Accident,TX,7/2/2025
+2026-100284,Sample Client 295,"Guzman, Elena",Open - Treating,Dog Bite,FL,8/14/2025
+2026-100502,Sample Client 513,"Lozano, Beatriz",Open - Litigation,Dog Bite,GA,3/24/2026
+2026-100111,Sample Client 122,"Castellanos, Rafael",Open - Investigation,Premises Liability,NM,1/8/2025
+2026-100270,Sample Client 281,"Fontaine, Marcus",Referred Out,Slip and Fall,CO,11/10/2025
+2026-100193,Sample Client 204,"Ellison, Grace",Open - Investigation,Dog Bite,FL,8/13/2025
+2026-100347,Sample Client 358,"Hollis, Wren",Dropped - Client Request,Premises Liability,AZ,2/19/2025
+2026-100406,Sample Client 417,"Jarrett, Colleen",Open - Investigation,Slip and Fall,CA,4/9/2025
+2026-100089,Sample Client 100,"Boone, Dana",Settled,Auto Accident,FL,11/30/2025
+2026-100333,Sample Client 344,"Hollis, Wren",Open - Investigation,Dog Bite,IL,11/9/2025
+2026-100478,Sample Client 489,"Kowalski, Tomasz",Referred Out,Wrongful Death,CO,1/22/2026
+2026-100003,Sample Client 14,"Alvarez, Marisol",Open - Litigation,Wrongful Death,IL,4/15/2026
+2026-100110,Sample Client 121,"Castellanos, Rafael",Open - Demand Sent,Premises Liability,IL,1/18/2025
+2026-100295,Sample Client 306,"Guzman, Elena",Open - Investigation,Dog Bite,WA,3/6/2025
+2026-100009,Sample Client 20,"Alvarez, Marisol",Open - Investigation,Premises Liability,NY,2/23/2026
+2026-100439,Sample Client 450,"Kowalski, Tomasz",Open - Treating,Slip and Fall,TX,11/7/2025
+2026-100483,Sample Client 494,"Lozano, Beatriz",Open - Demand Sent,Slip and Fall,GA,1/7/2025
+2026-100204,Sample Client 215,"Ellison, Grace",Open - Treating,Auto Accident,TX,2/21/2026
+2026-100182,Sample Client 193,"Dutta, Priya",Referred Out,Premises Liability,NV,2/10/2025
+2026-100421,Sample Client 432,"Jarrett, Colleen",Settled,Dog Bite,WA,1/26/2025
+2026-100197,Sample Client 208,"Ellison, Grace",Open - Investigation,Wrongful Death,NM,3/25/2025
+2026-100490,Sample Client 501,"Lozano, Beatriz",Open - Investigation,Dog Bite,NV,11/1/2025
+2026-100518,Sample Client 529,"Whitfield, Erin",Open - Treating,Slip and Fall,GA,10/12/2025
+2026-100356,Sample Client 367,"Iyer, Nikhil",Open - Demand Sent,Auto Accident,CO,5/14/2025
+2026-100191,Sample Client 202,"Ellison, Grace",Open - Investigation,Premises Liability,NY,8/3/2025
+2026-100139,Sample Client 150,"Dutta, Priya",Open - Negotiation,Premises Liability,TX,5/3/2026
+2026-100208,Sample Client 219,"Ellison, Grace",Open - Treating,Wrongful Death,IL,10/2/2025
+2026-100126,Sample Client 137,"Castellanos, Rafael",Dropped - No Contact,Auto Accident,FL,1/17/2026
+2026-100487,Sample Client 498,"Lozano, Beatriz",Open - Investigation,Auto Accident,TX,9/6/2025
+2026-100445,Sample Client 456,"Kowalski, Tomasz",Open - Litigation,Wrongful Death,AZ,12/9/2025
+2026-100238,Sample Client 249,"Fontaine, Marcus",Open - Negotiation,Auto Accident,FL,12/11/2025
+2026-100230,Sample Client 241,"Fontaine, Marcus",Open - Treating,Slip and Fall,OR,5/13/2025
+2026-100121,Sample Client 132,"Castellanos, Rafael",Open - Demand Sent,Premises Liability,FL,3/5/2026
+2026-100221,Sample Client 232,"Ellison, Grace",Closed,Auto Accident,CA,12/20/2025
+2026-100382,Sample Client 393,"Iyer, Nikhil",Open - Treating,Dog Bite,OR,4/8/2025
+2026-100203,Sample Client 214,"Ellison, Grace",Open - Litigation,Premises Liability,AZ,5/27/2026
+2026-100117,Sample Client 128,"Castellanos, Rafael",Open - Treating,Premises Liability,NM,10/3/2025
+2026-100338,Sample Client 349,"Hollis, Wren",Open - Demand Sent,Dog Bite,WA,3/13/2025
+2026-100201,Sample Client 212,"Ellison, Grace",Open - Investigation,Wrongful Death,NV,4/9/2025
+2026-100414,Sample Client 425,"Jarrett, Colleen",Open - Demand Sent,Slip and Fall,CA,3/5/2025
+2026-100225,Sample Client 236,"Fontaine, Marcus",Open - Negotiation,Wrongful Death,TX,4/4/2025
+2026-100246,Sample Client 257,"Fontaine, Marcus",Open - Investigation,Premises Liability,FL,1/24/2026
+2026-100517,Sample Client 528,"Lozano, Beatriz",Referred Out,Slip and Fall,AZ,1/28/2025
+2026-100181,Sample Client 192,"Dutta, Priya",Open - Investigation,Auto Accident,AZ,1/20/2025
+2026-100458,Sample Client 469,"Kowalski, Tomasz",Open - Litigation,Auto Accident,FL,2/18/2026
+2026-100323,Sample Client 334,"Hollis, Wren",Open - Negotiation,Dog Bite,NM,3/1/2025
+2026-100503,Sample Client 514,"Lozano, Beatriz",Open - Litigation,Auto Accident,FL,10/2/2025
+2026-100417,Sample Client 428,"Jarrett, Colleen",Open - Litigation,Dog Bite,IL,9/30/2025
+2026-100442,Sample Client 453,"Kowalski, Tomasz",Open - Negotiation,Dog Bite,NY,4/8/2026
+2026-100268,Sample Client 279,"Fontaine, Marcus",Open - Treating,Auto Accident,OR,6/25/2025
+2026-100441,Sample Client 452,"Kowalski, Tomasz",Open - Investigation,Premises Liability,CO,9/13/2025
+2026-100019,Sample Client 30,"Alvarez, Marisol",Open - Treating,Slip and Fall,AZ,6/26/2025
+2026-100427,Sample Client 438,"Jarrett, Colleen",Referred Out,Slip and Fall,IL,11/25/2025
+2026-100317,Sample Client 328,"Hollis, Wren",Open - Demand Sent,Premises Liability,FL,7/7/2026
+2026-100062,Sample Client 73,"Boone, Dana",Open - Litigation,Premises Liability,CO,9/9/2025
+2026-100198,Sample Client 209,"Ellison, Grace",Open - Demand Sent,Dog Bite,GA,12/16/2025
+2026-100112,Sample Client 123,"Castellanos, Rafael",Open - Negotiation,Slip and Fall,CA,6/27/2025
+2026-100504,Sample Client 515,"Lozano, Beatriz",Open - Investigation,Auto Accident,NM,3/10/2025
+2026-100032,Sample Client 43,"Alvarez, Marisol",Open - Demand Sent,Slip and Fall,CO,12/24/2025
+2026-100146,Sample Client 157,"Dutta, Priya",Open - Investigation,Auto Accident,GA,3/22/2025
+2026-100152,Sample Client 163,"Dutta, Priya",Open - Litigation,Wrongful Death,OR,6/29/2025
+2026-100365,Sample Client 376,"Iyer, Nikhil",Open - Treating,Auto Accident,NV,5/12/2026
+2026-100290,Sample Client 301,"Guzman, Elena",Open - Treating,Auto Accident,IL,9/27/2025
+2026-100286,Sample Client 297,"Guzman, Elena",Open - Treating,Premises Liability,CA,2/8/2026
+2026-100482,Sample Client 493,"Lozano, Beatriz",Open - Negotiation,Premises Liability,FL,5/29/2026
+2026-100087,Sample Client 98,"Boone, Dana",Settled,Dog Bite,NV,7/13/2025
+2026-100499,Sample Client 510,"Lozano, Beatriz",Open - Treating,Wrongful Death,NY,1/20/2025
+2026-100281,Sample Client 292,"Guzman, Elena",Open - Investigation,Dog Bite,CA,12/10/2025
+2026-100027,Sample Client 38,"Alvarez, Marisol",Open - Demand Sent,Wrongful Death,NM,2/4/2025
+2026-100446,Sample Client 457,"Kowalski, Tomasz",Open - Negotiation,Auto Accident,NY,6/11/2025
+2026-100469,Sample Client 480,"Kowalski, Tomasz",Open - Investigation,Premises Liability,IL,11/12/2025
+2026-100434,Sample Client 445,"Kowalski, Tomasz",Open - Investigation,Dog Bite,OR,5/2/2025
+2026-100378,Sample Client 389,"Iyer, Nikhil",Open - Investigation,Auto Accident,NM,2/15/2025
+2026-100354,Sample Client 365,"Iyer, Nikhil",Open - Litigation,Dog Bite,AZ,8/26/2025
+2026-100301,Sample Client 312,"Guzman, Elena",Open - Negotiation,Dog Bite,IL,12/17/2025
+2026-100463,Sample Client 474,"Kowalski, Tomasz",Open - Litigation,Dog Bite,CA,6/16/2026
+2026-100016,Sample Client 27,"Alvarez, Marisol",Open - Negotiation,Slip and Fall,IL,5/10/2025
+2026-100342,Sample Client 353,"Hollis, Wren",Open - Negotiation,Auto Accident,WA,8/13/2025
+2026-100078,Sample Client 89,"Boone, Dana",Open - Litigation,Auto Accident,IL,12/11/2025
+2026-100298,Sample Client 309,"Guzman, Elena",Open - Negotiation,Premises Liability,NV,6/1/2025
+2026-100200,Sample Client 211,"Ellison, Grace",Open - Treating,Premises Liability,NY,3/31/2026
+2026-100297,Sample Client 308,"Guzman, Elena",Open - Litigation,Wrongful Death,OR,2/13/2026
+2026-100261,Sample Client 272,"Fontaine, Marcus",Open - Negotiation,Auto Accident,CA,7/7/2026
+2026-100498,Sample Client 509,"Lozano, Beatriz",Open - Negotiation,Auto Accident,GA,4/7/2026
+2026-100475,Sample Client 486,"Kowalski, Tomasz",Closed,Auto Accident,NV,12/29/2025
+2026-100128,Sample Client 139,"Castellanos, Rafael",Referred Out,Auto Accident,WA,11/22/2025
+2026-100368,Sample Client 379,"Iyer, Nikhil",Open - Demand Sent,Wrongful Death,NY,6/9/2026
+2026-100161,Sample Client 172,"Dutta, Priya",Open - Investigation,Premises Liability,NY,9/7/2025
+2026-100397,Sample Client 408,"Jarrett, Colleen",Open - Negotiation,Premises Liability,CA,2/9/2025
+2026-100366,Sample Client 377,"Iyer, Nikhil",Open - Litigation,Auto Accident,NY,5/1/2026
+2026-100104,Sample Client 115,"Castellanos, Rafael",Open - Investigation,Premises Liability,FL,1/29/2025
+2026-100206,Sample Client 217,"Ellison, Grace",Open - Treating,Dog Bite,CA,5/25/2025
+2026-100481,Sample Client 492,"Lozano, Beatriz",Open - Investigation,Premises Liability,CA,11/15/2025
+2026-100122,Sample Client 133,"Castellanos, Rafael",Open - Negotiation,Wrongful Death,NY,1/23/2026
+2026-100449,Sample Client 460,"Kowalski, Tomasz",Open - Demand Sent,Premises Liability,FL,4/26/2026
+2026-100183,Sample Client 194,"Dutta, Priya",Dropped - No Contact,Auto Accident,NY,7/19/2025
+2026-100413,Sample Client 424,"Jarrett, Colleen",Open - Treating,Slip and Fall,FL,5/9/2026
+2026-100492,Sample Client 503,"Lozano, Beatriz",Open - Negotiation,Dog Bite,NY,5/3/2025
+2026-100394,Sample Client 405,"Jarrett, Colleen",Open - Treating,Wrongful Death,GA,5/15/2025
+2026-100460,Sample Client 471,"Kowalski, Tomasz",Open - Investigation,Auto Accident,AZ,6/12/2026
+2026-100440,Sample Client 451,"Kowalski, Tomasz",Open - Treating,Dog Bite,GA,11/16/2025
+2026-100372,Sample Client 383,"Iyer, Nikhil",Open - Demand Sent,Wrongful Death,FL,3/3/2025
+2026-100167,Sample Client 178,"Dutta, Priya",Open - Investigation,Dog Bite,GA,4/20/2025
+2026-100018,Sample Client 29,"Alvarez, Marisol",Open - Negotiation,Auto Accident,CO,3/19/2026
+2026-100314,Sample Client 325,"Hollis, Wren",Open - Negotiation,Wrongful Death,GA,11/3/2025
+2026-100061,Sample Client 72,"Boone, Dana",Open - Demand Sent,Slip and Fall,WA,1/18/2025
+2026-100132,Sample Client 143,"Dutta, Priya",Open - Treating,Premises Liability,CA,9/27/2025
+2026-100488,Sample Client 499,"Lozano, Beatriz",Open - Negotiation,Auto Accident,IL,2/1/2026
+2026-100316,Sample Client 327,"Hollis, Wren",Open - Investigation,Auto Accident,WA,1/19/2026
+2026-100130,Sample Client 141,"Castellanos, Rafael",Referred Out,Premises Liability,NV,2/28/2026
+2026-100118,Sample Client 129,"Castellanos, Rafael",Open - Negotiation,Auto Accident,FL,12/18/2025
+2026-100453,Sample Client 464,"Kowalski, Tomasz",Open - Investigation,Premises Liability,WA,2/13/2026
+2026-100163,Sample Client 174,"Dutta, Priya",Open - Investigation,Dog Bite,AZ,11/20/2025
+2026-100141,Sample Client 152,"Dutta, Priya",Open - Treating,Dog Bite,CO,1/12/2025

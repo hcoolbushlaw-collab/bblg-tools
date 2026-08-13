@@ -1,0 +1,15 @@
+# Never commit real firm data
+*.xlsx
+*.xlsm
+*.xls
+/exports/
+/real-data/
+
+# Sample synthetic data is explicitly allowed
+!sample-data/sample-caseload-export.csv
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

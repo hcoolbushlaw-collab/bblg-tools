@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case Manager Assignment — Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1E2761; --navy-deep:#161C48; --ice:#CADCFC;
+  --paper:#F7F8FC; --card:#FFFFFF; --line:#DFE4F2;
+  --ink:#1A1F3D; --muted:#6B7394;
+  --green:#1E7A4B; --green-bg:#E8F5EE;
+  --red:#C0392B; --red-bg:#FBEDEB;
+  --amber:#B7791F; --amber-bg:#FDF4E3;
+  --sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Consolas,monospace;
+  --r:10px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--sans); background:var(--paper); color:var(--ink);
+  font-size:15px; line-height:1.5; -webkit-font-smoothing:antialiased;
+}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+
+/* ---------- shell ---------- */
+.shell{display:flex;min-height:100vh}
+.rail{
+  width:224px;flex-shrink:0;background:var(--navy);color:#fff;
+  display:flex;flex-direction:column;padding:20px 0;
+}
+.brand{padding:0 20px 22px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:14px}
+.brand h1{font-size:15px;font-weight:600;margin:0;letter-spacing:-.01em}
+.brand p{margin:3px 0 0;font-size:11px;color:var(--ice);opacity:.75;font-family:var(--mono)}
+.nav{display:flex;flex-direction:column;gap:1px;padding:0 10px;flex:1}
+.nav button{
+  background:none;border:0;text-align:left;padding:9px 12px;border-radius:7px;
+  color:rgba(255,255,255,.72);cursor:pointer;font-size:14px;display:flex;
+  align-items:center;justify-content:space-between;gap:8px;
+}
+.nav button:hover{background:rgba(255,255,255,.07);color:#fff}
+.nav button.on{background:rgba(255,255,255,.14);color:#fff;font-weight:500}
+.nav .pip{
+  font-family:var(--mono);font-size:11px;background:rgba(255,255,255,.18);
+  padding:1px 6px;border-radius:20px;
+}
+.nav .pip.hot{background:var(--red);color:#fff}
+.railfoot{padding:14px 20px 0;border-top:1px solid rgba(255,255,255,.12);margin-top:14px}
+.railfoot label{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ice);cursor:pointer}
+.railfoot .who{margin-top:10px}
+.railfoot .who input{
+  width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
+  color:#fff;border-radius:6px;padding:6px 8px;font-size:12.5px;
+}
+.railfoot .who input::placeholder{color:rgba(255,255,255,.45)}
+.railfoot .who span{display:block;font-size:10.5px;color:var(--ice);opacity:.7;margin-bottom:4px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em}
+
+.main{flex:1;min-width:0;padding:26px 30px 60px;max-width:1180px}
+.head{margin-bottom:20px}
+.head h2{font-size:23px;margin:0 0 3px;letter-spacing:-.02em;font-weight:600}
+.head p{margin:0;color:var(--muted);font-size:13.5px}
+.view{display:none}
+.view.on{display:block}
+
+/* ---------- primitives ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.card+.card{margin-top:14px}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.field label{font-size:11px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+input[type=text],input[type=number],select,textarea{
+  border:1px solid var(--line);border-radius:7px;padding:8px 10px;background:#fff;width:100%;
+}
+input[type=text]:focus,select:focus,textarea:focus{border-color:var(--navy);outline:none}
+textarea{resize:vertical;min-height:64px}
+.btn{
+  border:1px solid var(--navy);background:var(--navy);color:#fff;padding:9px 16px;
+  border-radius:7px;cursor:pointer;font-weight:500;font-size:14px;
+}
+.btn:hover{background:var(--navy-deep)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.btn.ghost{background:#fff;color:var(--navy)}
+.btn.ghost:hover{background:var(--paper)}
+.btn.ok{background:var(--green);border-color:var(--green)}
+.btn.ok:hover{filter:brightness(.92)}
+.btn.no{background:var(--red);border-color:var(--red)}
+.btn.no:hover{filter:brightness(.92)}
+.btn.sm{padding:5px 11px;font-size:13px}
+.btn.wide{width:100%;justify-content:center}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{
+  text-align:left;font-size:11px;font-family:var(--mono);text-transform:uppercase;
+  letter-spacing:.06em;color:var(--muted);font-weight:500;
+  padding:8px 10px;border-bottom:1px solid var(--line);
+}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+.num{font-family:var(--mono)}
+.tag{
+  display:inline-block;font-size:11px;font-family:var(--mono);padding:2px 7px;
+  border-radius:20px;background:var(--paper);border:1px solid var(--line);color:var(--muted);
+}
+.tag.g{background:var(--green-bg);color:var(--green);border-color:transparent}
+.tag.r{background:var(--red-bg);color:var(--red);border-color:transparent}
+.tag.a{background:var(--amber-bg);color:var(--amber);border-color:transparent}
+.empty{padding:34px 20px;text-align:center;color:var(--muted);font-size:14px}
+.empty strong{display:block;color:var(--ink);font-weight:600;margin-bottom:4px}
+.note{font-size:12.5px;color:var(--muted);margin-top:10px}
+
+/* ---------- assign / signature timer ---------- */
+.stage{display:grid;grid-template-columns:1fr 300px;gap:14px;align-items:start}
+@media(max-width:900px){.stage{grid-template-columns:1fr}.shell{flex-direction:column}.rail{width:100%}}
+.cand{text-align:center;padding:30px 20px}
+.cand .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.cand h3{font-size:34px;margin:8px 0 4px;letter-spacing:-.025em;font-weight:600}
+.cand .meta{color:var(--muted);font-size:13.5px}
+.cand .handle{font-family:var(--mono);font-size:13px;color:var(--navy);margin-top:10px}
+.dial{position:relative;width:190px;height:190px;margin:22px auto 6px}
+.dial svg{transform:rotate(-90deg);display:block}
+.dial .track{stroke:var(--line)}
+.dial .prog{stroke:var(--navy);transition:stroke-dashoffset 1s linear,stroke .3s}
+.dial.warn .prog{stroke:var(--amber)}
+.dial.crit .prog{stroke:var(--red)}
+.dial .read{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.dial .read b{font-family:var(--mono);font-size:38px;font-weight:500;letter-spacing:-.02em}
+.dial .read span{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+.dial.crit .read b{color:var(--red)}
+.acts{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.stepnote{
+  background:var(--paper);border:1px dashed var(--line);border-radius:8px;
+  padding:11px 14px;font-size:13px;color:var(--muted);margin-top:16px;text-align:left;
+}
+.stepnote b{color:var(--ink);font-weight:600}
+.banner{border-radius:var(--r);padding:18px 20px;margin-bottom:14px}
+.banner.err{background:var(--red-bg);border:1px solid #F0C9C3}
+.banner.esc{background:var(--amber-bg);border:1px solid #EEDCB4}
+.banner h4{margin:0 0 5px;font-size:15px}
+.banner p{margin:0;font-size:13.5px;color:var(--muted)}
+.banner.err h4{color:var(--red)} .banner.esc h4{color:var(--amber)}
+.attempts{margin-top:14px}
+.attempts h5{font-size:11px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 7px}
+.attempts li{font-size:13px;padding:5px 0;border-bottom:1px solid var(--line);list-style:none;display:flex;justify-content:space-between;gap:10px}
+.attempts ul{margin:0;padding:0}
+
+/* ---------- modal ---------- */
+.veil{position:fixed;inset:0;background:rgba(22,28,72,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.veil.on{display:flex}
+.modal{background:#fff;border-radius:12px;padding:22px;width:100%;max-width:440px;box-shadow:0 18px 50px rgba(22,28,72,.25)}
+.modal h3{margin:0 0 4px;font-size:18px}
+.modal p.sub{margin:0 0 16px;color:var(--muted);font-size:13.5px}
+.modal .row{margin-top:14px;justify-content:flex-end}
+
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{font-size:11.5px;font-family:var(--mono);background:var(--paper);border:1px solid var(--line);border-radius:5px;padding:2px 6px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:14px}
+.bar .field{flex:1;min-width:150px}
+.stat{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:16px}
+.stat div{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:12px 18px;min-width:110px}
+.stat b{display:block;font-family:var(--mono);font-size:24px;font-weight:500;letter-spacing:-.02em}
+.stat span{font-size:11px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.toast{
+  position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(120%);
+  background:var(--navy);color:#fff;padding:11px 20px;border-radius:8px;font-size:14px;
+  transition:transform .25s;z-index:60;box-shadow:0 8px 26px rgba(22,28,72,.3)
+}
+.toast.on{transform:translateX(-50%) translateY(0)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="rail">
+    <div class="brand">
+      <h1>Case Manager Assignment</h1>
+      <p>PROTOTYPE v0.1</p>
+    </div>
+    <nav class="nav" id="nav">
+      <button data-v="assign" class="on">Assign a case</button>
+      <button data-v="queue">Queue <span class="pip" id="pipQ">0</span></button>
+      <button data-v="susp">Do not assign <span class="pip" id="pipS">0</span></button>
+      <button data-v="roster">Roster</button>
+      <button data-v="import">Weekly import</button>
+      <button data-v="log">Audit log <span class="pip" id="pipL">0</span></button>
+    </nav>
+    <div class="railfoot">
+      <label><input type="checkbox" id="supMode"> Supervisor mode</label>
+      <div class="who">
+        <span>Signed in as</span>
+        <input type="text" id="repName" placeholder="Your name" value="">
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <!-- ============ ASSIGN ============ -->
+    <section class="view on" id="v-assign">
+      <div class="head"><h2>Assign a case</h2><p>Filter by language and state, then work down the ranked list.</p></div>
+
+      <div id="assignSetup">
+        <div class="card">
+          <div class="bar">
+            <div class="field"><label>Case reference</label><input type="text" id="caseRef" placeholder="e.g. 2026-04871"></div>
+            <div class="field"><label>Language</label><select id="reqLang"></select></div>
+            <div class="field"><label>State</label><select id="reqState"></select></div>
+            <button class="btn" id="btnFind">Find next case manager</button>
+          </div>
+          <p class="note">Excludes anyone on leave, on the do-not-assign list, or already asked about this case.</p>
+        </div>
+      </div>
+
+      <div id="assignLive" style="display:none">
+        <div id="liveBanner"></div>
+        <div class="stage">
+          <div class="card cand">
+            <div class="eyebrow" id="candEyebrow">Next up</div>
+            <h3 id="candName">—</h3>
+            <div class="meta" id="candMeta"></div>
+            <div class="handle" id="candHandle"></div>
+
+            <div class="dial" id="dial">
+              <svg width="190" height="190" viewBox="0 0 190 190">
+                <circle class="track" cx="95" cy="95" r="84" fill="none" stroke-width="9"></circle>
+                <circle class="prog" id="dialProg" cx="95" cy="95" r="84" fill="none" stroke-width="9"
+                        stroke-linecap="round" stroke-dasharray="527.8" stroke-dashoffset="0"></circle>
+              </svg>
+              <div class="read"><b id="dialRead">3:00</b><span id="dialLabel">not started</span></div>
+            </div>
+
+            <div class="acts" id="acts"></div>
+
+            <div class="stepnote" id="stepnote">
+              <b>Step 1.</b> Message this case manager in Teams. <b>Step 2.</b> Start the timer as soon as you've sent it.
+            </div>
+          </div>
+
+          <div>
+            <div class="card">
+              <div class="eyebrow" style="font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)">Working case</div>
+              <div style="font-family:var(--mono);font-size:18px;margin:6px 0 10px" id="workRef">—</div>
+              <div class="chips" id="workChips"></div>
+              <div class="attempts" id="attemptsBox"></div>
+              <button class="btn ghost sm wide" id="btnAbandon" style="margin-top:16px">Cancel this case</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ QUEUE ============ -->
+    <section class="view" id="v-queue">
+      <div class="head"><h2>Queue</h2><p>Everyone eligible right now, lowest case load first.</p></div>
+      <div class="card">
+        <div class="bar">
+          <div class="field"><label>Language</label><select id="qLang"></select></div>
+          <div class="field"><label>State</label><select id="qState"></select></div>
+        </div>
+        <div id="queueTable"></div>
+      </div>
+    </section>
+
+    <!-- ============ SUSPENSIONS ============ -->
+    <section class="view" id="v-susp">
+      <div class="head"><h2>Do not assign</h2><p>Anyone who declined or let the timer run out, plus who's on leave.</p></div>
+      <div class="card"><div id="suspTable"></div></div>
+      <div class="card">
+        <h3 style="margin:0 0 10px;font-size:15px">On leave</h3>
+        <div id="ptoTable"></div>
+      </div>
+    </section>
+
+    <!-- ============ ROSTER ============ -->
+    <section class="view" id="v-roster">
+      <div class="head"><h2>Roster</h2><p>Who can take cases, and what they cover. Supervisors only.</p></div>
+      <div class="card" id="rosterGate"></div>
+    </section>
+
+    <!-- ============ IMPORT ============ -->
+    <section class="view" id="v-import">
+      <div class="head"><h2>Weekly import</h2><p>Drop in a SmartAdvocate export to refresh everyone's case counts.</p></div>
+      <div class="card">
+        <div class="field" style="max-width:420px">
+          <label>Export file (.csv)</label>
+          <input type="file" id="csvFile" accept=".csv,text/csv">
+        </div>
+        <p class="note">The file is read in your browser. Nothing is uploaded anywhere.</p>
+      </div>
+      <div id="mapBox"></div>
+    </section>
+
+    <!-- ============ LOG ============ -->
+    <section class="view" id="v-log">
+      <div class="head"><h2>Audit log</h2><p>Every case offered, and what happened.</p></div>
+      <div class="stat" id="logStats"></div>
+      <div class="card">
+        <div class="bar">
+          <div class="field"><label>Case manager</label><select id="fCm"></select></div>
+          <div class="field"><label>Outcome</label><select id="fOut">
+            <option value="">All</option><option value="accepted">Accepted</option>
+            <option value="declined">Declined</option><option value="timeout">Timed out</option>
+          </select></div>
+          <button class="btn ghost" id="btnExport">Export CSV</button>
+        </div>
+        <div id="logTable"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- decline modal -->
+<div class="veil" id="veil">
+  <div class="modal">
+    <h3 id="mTitle">Why did they decline?</h3>
+    <p class="sub" id="mSub"></p>
+    <div class="field"><label>Reason</label><select id="mReason"></select></div>
+    <div class="field" style="margin-top:12px"><label>Note (optional)</label><textarea id="mNote" placeholder="Anything worth recording"></textarea></div>
+    <div class="row"><button class="btn ghost" id="mCancel">Back</button><button class="btn no" id="mSave">Record and move on</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   Case Manager Assignment — prototype
+   Single file. No backend. No data leaves this browser.
+   ============================================================ */
+
+const TIMER_SECONDS = 180;          // R3 — 3 minutes
+const SUSPEND_HOURS = 48;           // R5 — 48 hours
+const RING = 2 * Math.PI * 84;
+
+const LANGUAGES = ['English','Spanish'];
+const STATES = ['AZ','CA','CO','FL','GA','IL','NV','NM','NY','OR','TX','WA'];
+
+const DECLINE_REASONS = [
+  'No response within the timer',
+  'At capacity',
+  'Not licensed / not comfortable with this state',
+  'Case type outside their experience',
+  'Conflict of interest',
+  'Out of office unexpectedly',
+  'Other'
+];
+
+/* ---- seed data: entirely fictional ---- */
+let state = {
+  rep: '',
+  supervisor: false,
+  roster: [
+    mk('Alvarez, Marisol','@malvarez',['English','Spanish'],['CA','NV','AZ'],38),
+    mk('Boone, Dana','@dboone',['English'],['TX','NM'],44),
+    mk('Castellanos, Rafael','@rcastellanos',['English','Spanish'],['TX','NM','AZ'],31),
+    mk('Dutta, Priya','@pdutta',['English'],['NY','IL'],52),
+    mk('Ellison, Grace','@gellison',['English'],['CA','OR','WA'],29),
+    mk('Fontaine, Marcus','@mfontaine',['English'],['GA','FL'],47),
+    mk('Guzman, Elena','@eguzman',['English','Spanish'],['CA','AZ','NV'],31),
+    mk('Hollis, Wren','@whollis',['English'],['CO','NM','AZ'],36),
+    mk('Iyer, Nikhil','@niyer',['English'],['IL','NY'],41),
+    mk('Jarrett, Colleen','@cjarrett',['English'],['FL','GA'],25),
+    mk('Kowalski, Tomasz','@tkowalski',['English'],['IL','CO'],49),
+    mk('Lozano, Beatriz','@blozano',['English','Spanish'],['TX','FL'],33),
+  ],
+  suspensions: [],
+  events: [],
+  offer: null,
+  seq: 1
+};
+function mk(name,handle,langs,states,count){
+  return {id:'cm_'+Math.random().toString(36).slice(2,9), name, handle,
+          languages:langs, states, caseCount:count, status:'active'};
+}
+
+/* ---- helpers ---- */
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const now = () => Date.now();
+function fmtTime(ms){ const d=new Date(ms);
+  return d.toLocaleDateString(undefined,{month:'short',day:'numeric'})+' '+d.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'}); }
+function clock(sec){ const m=Math.floor(sec/60), s=sec%60; return m+':'+String(s).padStart(2,'0'); }
+function countdown(ms){
+  if(ms<=0) return 'expired';
+  const h=Math.floor(ms/3.6e6), m=Math.floor(ms%3.6e6/6e4);
+  return h>0 ? h+'h '+m+'m' : m+'m';
+}
+let toastT;
+function toast(msg){
+  const t=$('#toast'); t.textContent=msg; t.classList.add('on');
+  clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('on'),2600);
+}
+
+/* ---- eligibility (R1) ---- */
+function activeSuspension(cmId){
+  return state.suspensions.find(s => s.cmId===cmId && !s.clearedAt && s.expiresAt > now());
+}
+function eligible(lang, st, excludeIds=[]){
+  return state.roster.filter(cm =>
+    cm.status==='active' &&
+    (!lang || cm.languages.includes(lang)) &&
+    (!st   || cm.states.includes(st)) &&
+    !activeSuspension(cm.id) &&
+    !excludeIds.includes(cm.id)
+  ).sort((a,b) => a.caseCount - b.caseCount || a.name.localeCompare(b.name)); // R2
+}
+
+/* ---- suspensions (R5) ---- */
+function suspend(cmId, trigger, reason, note){
+  state.suspensions.push({
+    id:'s_'+(state.seq++), cmId, trigger, reason, note:note||'',
+    startedAt: now(), expiresAt: now() + SUSPEND_HOURS*3600*1000,
+    clearedAt:null, clearedBy:null
+  });
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+$('#nav').addEventListener('click', e => {
+  const b = e.target.closest('button[data-v]'); if(!b) return;
+  $$('.nav button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+  $$('.view').forEach(v=>v.classList.remove('on'));
+  $('#v-'+b.dataset.v).classList.add('on');
+  render();
+});
+$('#supMode').addEventListener('change', e => { state.supervisor = e.target.checked; render(); });
+$('#repName').addEventListener('input', e => { state.rep = e.target.value; });
+
+/* ============================================================
+   ASSIGN
+   ============================================================ */
+function fillSelect(sel, items, allLabel){
+  sel.innerHTML = (allLabel?`<option value="">${allLabel}</option>`:'') +
+    items.map(i=>`<option value="${esc(i)}">${esc(i)}</option>`).join('');
+}
+fillSelect($('#reqLang'), LANGUAGES);
+fillSelect($('#reqState'), STATES);
+fillSelect($('#qLang'), LANGUAGES, 'Any language');
+fillSelect($('#qState'), STATES, 'Any state');
+$('#qLang').addEventListener('change', render);
+$('#qState').addEventListener('change', render);
+
+$('#btnFind').addEventListener('click', () => {
+  const ref = $('#caseRef').value.trim();
+  if(!ref) return toast('Add a case reference first.');
+  if(!state.rep.trim()) return toast('Add your name in the sidebar first.');
+  state.offer = {
+    caseRef: ref, lang: $('#reqLang').value, state: $('#reqState').value,
+    attempted: [], cm: null, offeredAt: null, timerStartedAt: null, escalated: false
+  };
+  nextCandidate();
+});
+
+function nextCandidate(){
+  const o = state.offer;
+  const pool = eligible(o.lang, o.state, o.attempted);
+  stopTimer();
+  if(pool.length === 0){
+    o.cm = null;
+    o.escalated = o.attempted.length > 0;   // R8 vs escalation
+    if(o.escalated){
+      // record the escalation against the last attempt
+      const last = state.events.filter(e=>e.caseRef===o.caseRef).pop();
+      if(last) last.escalated = true;
+    }
+  } else {
+    o.cm = pool[0];
+    o.offeredAt = now();
+    o.timerStartedAt = null;
+  }
+  render();
+}
+
+let timerH = null, timerEnd = 0;
+function startTimer(){
+  state.offer.timerStartedAt = now();
+  timerEnd = now() + TIMER_SECONDS*1000;
+  tick();
+  timerH = setInterval(tick, 250);
+  render();
+}
+function stopTimer(){ if(timerH){clearInterval(timerH); timerH=null;} }
+function tick(){
+  const left = Math.max(0, Math.ceil((timerEnd - now())/1000));
+  const dial=$('#dial'), prog=$('#dialProg'), read=$('#dialRead'), lab=$('#dialLabel');
+  if(!dial) return;
+  if(read) read.textContent = clock(left);
+  if(lab) lab.textContent = left>0 ? 'remaining' : 'time is up';
+  if(prog) prog.setAttribute('stroke-dashoffset', String(RING * (1 - left/TIMER_SECONDS)));
+  dial.classList.toggle('warn', left<=60 && left>20);
+  dial.classList.toggle('crit', left<=20);
+  if(left<=0){ stopTimer(); resolve('timeout', DECLINE_REASONS[0], ''); }
+}
+
+function resolve(outcome, reason, note){
+  const o = state.offer; if(!o || !o.cm) return;
+  stopTimer();
+  const cm = o.cm;
+  state.events.push({
+    id:'e_'+(state.seq++), caseRef:o.caseRef, cmId:cm.id, cmName:cm.name,
+    rep: state.rep || '—', offeredAt:o.offeredAt, timerStartedAt:o.timerStartedAt,
+    resolvedAt: now(), outcome, reason: reason||'', note: note||'',
+    lang:o.lang, state:o.state, escalated:false
+  });
+  if(outcome==='accepted'){
+    cm.caseCount += 1;                                  // R11
+    toast(cm.name.split(',')[0] + ' took ' + o.caseRef);
+    state.offer = null; $('#caseRef').value='';
+    render(); return;
+  }
+  suspend(cm.id, outcome, reason, note);                // R4 + R5
+  o.attempted.push(cm.id);                              // R12
+  toast(outcome==='timeout' ? 'No response — on the list for 48 hours' : 'Declined — on the list for 48 hours');
+  nextCandidate();
+}
+
+$('#btnAbandon').addEventListener('click', () => {
+  stopTimer(); state.offer=null; render(); toast('Case cancelled.');
+});
+
+/* decline modal */
+let pendingOutcome = null;
+function askReason(outcome){
+  pendingOutcome = outcome;
+  $('#mTitle').textContent = 'Why did they decline?';
+  $('#mSub').textContent = state.offer.cm.name + ' — ' + state.offer.caseRef;
+  fillSelect($('#mReason'), DECLINE_REASONS.filter(r=>r!==DECLINE_REASONS[0]));
+  $('#mNote').value=''; $('#veil').classList.add('on');
+}
+$('#mCancel').addEventListener('click', ()=> $('#veil').classList.remove('on'));
+$('#mSave').addEventListener('click', ()=>{
+  $('#veil').classList.remove('on');
+  resolve(pendingOutcome, $('#mReason').value, $('#mNote').value.trim());
+});
+
+/* ---- render assign ---- */
+function renderAssign(){
+  const o = state.offer;
+  $('#assignSetup').style.display = o ? 'none' : 'block';
+  $('#assignLive').style.display  = o ? 'block' : 'none';
+  if(!o) return;
+
+  $('#workRef').textContent = o.caseRef;
+  $('#workChips').innerHTML = `<span class="chip">${esc(o.lang)}</span><span class="chip">${esc(o.state)}</span>`;
+
+  // attempts list
+  const tried = state.events.filter(e=>e.caseRef===o.caseRef);
+  $('#attemptsBox').innerHTML = tried.length ? `<h5>Already asked</h5><ul>` + tried.map(e=>
+    `<li><span>${esc(e.cmName.split(',')[0])}</span><span class="tag ${e.outcome==='accepted'?'g':'r'}">${e.outcome==='timeout'?'no reply':e.outcome}</span></li>`
+  ).join('') + `</ul>` : '';
+
+  const banner = $('#liveBanner');
+  if(!o.cm){
+    if(o.escalated){
+      banner.innerHTML = `<div class="banner esc"><h4>Everyone eligible has passed on this one</h4>
+        <p>${tried.length} case manager${tried.length===1?'':'s'} asked, none took it. This needs a supervisor.</p></div>`;
+    } else {
+      banner.innerHTML = `<div class="banner err"><h4>Nobody covers ${esc(o.lang)} in ${esc(o.state)}</h4>
+        <p>No one on the roster matches. Filters are not widened automatically — check the roster or escalate.</p></div>`;
+    }
+    $('#candEyebrow').textContent = 'No candidate';
+    $('#candName').textContent = '—';
+    $('#candMeta').textContent = ''; $('#candHandle').textContent='';
+    $('#acts').innerHTML = `<button class="btn ghost" onclick="location.reload()">Start over</button>`;
+    $('#stepnote').style.display='none';
+    $('#dial').style.display='none';
+    return;
+  }
+
+  banner.innerHTML = '';
+  $('#dial').style.display='block';
+  $('#stepnote').style.display='block';
+  const cm = o.cm;
+  $('#candEyebrow').textContent = tried.length ? 'Next up · attempt ' + (tried.length+1) : 'Next up';
+  $('#candName').textContent = cm.name;
+  $('#candMeta').innerHTML = `<span class="num">${cm.caseCount}</span> active cases · ${esc(cm.states.join(', '))}`;
+  $('#candHandle').textContent = cm.handle;
+
+  const started = !!o.timerStartedAt;
+  if(!started){
+    $('#dialRead').textContent = clock(TIMER_SECONDS);
+    $('#dialLabel').textContent = 'not started';
+    $('#dialProg').setAttribute('stroke-dashoffset','0');
+    $('#dial').classList.remove('warn','crit');
+    $('#acts').innerHTML = `<button class="btn" id="btnStart">I've messaged them — start the timer</button>`;
+    $('#btnStart').onclick = startTimer;
+    $('#stepnote').innerHTML = `<b>Step 1.</b> Message ${esc(cm.handle)} in Teams. <b>Step 2.</b> Start the timer as soon as you've sent it.`;
+  } else {
+    $('#acts').innerHTML =
+      `<button class="btn ok" id="btnYes">They took it</button>
+       <button class="btn no" id="btnNo">They passed</button>`;
+    $('#btnYes').onclick = () => resolve('accepted','','');
+    $('#btnNo').onclick  = () => askReason('declined');
+    $('#stepnote').innerHTML = `If the timer runs out, this counts as a pass and they go on the do-not-assign list for 48 hours.`;
+  }
+}
+
+/* ============================================================
+   QUEUE
+   ============================================================ */
+function renderQueue(){
+  const lang=$('#qLang').value, st=$('#qState').value;
+  const list = eligible(lang, st);
+  $('#pipQ').textContent = list.length;
+  if(!list.length){
+    $('#queueTable').innerHTML = `<div class="empty"><strong>Nobody is eligible</strong>Adjust the filters, or check who's on leave and who's suspended.</div>`;
+    return;
+  }
+  $('#queueTable').innerHTML = `<table><thead><tr>
+    <th style="width:44px">#</th><th>Case manager</th><th>Active cases</th><th>Languages</th><th>States</th></tr></thead><tbody>`
+    + list.map((cm,i)=>`<tr>
+        <td class="num" style="color:var(--muted)">${i+1}</td>
+        <td><strong>${esc(cm.name)}</strong><div style="font-family:var(--mono);font-size:12px;color:var(--muted)">${esc(cm.handle)}</div></td>
+        <td class="num">${cm.caseCount}</td>
+        <td>${cm.languages.map(l=>`<span class="chip">${esc(l)}</span>`).join(' ')}</td>
+        <td>${cm.states.map(s=>`<span class="chip">${esc(s)}</span>`).join(' ')}</td>
+      </tr>`).join('') + `</tbody></table>`;
+}
+
+/* ============================================================
+   SUSPENSIONS + PTO
+   ============================================================ */
+function renderSusp(){
+  const live = state.suspensions.filter(s=>!s.clearedAt && s.expiresAt>now())
+    .sort((a,b)=>a.expiresAt-b.expiresAt);
+  $('#pipS').textContent = live.length;
+  $('#nav .pip.hot')&&0;
+  const pip=$('#pipS'); pip.classList.toggle('hot', live.length>0);
+
+  $('#suspTable').innerHTML = live.length ? `<table><thead><tr>
+      <th>Case manager</th><th>Why</th><th>Reason given</th><th>Comes back in</th><th></th></tr></thead><tbody>`
+    + live.map(s=>{
+        const cm = state.roster.find(c=>c.id===s.cmId) || {name:'(removed)'};
+        return `<tr>
+          <td><strong>${esc(cm.name)}</strong></td>
+          <td><span class="tag ${s.trigger==='timeout'?'a':'r'}">${s.trigger==='timeout'?'no reply':'declined'}</span></td>
+          <td>${esc(s.reason)}${s.note?`<div style="font-size:12px;color:var(--muted)">${esc(s.note)}</div>`:''}</td>
+          <td class="num">${countdown(s.expiresAt-now())}</td>
+          <td style="text-align:right">${state.supervisor
+            ? `<button class="btn ghost sm" data-clear="${s.id}">Put back now</button>`
+            : `<span class="tag">supervisor only</span>`}</td></tr>`;
+      }).join('') + `</tbody></table>`
+    : `<div class="empty"><strong>Nobody is on the list</strong>People land here when they decline a case or let the timer run out.</div>`;
+
+  $$('[data-clear]').forEach(b=>b.onclick=()=>{
+    const s = state.suspensions.find(x=>x.id===b.dataset.clear);
+    s.clearedAt = now(); s.clearedBy = state.rep||'supervisor';
+    toast('Back in rotation.'); render();
+  });
+
+  const pto = state.roster.filter(c=>c.status==='pto');
+  $('#ptoTable').innerHTML = pto.length ? `<table><tbody>` + pto.map(cm=>`<tr>
+      <td><strong>${esc(cm.name)}</strong></td><td><span class="tag a">on leave</span></td>
+      <td style="text-align:right">${state.supervisor?`<button class="btn ghost sm" data-pto="${cm.id}">Mark available</button>`:''}</td>
+    </tr>`).join('') + `</tbody></table>`
+    : `<div class="empty" style="padding:20px"><strong>Nobody is on leave</strong>Set this on the roster screen.</div>`;
+  $$('[data-pto]').forEach(b=>b.onclick=()=>{
+    state.roster.find(c=>c.id===b.dataset.pto).status='active'; toast('Back in rotation.'); render();
+  });
+}
+
+/* ============================================================
+   ROSTER
+   ============================================================ */
+function renderRoster(){
+  if(!state.supervisor){
+    $('#rosterGate').innerHTML = `<div class="empty"><strong>Supervisors only</strong>Turn on supervisor mode in the sidebar to edit the roster.</div>`;
+    return;
+  }
+  $('#rosterGate').innerHTML = `
+    <table><thead><tr><th>Case manager</th><th>Teams</th><th>Languages</th><th>States</th><th>Active cases</th><th>Status</th><th></th></tr></thead>
+    <tbody>${state.roster.map(cm=>`<tr>
+      <td><strong>${esc(cm.name)}</strong></td>
+      <td class="num" style="font-size:12.5px">${esc(cm.handle)}</td>
+      <td>${cm.languages.map(l=>`<span class="chip">${esc(l)}</span>`).join(' ')}</td>
+      <td>${cm.states.map(s=>`<span class="chip">${esc(s)}</span>`).join(' ')}</td>
+      <td class="num">${cm.caseCount}</td>
+      <td><span class="tag ${cm.status==='pto'?'a':'g'}">${cm.status==='pto'?'on leave':'available'}</span></td>
+      <td style="text-align:right"><button class="btn ghost sm" data-toggle="${cm.id}">${cm.status==='pto'?'Mark available':'Set on leave'}</button></td>
+    </tr>`).join('')}</tbody></table>
+    <p class="note">Adding and editing case managers is on the list for the next pass — for now the roster loads from the code and case counts come from the weekly import.</p>`;
+  $$('[data-toggle]').forEach(b=>b.onclick=()=>{
+    const cm=state.roster.find(c=>c.id===b.dataset.toggle);
+    cm.status = cm.status==='pto' ? 'active' : 'pto';
+    toast(cm.name.split(',')[0] + (cm.status==='pto'?' set to on leave':' back in rotation')); render();
+  });
+}
+
+/* ============================================================
+   CSV IMPORT  (the weekly pull)
+   ============================================================ */
+function parseCSV(text){
+  const rows=[]; let row=[], cell='', q=false;
+  text = text.replace(/\r\n/g,'\n').replace(/\r/g,'\n');
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(q){
+      if(c==='"'){ if(text[i+1]==='"'){cell+='"';i++;} else q=false; }
+      else cell+=c;
+    } else {
+      if(c==='"') q=true;
+      else if(c===','){ row.push(cell); cell=''; }
+      else if(c==='\n'){ row.push(cell); rows.push(row); row=[]; cell=''; }
+      else cell+=c;
+    }
+  }
+  if(cell.length||row.length){ row.push(cell); rows.push(row); }
+  return rows.filter(r=>r.some(v=>v.trim()!==''));
+}
+
+let parsed = null;
+$('#csvFile').addEventListener('change', e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const rd=new FileReader();
+  rd.onload = () => {
+    const rows = parseCSV(rd.result);
+    if(rows.length<2){ toast('That file looks empty.'); return; }
+    parsed = { headers: rows[0].map(h=>h.trim()), rows: rows.slice(1) };
+    renderMapper();
+  };
+  rd.readAsText(f);
+});
+
+function renderMapper(){
+  const h = parsed.headers;
+  const guess = (...names) => {
+    const i = h.findIndex(x => names.some(n => x.toLowerCase().includes(n)));
+    return i<0 ? 0 : i;
+  };
+  $('#mapBox').innerHTML = `
+    <div class="card">
+      <h3 style="margin:0 0 4px;font-size:16px">Match up the columns</h3>
+      <p class="note" style="margin:0 0 14px">Read ${parsed.rows.length} rows. Tell it which columns to use.</p>
+      <div class="bar">
+        <div class="field"><label>Case manager</label><select id="colCm">${h.map((x,i)=>`<option value="${i}">${esc(x)}</option>`).join('')}</select></div>
+        <div class="field"><label>Case status</label><select id="colSt">${h.map((x,i)=>`<option value="${i}">${esc(x)}</option>`).join('')}</select></div>
+      </div>
+      <div class="field" style="margin-top:12px">
+        <label>Count a case as active unless its status contains any of these</label>
+        <input type="text" id="deadWords" value="drop, closed, settled, resolved, referred out">
+      </div>
+      <div class="row" style="margin-top:16px"><button class="btn" id="btnPreview">Preview the counts</button></div>
+    </div>
+    <div id="previewBox"></div>`;
+  $('#colCm').value = guess('case manager','casemanager','assigned','owner','manager');
+  $('#colSt').value = guess('status','case status','stage');
+  $('#btnPreview').onclick = preview;
+}
+
+let pendingCounts = null;
+function preview(){
+  const ci=+$('#colCm').value, si=+$('#colSt').value;
+  const dead = $('#deadWords').value.split(',').map(s=>s.trim().toLowerCase()).filter(Boolean);
+  const counts = {}; let skipped=0;
+  parsed.rows.forEach(r=>{
+    const who=(r[ci]||'').trim(); const st=(r[si]||'').trim().toLowerCase();
+    if(!who) return;
+    if(dead.some(d=>st.includes(d))){ skipped++; return; }
+    counts[who]=(counts[who]||0)+1;
+  });
+  // match against roster: exact, then loose surname match
+  const norm = s => s.toLowerCase().replace(/[^a-z]/g,'');
+  const matched=[], unmatched=[];
+  Object.entries(counts).forEach(([who,n])=>{
+    const cm = state.roster.find(c => norm(c.name)===norm(who)) ||
+               state.roster.find(c => {
+                 const [last,first] = c.name.split(',').map(s=>s.trim());
+                 return norm(who)===norm(first+' '+last) || norm(who)===norm(last+' '+first);
+               });
+    if(cm) matched.push({cm, from:cm.caseCount, to:n, who});
+    else unmatched.push({who, n});
+  });
+  pendingCounts = matched;
+  $('#previewBox').innerHTML = `
+    <div class="card">
+      <div class="stat">
+        <div><b>${parsed.rows.length}</b><span>rows read</span></div>
+        <div><b>${skipped}</b><span>not active</span></div>
+        <div><b>${matched.length}</b><span>matched</span></div>
+        <div><b>${unmatched.length}</b><span>unmatched</span></div>
+      </div>
+      ${matched.length?`<table><thead><tr><th>Case manager</th><th>Now</th><th>After import</th><th>Change</th></tr></thead><tbody>`
+        + matched.map(m=>{
+            const d=m.to-m.from;
+            return `<tr><td><strong>${esc(m.cm.name)}</strong></td><td class="num">${m.from}</td><td class="num">${m.to}</td>
+              <td class="num" style="color:${d>0?'var(--red)':d<0?'var(--green)':'var(--muted)'}">${d>0?'+':''}${d}</td></tr>`;
+          }).join('') + `</tbody></table>`:''}
+      ${unmatched.length?`<div class="banner err" style="margin-top:14px"><h4>${unmatched.length} name${unmatched.length===1?"":"s"} in the file didn't match the roster</h4>
+        <p>${unmatched.slice(0,8).map(u=>esc(u.who)).join(' · ')}${unmatched.length>8?' …':''}</p></div>`:''}
+      <div class="row" style="margin-top:16px">
+        <button class="btn" id="btnApply">Update case counts</button>
+        <button class="btn ghost" id="btnDiscard">Discard</button>
+      </div>
+    </div>`;
+  $('#btnApply').onclick = () => {
+    pendingCounts.forEach(m => m.cm.caseCount = m.to);
+    toast('Case counts updated for ' + pendingCounts.length + ' people.');
+    $('#mapBox').innerHTML=''; $('#csvFile').value=''; parsed=null; render();
+  };
+  $('#btnDiscard').onclick = () => { $('#mapBox').innerHTML=''; $('#csvFile').value=''; parsed=null; };
+}
+
+/* ============================================================
+   AUDIT LOG
+   ============================================================ */
+function renderLog(){
+  $('#pipL').textContent = state.events.length;
+  const cmSel=$('#fCm');
+  const keep = cmSel.value;
+  cmSel.innerHTML = `<option value="">All</option>` + state.roster.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+  cmSel.value = keep;
+
+  const f1=cmSel.value, f2=$('#fOut').value;
+  const rows = state.events.filter(e => (!f1||e.cmId===f1) && (!f2||e.outcome===f2))
+                           .slice().reverse();
+
+  const acc = state.events.filter(e=>e.outcome==='accepted').length;
+  const dec = state.events.filter(e=>e.outcome==='declined').length;
+  const to  = state.events.filter(e=>e.outcome==='timeout').length;
+  $('#logStats').innerHTML = `
+    <div><b>${state.events.length}</b><span>offers</span></div>
+    <div><b style="color:var(--green)">${acc}</b><span>accepted</span></div>
+    <div><b style="color:var(--red)">${dec}</b><span>declined</span></div>
+    <div><b style="color:var(--amber)">${to}</b><span>no reply</span></div>`;
+
+  $('#logTable').innerHTML = rows.length ? `<table><thead><tr>
+      <th>When</th><th>Case</th><th>Case manager</th><th>Outcome</th><th>Reason</th><th>Handled by</th></tr></thead><tbody>`
+    + rows.map(e=>`<tr>
+        <td style="white-space:nowrap;font-size:12.5px;color:var(--muted)">${fmtTime(e.resolvedAt)}</td>
+        <td class="num">${esc(e.caseRef)}${e.escalated?' <span class="tag a">escalated</span>':''}</td>
+        <td>${esc(e.cmName)}</td>
+        <td><span class="tag ${e.outcome==='accepted'?'g':e.outcome==='timeout'?'a':'r'}">${e.outcome==='timeout'?'no reply':e.outcome}</span></td>
+        <td style="font-size:12.5px">${esc(e.reason)}${e.note?`<div style="color:var(--muted)">${esc(e.note)}</div>`:''}</td>
+        <td style="font-size:12.5px">${esc(e.rep)}</td></tr>`).join('') + `</tbody></table>`
+    : `<div class="empty"><strong>Nothing recorded yet</strong>Assign a case and every offer shows up here.</div>`;
+}
+$('#fCm').addEventListener('change', render);
+$('#fOut').addEventListener('change', render);
+
+$('#btnExport').addEventListener('click', ()=>{
+  if(!state.events.length) return toast('Nothing to export yet.');
+  const cols=['resolved_at','case_ref','case_manager','outcome','reason','note','handled_by','language','state','escalated'];
+  const q=v=>`"${String(v??'').replace(/"/g,'""')}"`;
+  const csv=[cols.join(',')].concat(state.events.map(e=>[
+    new Date(e.resolvedAt).toISOString(), e.caseRef, e.cmName, e.outcome,
+    e.reason, e.note, e.rep, e.lang, e.state, e.escalated
+  ].map(q).join(','))).join('\n');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download='assignment-log-'+new Date().toISOString().slice(0,10)+'.csv';
+  a.click(); URL.revokeObjectURL(a.href);
+  toast('Exported.');
+});
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+function render(){
+  renderAssign(); renderQueue(); renderSusp(); renderRoster(); renderLog();
+}
+render();
+setInterval(()=>{ if($('#v-susp').classList.contains('on')) renderSusp(); }, 30000);
+</script>
+</body>
+</html>
