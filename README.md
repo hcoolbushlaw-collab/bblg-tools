@@ -15,14 +15,14 @@ To share it with others, either send them the file, or push this repo and turn o
 ## Try it
 
 1. Type your name in the sidebar.
-2. **Assign a case** — enter any case reference, pick a language and state, and find a case manager.
+2. **Assign a Case Manager** — enter a case reference, pick a case type, language, and state, and find a case manager.
 3. Message nobody (this is a prototype), then start the timer.
 4. Either accept, decline with a reason, or let the timer run out and watch the 48-hour suspension land.
-5. Check **Do not assign**, then flip on **Supervisor mode** in the sidebar to clear someone early.
+5. Check **Do not assign**, then flip on **Supervisor mode** in the sidebar to clear someone early. Supervisor mode also reveals the roster, roster loading, weekly import, and audit log — those four screens are hidden from CS reps.
 6. **Load the roster** — download the blank template, or load `sample-data/sample-caseload-export.csv` on the Weekly import screen to see the case-count refresh.
 7. **Audit log** — every offer is recorded, and exports to CSV.
 
-Tip for demos: the timer is a real three minutes. To shorten it, change `TIMER_SECONDS` near the top of the script block in `index.html`.
+Tip for demos: the timer is a real two minutes. To shorten it, change `TIMER_SECONDS` near the top of the script block in `index.html`.
 
 ---
 
@@ -44,14 +44,14 @@ Real names never go in this repository. Load them from a file instead.
 
 **Build a CSV in Excel** with these columns, one case manager per row. Separate multiple languages or states with semicolons:
 
-| name | teams_handle | languages | states | active_cases |
-|---|---|---|---|---|
-| Alvarez, Marisol | @malvarez | English;Spanish | CA;NV;AZ | 38 |
-| Boone, Dana | @dboone | English | TX;NM | 44 |
+| name | teams_handle | case_types | languages | states | active_cases |
+|---|---|---|---|---|---|
+| Alvarez, Marisol | @malvarez | MVA;PL | English;Spanish | CA;NV;AZ | 38 |
+| Boone, Dana | @dboone | MVA;CVA | English | TX;NM | 44 |
 
 Then go to **Load the roster** and select the file. There's a "Download a blank template" button on that screen to start from.
 
-Column order doesn't matter and the header wording is flexible — "Full Name", "Teams Handle", "Language", "State" all work. Only `name`, `languages`, and `states` are required.
+Case types are MVA, CVA, PL, and GVA. Column order doesn't matter and the header wording is flexible — "Full Name", "Teams Handle", "Case Type", "Language", "State" all work. `name`, `case_types`, `languages`, and `states` are all required.
 
 **Write names exactly as your SmartAdvocate export writes them.** That's what lets the weekly import match rows to people automatically.
 
@@ -63,9 +63,9 @@ Rules are numbered to match the technical specification document.
 
 | Rule | Behaviour |
 |---|---|
-| R1 | Eligibility: language and state must match; excludes anyone on leave or suspended |
+| R1 | Eligibility: case type, language, and state must all match; excludes anyone on leave or suspended |
 | R2 | Ranked by active case count ascending, ties broken alphabetically |
-| R3 | 180-second timer, started manually by the rep after they message the case manager |
+| R3 | 120-second timer, started manually by the rep after they message the case manager |
 | R4 | A timeout is treated exactly like a decline, penalty included |
 | R5 | Decline or timeout writes a 48-hour suspension |
 | R6 | Only supervisor mode can clear a suspension early |
@@ -85,7 +85,7 @@ These are the honest gaps between the prototype and the specified tool. Worth st
 
 - **Single user.** A static page has no shared server, so two reps running this have two separate, unaware copies. Real multi-rep use needs a backend. This is the single biggest gap and the largest piece of the real build.
 - **No persistence.** Refreshing clears everything. Fine for a demo, wrong for daily use.
-- **No real authentication.** "Supervisor mode" is an unprotected checkbox.
+- **No real authentication.** "Supervisor mode" is an unprotected checkbox. It hides screens rather than securing them — anyone can tick it.
 - **Client-side timers.** Closing the tab stops the countdown. The spec requires server-authoritative timers.
 - **No SmartAdvocate API.** Case counts come from a manual CSV import, by design at this stage.
 - **No Teams integration.** Messaging case managers stays a manual step, as specified. Supervisor escalation alerts are shown in-app only.

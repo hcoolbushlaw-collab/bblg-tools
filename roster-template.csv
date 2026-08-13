@@ -1,3 +1,3 @@
-name,teams_handle,languages,states,active_cases
-"Alvarez, Marisol",@malvarez,English;Spanish,CA;NV;AZ,0
-"Boone, Dana",@dboone,English,TX;NM,0
+name,teams_handle,case_types,languages,states,active_cases
+"Alvarez, Marisol",@malvarez,MVA;PL,English;Spanish,CA;NV;AZ,0
+"Boone, Dana",@dboone,MVA;CVA,English,TX;NM,0

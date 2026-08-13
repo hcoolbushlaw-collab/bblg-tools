@@ -183,13 +183,13 @@ tr:last-child td{border-bottom:0}
       <p>PROTOTYPE v0.1</p>
     </div>
     <nav class="nav" id="nav">
-      <button data-v="assign" class="on">Assign a case</button>
+      <button data-v="assign" class="on">Assign a Case Manager</button>
       <button data-v="queue">Queue <span class="pip" id="pipQ">0</span></button>
       <button data-v="susp">Do not assign <span class="pip" id="pipS">0</span></button>
-      <button data-v="roster">Roster</button>
-      <button data-v="rosterfile">Load the roster</button>
-      <button data-v="import">Weekly import</button>
-      <button data-v="log">Audit log <span class="pip" id="pipL">0</span></button>
+      <button data-v="roster" data-sup>Case Manager Roster</button>
+      <button data-v="rosterfile" data-sup>Load the roster</button>
+      <button data-v="import" data-sup>Weekly import</button>
+      <button data-v="log" data-sup>Audit log <span class="pip" id="pipL">0</span></button>
     </nav>
     <div class="railfoot">
       <label><input type="checkbox" id="supMode"> Supervisor mode</label>
@@ -203,17 +203,18 @@ tr:last-child td{border-bottom:0}
   <main class="main">
     <!-- ============ ASSIGN ============ -->
     <section class="view on" id="v-assign">
-      <div class="head"><h2>Assign a case</h2><p>Filter by language and state, then work down the ranked list.</p></div>
+      <div class="head"><h2>Assign a Case Manager</h2><p>Filter by case type, language, and state, then work down the ranked list.</p></div>
 
       <div id="assignSetup">
         <div class="card">
           <div class="bar">
             <div class="field"><label>Case reference</label><input type="text" id="caseRef" placeholder="e.g. 2026-04871"></div>
+            <div class="field"><label>Case type</label><select id="reqType"></select></div>
             <div class="field"><label>Language</label><select id="reqLang"></select></div>
             <div class="field"><label>State</label><select id="reqState"></select></div>
             <button class="btn" id="btnFind">Find next case manager</button>
           </div>
-          <p class="note">Excludes anyone on leave, on the do-not-assign list, or already asked about this case.</p>
+          <p class="note">Only shows case managers who handle this case type. Excludes anyone on leave, on the do-not-assign list, or already asked about this case.</p>
         </div>
       </div>
 
@@ -260,6 +261,7 @@ tr:last-child td{border-bottom:0}
       <div class="head"><h2>Queue</h2><p>Everyone eligible right now, lowest case load first.</p></div>
       <div class="card">
         <div class="bar">
+          <div class="field"><label>Case type</label><select id="qType"></select></div>
           <div class="field"><label>Language</label><select id="qLang"></select></div>
           <div class="field"><label>State</label><select id="qState"></select></div>
         </div>
@@ -279,7 +281,7 @@ tr:last-child td{border-bottom:0}
 
     <!-- ============ ROSTER ============ -->
     <section class="view" id="v-roster">
-      <div class="head"><h2>Roster</h2><p>Who can take cases, and what they cover. Supervisors only.</p></div>
+      <div class="head"><h2>Case Manager Roster</h2><p>Who can take cases, and what they cover. Supervisors only.</p></div>
       <div class="card" id="rosterGate"></div>
     </section>
 
@@ -298,11 +300,11 @@ tr:last-child td{border-bottom:0}
 
       <div class="card">
         <h3 style="margin:0 0 4px;font-size:16px">Build the CSV in Excel</h3>
-        <p class="note" style="margin:0 0 12px">Four columns, one case manager per row. Separate multiple languages or states with semicolons.</p>
-        <table><thead><tr><th>name</th><th>teams_handle</th><th>languages</th><th>states</th></tr></thead>
+        <p class="note" style="margin:0 0 12px">One case manager per row. Separate multiple case types, languages, or states with semicolons.</p>
+        <table><thead><tr><th>name</th><th>teams_handle</th><th>case_types</th><th>languages</th><th>states</th></tr></thead>
         <tbody>
-          <tr><td class="num">Alvarez, Marisol</td><td class="num">@malvarez</td><td class="num">English;Spanish</td><td class="num">CA;NV;AZ</td></tr>
-          <tr><td class="num">Boone, Dana</td><td class="num">@dboone</td><td class="num">English</td><td class="num">TX;NM</td></tr>
+          <tr><td class="num">Alvarez, Marisol</td><td class="num">@malvarez</td><td class="num">MVA;PL</td><td class="num">English;Spanish</td><td class="num">CA;NV;AZ</td></tr>
+          <tr><td class="num">Boone, Dana</td><td class="num">@dboone</td><td class="num">MVA;CVA</td><td class="num">English</td><td class="num">TX;NM</td></tr>
         </tbody></table>
         <div class="row" style="margin-top:16px">
           <button class="btn ghost" id="btnTemplate">Download a blank template</button>
@@ -363,6 +365,7 @@ tr:last-child td{border-bottom:0}
     <p class="sub">Separate multiple languages or states with semicolons.</p>
     <div class="field"><label>Name</label><input type="text" id="cmName" placeholder="Last, First"></div>
     <div class="field" style="margin-top:12px"><label>Teams handle</label><input type="text" id="cmHandle" placeholder="@handle"></div>
+    <div class="field" style="margin-top:12px"><label>Case types</label><input type="text" id="cmTypes" placeholder="MVA; CVA; PL; GVA"></div>
     <div class="field" style="margin-top:12px"><label>Languages</label><input type="text" id="cmLangs" placeholder="English; Spanish"></div>
     <div class="field" style="margin-top:12px"><label>States</label><input type="text" id="cmStates" placeholder="CA; NV; AZ"></div>
     <div class="field" style="margin-top:12px"><label>Active cases</label><input type="number" id="cmCount" min="0" value="0"></div>
@@ -378,11 +381,12 @@ tr:last-child td{border-bottom:0}
    Single file. No backend. No data leaves this browser.
    ============================================================ */
 
-const TIMER_SECONDS = 180;          // R3 — 3 minutes
+const TIMER_SECONDS = 120;          // R3 — 2 minutes
 const SUSPEND_HOURS = 48;           // R5 — 48 hours
 const RING = 2 * Math.PI * 84;
 
 const LANGUAGES = ['English','Spanish'];
+const CASE_TYPES = ['MVA','CVA','PL','GVA'];
 const STATES = ['AZ','CA','CO','FL','GA','IL','NV','NM','NY','OR','TX','WA'];
 
 const DECLINE_REASONS = [
@@ -400,27 +404,27 @@ let state = {
   rep: '',
   supervisor: false,
   roster: [
-    mk('Alvarez, Marisol','@malvarez',['English','Spanish'],['CA','NV','AZ'],38),
-    mk('Boone, Dana','@dboone',['English'],['TX','NM'],44),
-    mk('Castellanos, Rafael','@rcastellanos',['English','Spanish'],['TX','NM','AZ'],31),
-    mk('Dutta, Priya','@pdutta',['English'],['NY','IL'],52),
-    mk('Ellison, Grace','@gellison',['English'],['CA','OR','WA'],29),
-    mk('Fontaine, Marcus','@mfontaine',['English'],['GA','FL'],47),
-    mk('Guzman, Elena','@eguzman',['English','Spanish'],['CA','AZ','NV'],31),
-    mk('Hollis, Wren','@whollis',['English'],['CO','NM','AZ'],36),
-    mk('Iyer, Nikhil','@niyer',['English'],['IL','NY'],41),
-    mk('Jarrett, Colleen','@cjarrett',['English'],['FL','GA'],25),
-    mk('Kowalski, Tomasz','@tkowalski',['English'],['IL','CO'],49),
-    mk('Lozano, Beatriz','@blozano',['English','Spanish'],['TX','FL'],33),
+    mk('Alvarez, Marisol','@malvarez',['English','Spanish'],['CA','NV','AZ'],['MVA','PL'],38),
+    mk('Boone, Dana','@dboone',['English'],['TX','NM'],['MVA','CVA'],44),
+    mk('Castellanos, Rafael','@rcastellanos',['English','Spanish'],['TX','NM','AZ'],['MVA','GVA','PL'],31),
+    mk('Dutta, Priya','@pdutta',['English'],['NY','IL'],['CVA','GVA'],52),
+    mk('Ellison, Grace','@gellison',['English'],['CA','OR','WA'],['MVA','PL','GVA'],29),
+    mk('Fontaine, Marcus','@mfontaine',['English'],['GA','FL'],['MVA','CVA'],47),
+    mk('Guzman, Elena','@eguzman',['English','Spanish'],['CA','AZ','NV'],['MVA','GVA'],31),
+    mk('Hollis, Wren','@whollis',['English'],['CO','NM','AZ'],['PL','GVA'],36),
+    mk('Iyer, Nikhil','@niyer',['English'],['IL','NY'],['MVA','CVA','PL'],41),
+    mk('Jarrett, Colleen','@cjarrett',['English'],['FL','GA'],['MVA','PL'],25),
+    mk('Kowalski, Tomasz','@tkowalski',['English'],['IL','CO'],['CVA','GVA'],49),
+    mk('Lozano, Beatriz','@blozano',['English','Spanish'],['TX','FL'],['MVA','CVA','PL'],33),
   ],
   suspensions: [],
   events: [],
   offer: null,
   seq: 1
 };
-function mk(name,handle,langs,states,count){
+function mk(name,handle,langs,states,types,count){
   return {id:'cm_'+Math.random().toString(36).slice(2,9), name, handle,
-          languages:langs, states, caseCount:count, status:'active'};
+          languages:langs, states, caseTypes:types, caseCount:count, status:'active'};
 }
 
 /* ---- helpers ---- */
@@ -446,11 +450,12 @@ function toast(msg){
 function activeSuspension(cmId){
   return state.suspensions.find(s => s.cmId===cmId && !s.clearedAt && s.expiresAt > now());
 }
-function eligible(lang, st, excludeIds=[]){
+function eligible(lang, st, type, excludeIds=[]){
   return state.roster.filter(cm =>
     cm.status==='active' &&
     (!lang || cm.languages.includes(lang)) &&
     (!st   || cm.states.includes(st)) &&
+    (!type || (cm.caseTypes||[]).includes(type)) &&
     !activeSuspension(cm.id) &&
     !excludeIds.includes(cm.id)
   ).sort((a,b) => a.caseCount - b.caseCount || a.name.localeCompare(b.name)); // R2
@@ -475,7 +480,25 @@ $('#nav').addEventListener('click', e => {
   $('#v-'+b.dataset.v).classList.add('on');
   render();
 });
-$('#supMode').addEventListener('change', e => { state.supervisor = e.target.checked; render(); });
+$('#supMode').addEventListener('change', e => {
+  state.supervisor = e.target.checked;
+  applyRoleVisibility();
+  render();
+});
+
+function applyRoleVisibility(){
+  $$('.nav button[data-sup]').forEach(b => {
+    b.style.display = state.supervisor ? '' : 'none';
+  });
+  // if the open view just became supervisor-only, fall back to the assign screen
+  const open = $('.nav button.on');
+  if(open && open.hasAttribute('data-sup') && !state.supervisor){
+    $$('.nav button').forEach(x=>x.classList.remove('on'));
+    $$('.view').forEach(v=>v.classList.remove('on'));
+    const home = $('.nav button[data-v="assign"]');
+    home.classList.add('on'); $('#v-assign').classList.add('on');
+  }
+}
 $('#repName').addEventListener('input', e => { state.rep = e.target.value; });
 
 /* ============================================================
@@ -485,10 +508,13 @@ function fillSelect(sel, items, allLabel){
   sel.innerHTML = (allLabel?`<option value="">${allLabel}</option>`:'') +
     items.map(i=>`<option value="${esc(i)}">${esc(i)}</option>`).join('');
 }
+fillSelect($('#reqType'), CASE_TYPES);
 fillSelect($('#reqLang'), LANGUAGES);
 fillSelect($('#reqState'), STATES);
+fillSelect($('#qType'), CASE_TYPES, 'Any case type');
 fillSelect($('#qLang'), LANGUAGES, 'Any language');
 fillSelect($('#qState'), STATES, 'Any state');
+$('#qType').addEventListener('change', render);
 $('#qLang').addEventListener('change', render);
 $('#qState').addEventListener('change', render);
 
@@ -497,7 +523,8 @@ $('#btnFind').addEventListener('click', () => {
   if(!ref) return toast('Add a case reference first.');
   if(!state.rep.trim()) return toast('Add your name in the sidebar first.');
   state.offer = {
-    caseRef: ref, lang: $('#reqLang').value, state: $('#reqState').value,
+    caseRef: ref, type: $('#reqType').value,
+    lang: $('#reqLang').value, state: $('#reqState').value,
     attempted: [], cm: null, offeredAt: null, timerStartedAt: null, escalated: false
   };
   nextCandidate();
@@ -505,7 +532,7 @@ $('#btnFind').addEventListener('click', () => {
 
 function nextCandidate(){
   const o = state.offer;
-  const pool = eligible(o.lang, o.state, o.attempted);
+  const pool = eligible(o.lang, o.state, o.type, o.attempted);
   stopTimer();
   if(pool.length === 0){
     o.cm = null;
@@ -552,7 +579,7 @@ function resolve(outcome, reason, note){
     id:'e_'+(state.seq++), caseRef:o.caseRef, cmId:cm.id, cmName:cm.name,
     rep: state.rep || '—', offeredAt:o.offeredAt, timerStartedAt:o.timerStartedAt,
     resolvedAt: now(), outcome, reason: reason||'', note: note||'',
-    lang:o.lang, state:o.state, escalated:false
+    lang:o.lang, state:o.state, type:o.type, escalated:false
   });
   if(outcome==='accepted'){
     cm.caseCount += 1;                                  // R11
@@ -593,7 +620,7 @@ function renderAssign(){
   if(!o) return;
 
   $('#workRef').textContent = o.caseRef;
-  $('#workChips').innerHTML = `<span class="chip">${esc(o.lang)}</span><span class="chip">${esc(o.state)}</span>`;
+  $('#workChips').innerHTML = `<span class="chip">${esc(o.type)}</span><span class="chip">${esc(o.lang)}</span><span class="chip">${esc(o.state)}</span>`;
 
   // attempts list
   const tried = state.events.filter(e=>e.caseRef===o.caseRef);
@@ -607,7 +634,7 @@ function renderAssign(){
       banner.innerHTML = `<div class="banner esc"><h4>Everyone eligible has passed on this one</h4>
         <p>${tried.length} case manager${tried.length===1?'':'s'} asked, none took it. This needs a supervisor.</p></div>`;
     } else {
-      banner.innerHTML = `<div class="banner err"><h4>Nobody covers ${esc(o.lang)} in ${esc(o.state)}</h4>
+      banner.innerHTML = `<div class="banner err"><h4>Nobody covers ${esc(o.type)} · ${esc(o.lang)} in ${esc(o.state)}</h4>
         <p>No one on the roster matches. Filters are not widened automatically — check the roster or escalate.</p></div>`;
     }
     $('#candEyebrow').textContent = 'No candidate';
@@ -625,7 +652,7 @@ function renderAssign(){
   const cm = o.cm;
   $('#candEyebrow').textContent = tried.length ? 'Next up · attempt ' + (tried.length+1) : 'Next up';
   $('#candName').textContent = cm.name;
-  $('#candMeta').innerHTML = `<span class="num">${cm.caseCount}</span> active cases · ${esc(cm.states.join(', '))}`;
+  $('#candMeta').innerHTML = `<span class="num">${cm.caseCount}</span> active cases · ${esc((cm.caseTypes||[]).join(', '))} · ${esc(cm.states.join(', '))}`;
   $('#candHandle').textContent = cm.handle;
 
   const started = !!o.timerStartedAt;
@@ -651,19 +678,20 @@ function renderAssign(){
    QUEUE
    ============================================================ */
 function renderQueue(){
-  const lang=$('#qLang').value, st=$('#qState').value;
-  const list = eligible(lang, st);
+  const lang=$('#qLang').value, st=$('#qState').value, ty=$('#qType').value;
+  const list = eligible(lang, st, ty);
   $('#pipQ').textContent = list.length;
   if(!list.length){
     $('#queueTable').innerHTML = `<div class="empty"><strong>Nobody is eligible</strong>Adjust the filters, or check who's on leave and who's suspended.</div>`;
     return;
   }
   $('#queueTable').innerHTML = `<table><thead><tr>
-    <th style="width:44px">#</th><th>Case manager</th><th>Active cases</th><th>Languages</th><th>States</th></tr></thead><tbody>`
+    <th style="width:44px">#</th><th>Case manager</th><th>Active cases</th><th>Case types</th><th>Languages</th><th>States</th></tr></thead><tbody>`
     + list.map((cm,i)=>`<tr>
         <td class="num" style="color:var(--muted)">${i+1}</td>
         <td><strong>${esc(cm.name)}</strong><div style="font-family:var(--mono);font-size:12px;color:var(--muted)">${esc(cm.handle)}</div></td>
         <td class="num">${cm.caseCount}</td>
+        <td>${(cm.caseTypes||[]).map(t=>`<span class="chip">${esc(t)}</span>`).join(' ')}</td>
         <td>${cm.languages.map(l=>`<span class="chip">${esc(l)}</span>`).join(' ')}</td>
         <td>${cm.states.map(s=>`<span class="chip">${esc(s)}</span>`).join(' ')}</td>
       </tr>`).join('') + `</tbody></table>`;
@@ -728,10 +756,11 @@ function renderRoster(){
       </div>
     </div>
     ${state.roster.length ? `
-    <table><thead><tr><th>Case manager</th><th>Teams</th><th>Languages</th><th>States</th><th>Active cases</th><th>Status</th><th></th></tr></thead>
+    <table><thead><tr><th>Case manager</th><th>Teams</th><th>Case types</th><th>Languages</th><th>States</th><th>Active cases</th><th>Status</th><th></th></tr></thead>
     <tbody>${state.roster.map(cm=>`<tr>
       <td><strong>${esc(cm.name)}</strong></td>
       <td class="num" style="font-size:12.5px">${esc(cm.handle)}</td>
+      <td>${(cm.caseTypes||[]).map(t=>`<span class="chip">${esc(t)}</span>`).join(' ')||'<span class="tag r">none</span>'}</td>
       <td>${cm.languages.map(l=>`<span class="chip">${esc(l)}</span>`).join(' ')}</td>
       <td>${cm.states.map(s=>`<span class="chip">${esc(s)}</span>`).join(' ')}</td>
       <td class="num">${cm.caseCount}</td>
@@ -771,6 +800,7 @@ function openCmEditor(id){
   $('#cmTitle').textContent = cm ? 'Edit case manager' : 'Add a case manager';
   $('#cmName').value   = cm ? cm.name : '';
   $('#cmHandle').value = cm ? cm.handle : '';
+  $('#cmTypes').value  = cm ? (cm.caseTypes||[]).join('; ') : CASE_TYPES.join('; ');
   $('#cmLangs').value  = cm ? cm.languages.join('; ') : 'English';
   $('#cmStates').value = cm ? cm.states.join('; ') : '';
   $('#cmCount').value  = cm ? cm.caseCount : 0;
@@ -781,18 +811,20 @@ $('#cmSave').addEventListener('click', ()=>{
   const name = $('#cmName').value.trim();
   const states = splitList($('#cmStates').value);
   const langs  = splitList($('#cmLangs').value);
+  const types  = splitList($('#cmTypes').value).map(t=>t.toUpperCase());
   if(!name)         return toast('Add a name.');
+  if(!types.length) return toast('Add at least one case type.');
   if(!langs.length) return toast('Add at least one language.');
   if(!states.length)return toast('Add at least one state.');
   const count = Math.max(0, parseInt($('#cmCount').value,10) || 0);
   if(editingId){
     const cm = state.roster.find(c=>c.id===editingId);
-    Object.assign(cm, {name, handle:$('#cmHandle').value.trim(), languages:langs, states, caseCount:count});
+    Object.assign(cm, {name, handle:$('#cmHandle').value.trim(), languages:langs, states, caseTypes:types, caseCount:count});
     toast('Updated.');
   } else {
     state.roster.push({
       id:'cm_'+Math.random().toString(36).slice(2,9), name,
-      handle:$('#cmHandle').value.trim(), languages:langs, states,
+      handle:$('#cmHandle').value.trim(), languages:langs, states, caseTypes:types,
       caseCount:count, status:'active'
     });
     toast('Added.');
@@ -807,13 +839,17 @@ const splitList = s => String(s||'').split(/[;,]/).map(x=>x.trim()).filter(Boole
 function refreshOptionLists(){
   const langs = [...new Set(state.roster.flatMap(c=>c.languages))].sort();
   const sts   = [...new Set(state.roster.flatMap(c=>c.states))].sort();
-  const keep = {rl:$('#reqLang').value, rs:$('#reqState').value, ql:$('#qLang').value, qs:$('#qState').value};
+  const tys   = [...new Set(state.roster.flatMap(c=>c.caseTypes||[]))].sort();
+  const keep = {rt:$('#reqType').value, rl:$('#reqLang').value, rs:$('#reqState').value,
+                qt:$('#qType').value, ql:$('#qLang').value, qs:$('#qState').value};
+  fillSelect($('#reqType'), tys.length?tys:CASE_TYPES);
   fillSelect($('#reqLang'), langs.length?langs:LANGUAGES);
   fillSelect($('#reqState'), sts.length?sts:STATES);
+  fillSelect($('#qType'), tys.length?tys:CASE_TYPES, 'Any case type');
   fillSelect($('#qLang'), langs.length?langs:LANGUAGES, 'Any language');
   fillSelect($('#qState'), sts.length?sts:STATES, 'Any state');
-  $('#reqLang').value=keep.rl; $('#reqState').value=keep.rs;
-  $('#qLang').value=keep.ql;   $('#qState').value=keep.qs;
+  $('#reqType').value=keep.rt; $('#reqLang').value=keep.rl; $('#reqState').value=keep.rs;
+  $('#qType').value=keep.qt;   $('#qLang').value=keep.ql;   $('#qState').value=keep.qs;
 }
 
 /* ============================================================
@@ -845,6 +881,7 @@ function readRosterJSON(txt){
     handle:String(r.handle||r.teams_handle||'').trim(),
     languages: Array.isArray(r.languages)?r.languages:splitList(r.languages),
     states: Array.isArray(r.states)?r.states:splitList(r.states),
+    caseTypes: (Array.isArray(r.caseTypes)?r.caseTypes:splitList(r.caseTypes||r.case_types)).map(t=>String(t).toUpperCase()),
     caseCount: Math.max(0, parseInt(r.caseCount ?? r.active_cases ?? 0,10)||0),
     status: r.status==='pto' ? 'pto' : 'active'
   })).filter(r=>r.name);
@@ -857,6 +894,7 @@ function readRosterCSV(txt){
   const find = (...names) => h.findIndex(x => names.some(n => x.includes(n)));
   const iName = find('name'), iHandle = find('teams','handle'),
         iLang = find('language','lang'), iState = find('state'),
+        iType = find('case_type','case type','casetype','type'),
         iCount = find('active_cases','case count','casecount','count');
   if(iName<0)  throw new Error('No "name" column found in the header row.');
   if(iLang<0)  throw new Error('No "languages" column found in the header row.');
@@ -866,25 +904,28 @@ function readRosterCSV(txt){
     handle: iHandle>=0 ? (r[iHandle]||'').trim() : '',
     languages: splitList(r[iLang]),
     states: splitList(r[iState]),
+    caseTypes: iType>=0 ? splitList(r[iType]).map(t=>t.toUpperCase()) : [],
     caseCount: iCount>=0 ? Math.max(0, parseInt(r[iCount],10)||0) : 0,
     status:'active'
   })).filter(r=>r.name);
 }
 
 function previewRoster(incoming){
-  const bad = incoming.filter(r=>!r.languages.length || !r.states.length);
+  const bad = incoming.filter(r=>!r.languages.length || !r.states.length || !r.caseTypes.length);
   $('#rosterPreview').innerHTML = `
     <div class="card">
       <div class="stat">
         <div><b>${incoming.length}</b><span>case managers</span></div>
         <div><b>${[...new Set(incoming.flatMap(r=>r.states))].length}</b><span>states covered</span></div>
+        <div><b>${[...new Set(incoming.flatMap(r=>r.caseTypes))].length}</b><span>case types</span></div>
         <div><b>${[...new Set(incoming.flatMap(r=>r.languages))].length}</b><span>languages</span></div>
         <div><b${bad.length?' style="color:var(--red)"':''}>${bad.length}</b><span>incomplete</span></div>
       </div>
-      <table><thead><tr><th>Name</th><th>Teams</th><th>Languages</th><th>States</th><th>Cases</th></tr></thead><tbody>
+      <table><thead><tr><th>Name</th><th>Teams</th><th>Case types</th><th>Languages</th><th>States</th><th>Cases</th></tr></thead><tbody>
       ${incoming.slice(0,25).map(r=>`<tr>
         <td><strong>${esc(r.name)}</strong></td>
         <td class="num" style="font-size:12.5px">${esc(r.handle)}</td>
+        <td>${r.caseTypes.map(t=>`<span class="chip">${esc(t)}</span>`).join(' ')||'<span class="tag r">missing</span>'}</td>
         <td>${r.languages.map(l=>`<span class="chip">${esc(l)}</span>`).join(' ')||'<span class="tag r">missing</span>'}</td>
         <td>${r.states.map(s=>`<span class="chip">${esc(s)}</span>`).join(' ')||'<span class="tag r">missing</span>'}</td>
         <td class="num">${r.caseCount}</td></tr>`).join('')}
@@ -914,9 +955,9 @@ function download(filename, text, mime){
 }
 $('#btnTemplate').addEventListener('click', ()=>{
   download('roster-template.csv',
-    'name,teams_handle,languages,states,active_cases\n'+
-    '"Alvarez, Marisol",@malvarez,English;Spanish,CA;NV;AZ,0\n'+
-    '"Boone, Dana",@dboone,English,TX;NM,0\n', 'text/csv');
+    'name,teams_handle,case_types,languages,states,active_cases\n'+
+    '"Alvarez, Marisol",@malvarez,MVA;PL,English;Spanish,CA;NV;AZ,0\n'+
+    '"Boone, Dana",@dboone,MVA;CVA,English,TX;NM,0\n', 'text/csv');
   toast('Template downloaded.');
 });
 $('#btnSaveRoster').addEventListener('click', ()=>{
@@ -1063,10 +1104,11 @@ function renderLog(){
     <div><b style="color:var(--amber)">${to}</b><span>no reply</span></div>`;
 
   $('#logTable').innerHTML = rows.length ? `<table><thead><tr>
-      <th>When</th><th>Case</th><th>Case manager</th><th>Outcome</th><th>Reason</th><th>Handled by</th></tr></thead><tbody>`
+      <th>When</th><th>Case</th><th>Type</th><th>Case manager</th><th>Outcome</th><th>Reason</th><th>Handled by</th></tr></thead><tbody>`
     + rows.map(e=>`<tr>
         <td style="white-space:nowrap;font-size:12.5px;color:var(--muted)">${fmtTime(e.resolvedAt)}</td>
         <td class="num">${esc(e.caseRef)}${e.escalated?' <span class="tag a">escalated</span>':''}</td>
+        <td><span class="chip">${esc(e.type||'')}</span></td>
         <td>${esc(e.cmName)}</td>
         <td><span class="tag ${e.outcome==='accepted'?'g':e.outcome==='timeout'?'a':'r'}">${e.outcome==='timeout'?'no reply':e.outcome}</span></td>
         <td style="font-size:12.5px">${esc(e.reason)}${e.note?`<div style="color:var(--muted)">${esc(e.note)}</div>`:''}</td>
@@ -1078,10 +1120,10 @@ $('#fOut').addEventListener('change', render);
 
 $('#btnExport').addEventListener('click', ()=>{
   if(!state.events.length) return toast('Nothing to export yet.');
-  const cols=['resolved_at','case_ref','case_manager','outcome','reason','note','handled_by','language','state','escalated'];
+  const cols=['resolved_at','case_ref','case_type','case_manager','outcome','reason','note','handled_by','language','state','escalated'];
   const q=v=>`"${String(v??'').replace(/"/g,'""')}"`;
   const csv=[cols.join(',')].concat(state.events.map(e=>[
-    new Date(e.resolvedAt).toISOString(), e.caseRef, e.cmName, e.outcome,
+    new Date(e.resolvedAt).toISOString(), e.caseRef, e.type||'', e.cmName, e.outcome,
     e.reason, e.note, e.rep, e.lang, e.state, e.escalated
   ].map(q).join(','))).join('\n');
   const a=document.createElement('a');
@@ -1097,6 +1139,7 @@ $('#btnExport').addEventListener('click', ()=>{
 function render(){
   renderAssign(); renderQueue(); renderSusp(); renderRoster(); renderLog();
 }
+applyRoleVisibility();
 render();
 setInterval(()=>{ if($('#v-susp').classList.contains('on')) renderSusp(); }, 30000);
 </script>
