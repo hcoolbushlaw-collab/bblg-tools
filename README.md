@@ -19,7 +19,7 @@ To share it with others, either send them the file, or push this repo and turn o
 3. Message nobody (this is a prototype), then start the timer.
 4. Either accept, decline with a reason, or let the timer run out and watch the 48-hour suspension land.
 5. Check **Do not assign**, then flip on **Supervisor mode** in the sidebar to clear someone early.
-6. **Weekly import** — load `sample-data/sample-caseload-export.csv` to see the case-count refresh.
+6. **Load the roster** — download the blank template, or load `sample-data/sample-caseload-export.csv` on the Weekly import screen to see the case-count refresh.
 7. **Audit log** — every offer is recorded, and exports to CSV.
 
 Tip for demos: the timer is a real three minutes. To shorten it, change `TIMER_SECONDS` near the top of the script block in `index.html`.
@@ -37,6 +37,25 @@ The sample export in `sample-data/` is entirely fabricated — invented names, i
 State resets when you reload the page. That's deliberate for a prototype — see "Known gaps."
 
 ---
+
+## Putting your real roster in
+
+Real names never go in this repository. Load them from a file instead.
+
+**Build a CSV in Excel** with these columns, one case manager per row. Separate multiple languages or states with semicolons:
+
+| name | teams_handle | languages | states | active_cases |
+|---|---|---|---|---|
+| Alvarez, Marisol | @malvarez | English;Spanish | CA;NV;AZ | 38 |
+| Boone, Dana | @dboone | English | TX;NM | 44 |
+
+Then go to **Load the roster** and select the file. There's a "Download a blank template" button on that screen to start from.
+
+Column order doesn't matter and the header wording is flexible — "Full Name", "Teams Handle", "Language", "State" all work. Only `name`, `languages`, and `states` are required.
+
+**Write names exactly as your SmartAdvocate export writes them.** That's what lets the weekly import match rows to people automatically.
+
+**Saving between sessions:** the roster clears on refresh. Use "Save current roster as .json" to keep it, then reload that file next time. Keep that file on your machine — `.gitignore` blocks `roster.json` and `roster*.csv` from being committed, but the safest habit is storing it outside the repo folder entirely.
 
 ## What it implements
 
@@ -70,7 +89,7 @@ These are the honest gaps between the prototype and the specified tool. Worth st
 - **Client-side timers.** Closing the tab stops the countdown. The spec requires server-authoritative timers.
 - **No SmartAdvocate API.** Case counts come from a manual CSV import, by design at this stage.
 - **No Teams integration.** Messaging case managers stays a manual step, as specified. Supervisor escalation alerts are shown in-app only.
-- **Roster is defined in code.** Adding and editing case managers through the interface isn't built yet; leave status can be toggled.
+- **Roster is not persisted.** You can add, edit, and load case managers in the interface, but it clears on refresh. Save it to a file and reload it next session.
 
 ---
 

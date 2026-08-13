@@ -187,6 +187,7 @@ tr:last-child td{border-bottom:0}
       <button data-v="queue">Queue <span class="pip" id="pipQ">0</span></button>
       <button data-v="susp">Do not assign <span class="pip" id="pipS">0</span></button>
       <button data-v="roster">Roster</button>
+      <button data-v="rosterfile">Load the roster</button>
       <button data-v="import">Weekly import</button>
       <button data-v="log">Audit log <span class="pip" id="pipL">0</span></button>
     </nav>
@@ -282,6 +283,36 @@ tr:last-child td{border-bottom:0}
       <div class="card" id="rosterGate"></div>
     </section>
 
+    <!-- ============ ROSTER FILE ============ -->
+    <section class="view" id="v-rosterfile">
+      <div class="head"><h2>Load the roster</h2><p>Keep real names in a file on your machine, not in the code.</p></div>
+      <div class="card">
+        <h3 style="margin:0 0 4px;font-size:16px">Load a roster file</h3>
+        <p class="note" style="margin:0 0 14px">Accepts a <strong>.csv</strong> you build in Excel, or a <strong>.json</strong> saved from this screen.</p>
+        <div class="field" style="max-width:420px">
+          <label>Roster file</label>
+          <input type="file" id="rosterFile" accept=".csv,.json,text/csv,application/json">
+        </div>
+        <p class="note">Read in your browser. Nothing is uploaded, and nothing is written back to the repository.</p>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 4px;font-size:16px">Build the CSV in Excel</h3>
+        <p class="note" style="margin:0 0 12px">Four columns, one case manager per row. Separate multiple languages or states with semicolons.</p>
+        <table><thead><tr><th>name</th><th>teams_handle</th><th>languages</th><th>states</th></tr></thead>
+        <tbody>
+          <tr><td class="num">Alvarez, Marisol</td><td class="num">@malvarez</td><td class="num">English;Spanish</td><td class="num">CA;NV;AZ</td></tr>
+          <tr><td class="num">Boone, Dana</td><td class="num">@dboone</td><td class="num">English</td><td class="num">TX;NM</td></tr>
+        </tbody></table>
+        <div class="row" style="margin-top:16px">
+          <button class="btn ghost" id="btnTemplate">Download a blank template</button>
+          <button class="btn ghost" id="btnSaveRoster">Save current roster as .json</button>
+        </div>
+        <p class="note">Write names the same way your SmartAdvocate export writes them, and the weekly import will match them automatically.</p>
+      </div>
+      <div id="rosterPreview"></div>
+    </section>
+
     <!-- ============ IMPORT ============ -->
     <section class="view" id="v-import">
       <div class="head"><h2>Weekly import</h2><p>Drop in a SmartAdvocate export to refresh everyone's case counts.</p></div>
@@ -322,6 +353,20 @@ tr:last-child td{border-bottom:0}
     <div class="field"><label>Reason</label><select id="mReason"></select></div>
     <div class="field" style="margin-top:12px"><label>Note (optional)</label><textarea id="mNote" placeholder="Anything worth recording"></textarea></div>
     <div class="row"><button class="btn ghost" id="mCancel">Back</button><button class="btn no" id="mSave">Record and move on</button></div>
+  </div>
+</div>
+
+<!-- case manager editor -->
+<div class="veil" id="cmVeil">
+  <div class="modal">
+    <h3 id="cmTitle">Add a case manager</h3>
+    <p class="sub">Separate multiple languages or states with semicolons.</p>
+    <div class="field"><label>Name</label><input type="text" id="cmName" placeholder="Last, First"></div>
+    <div class="field" style="margin-top:12px"><label>Teams handle</label><input type="text" id="cmHandle" placeholder="@handle"></div>
+    <div class="field" style="margin-top:12px"><label>Languages</label><input type="text" id="cmLangs" placeholder="English; Spanish"></div>
+    <div class="field" style="margin-top:12px"><label>States</label><input type="text" id="cmStates" placeholder="CA; NV; AZ"></div>
+    <div class="field" style="margin-top:12px"><label>Active cases</label><input type="number" id="cmCount" min="0" value="0"></div>
+    <div class="row"><button class="btn ghost" id="cmCancel">Cancel</button><button class="btn" id="cmSave">Save</button></div>
   </div>
 </div>
 
@@ -675,6 +720,14 @@ function renderRoster(){
     return;
   }
   $('#rosterGate').innerHTML = `
+    <div class="row" style="margin-bottom:14px;justify-content:space-between;align-items:center">
+      <div style="color:var(--muted);font-size:13.5px">${state.roster.length} case manager${state.roster.length===1?'':'s'} · ${state.roster.filter(c=>c.status==='active').length} available</div>
+      <div class="row" style="margin:0">
+        <button class="btn ghost sm" id="btnClearRoster">Clear all</button>
+        <button class="btn sm" id="btnAddCm">Add a case manager</button>
+      </div>
+    </div>
+    ${state.roster.length ? `
     <table><thead><tr><th>Case manager</th><th>Teams</th><th>Languages</th><th>States</th><th>Active cases</th><th>Status</th><th></th></tr></thead>
     <tbody>${state.roster.map(cm=>`<tr>
       <td><strong>${esc(cm.name)}</strong></td>
@@ -683,15 +736,194 @@ function renderRoster(){
       <td>${cm.states.map(s=>`<span class="chip">${esc(s)}</span>`).join(' ')}</td>
       <td class="num">${cm.caseCount}</td>
       <td><span class="tag ${cm.status==='pto'?'a':'g'}">${cm.status==='pto'?'on leave':'available'}</span></td>
-      <td style="text-align:right"><button class="btn ghost sm" data-toggle="${cm.id}">${cm.status==='pto'?'Mark available':'Set on leave'}</button></td>
-    </tr>`).join('')}</tbody></table>
-    <p class="note">Adding and editing case managers is on the list for the next pass — for now the roster loads from the code and case counts come from the weekly import.</p>`;
+      <td style="text-align:right;white-space:nowrap">
+        <button class="btn ghost sm" data-toggle="${cm.id}">${cm.status==='pto'?'Available':'On leave'}</button>
+        <button class="btn ghost sm" data-edit="${cm.id}">Edit</button>
+        <button class="btn ghost sm" data-del="${cm.id}">Remove</button>
+      </td>
+    </tr>`).join('')}</tbody></table>`
+    : `<div class="empty"><strong>The roster is empty</strong>Add people one at a time, or load a roster file from "Load the roster".</div>`}`;
+
+  $('#btnAddCm').onclick = () => openCmEditor(null);
+  $('#btnClearRoster').onclick = () => {
+    if(!state.roster.length) return;
+    if(confirm('Remove every case manager from the roster?')){ state.roster=[]; toast('Roster cleared.'); render(); }
+  };
   $$('[data-toggle]').forEach(b=>b.onclick=()=>{
     const cm=state.roster.find(c=>c.id===b.dataset.toggle);
     cm.status = cm.status==='pto' ? 'active' : 'pto';
     toast(cm.name.split(',')[0] + (cm.status==='pto'?' set to on leave':' back in rotation')); render();
   });
+  $$('[data-edit]').forEach(b=>b.onclick=()=> openCmEditor(b.dataset.edit));
+  $$('[data-del]').forEach(b=>b.onclick=()=>{
+    const cm=state.roster.find(c=>c.id===b.dataset.del);
+    if(confirm('Remove '+cm.name+' from the roster?')){
+      state.roster = state.roster.filter(c=>c.id!==cm.id); toast('Removed.'); render();
+    }
+  });
 }
+
+/* ---- add / edit one case manager ---- */
+let editingId = null;
+function openCmEditor(id){
+  editingId = id;
+  const cm = id ? state.roster.find(c=>c.id===id) : null;
+  $('#cmTitle').textContent = cm ? 'Edit case manager' : 'Add a case manager';
+  $('#cmName').value   = cm ? cm.name : '';
+  $('#cmHandle').value = cm ? cm.handle : '';
+  $('#cmLangs').value  = cm ? cm.languages.join('; ') : 'English';
+  $('#cmStates').value = cm ? cm.states.join('; ') : '';
+  $('#cmCount').value  = cm ? cm.caseCount : 0;
+  $('#cmVeil').classList.add('on');
+}
+$('#cmCancel').addEventListener('click', ()=> $('#cmVeil').classList.remove('on'));
+$('#cmSave').addEventListener('click', ()=>{
+  const name = $('#cmName').value.trim();
+  const states = splitList($('#cmStates').value);
+  const langs  = splitList($('#cmLangs').value);
+  if(!name)         return toast('Add a name.');
+  if(!langs.length) return toast('Add at least one language.');
+  if(!states.length)return toast('Add at least one state.');
+  const count = Math.max(0, parseInt($('#cmCount').value,10) || 0);
+  if(editingId){
+    const cm = state.roster.find(c=>c.id===editingId);
+    Object.assign(cm, {name, handle:$('#cmHandle').value.trim(), languages:langs, states, caseCount:count});
+    toast('Updated.');
+  } else {
+    state.roster.push({
+      id:'cm_'+Math.random().toString(36).slice(2,9), name,
+      handle:$('#cmHandle').value.trim(), languages:langs, states,
+      caseCount:count, status:'active'
+    });
+    toast('Added.');
+  }
+  $('#cmVeil').classList.remove('on');
+  refreshOptionLists(); render();
+});
+
+const splitList = s => String(s||'').split(/[;,]/).map(x=>x.trim()).filter(Boolean);
+
+/* keep the language/state dropdowns in step with whoever is on the roster */
+function refreshOptionLists(){
+  const langs = [...new Set(state.roster.flatMap(c=>c.languages))].sort();
+  const sts   = [...new Set(state.roster.flatMap(c=>c.states))].sort();
+  const keep = {rl:$('#reqLang').value, rs:$('#reqState').value, ql:$('#qLang').value, qs:$('#qState').value};
+  fillSelect($('#reqLang'), langs.length?langs:LANGUAGES);
+  fillSelect($('#reqState'), sts.length?sts:STATES);
+  fillSelect($('#qLang'), langs.length?langs:LANGUAGES, 'Any language');
+  fillSelect($('#qState'), sts.length?sts:STATES, 'Any state');
+  $('#reqLang').value=keep.rl; $('#reqState').value=keep.rs;
+  $('#qLang').value=keep.ql;   $('#qState').value=keep.qs;
+}
+
+/* ============================================================
+   ROSTER FILE  (csv or json, read locally)
+   ============================================================ */
+$('#rosterFile').addEventListener('change', e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const rd=new FileReader();
+  rd.onload = () => {
+    try{
+      const isJson = f.name.toLowerCase().endsWith('.json');
+      const incoming = isJson ? readRosterJSON(rd.result) : readRosterCSV(rd.result);
+      if(!incoming.length){ toast('No usable rows in that file.'); return; }
+      previewRoster(incoming);
+    }catch(err){
+      $('#rosterPreview').innerHTML =
+        `<div class="card"><div class="banner err"><h4>That file couldn't be read</h4><p>${esc(err.message)}</p></div></div>`;
+    }
+  };
+  rd.readAsText(f);
+});
+
+function readRosterJSON(txt){
+  const data = JSON.parse(txt);
+  const arr = Array.isArray(data) ? data : data.roster;
+  if(!Array.isArray(arr)) throw new Error('Expected a list of case managers, or an object with a "roster" list.');
+  return arr.map(r=>({
+    name:String(r.name||'').trim(),
+    handle:String(r.handle||r.teams_handle||'').trim(),
+    languages: Array.isArray(r.languages)?r.languages:splitList(r.languages),
+    states: Array.isArray(r.states)?r.states:splitList(r.states),
+    caseCount: Math.max(0, parseInt(r.caseCount ?? r.active_cases ?? 0,10)||0),
+    status: r.status==='pto' ? 'pto' : 'active'
+  })).filter(r=>r.name);
+}
+
+function readRosterCSV(txt){
+  const rows = parseCSV(txt);
+  if(rows.length<2) throw new Error('The file needs a header row and at least one case manager.');
+  const h = rows[0].map(x=>x.trim().toLowerCase());
+  const find = (...names) => h.findIndex(x => names.some(n => x.includes(n)));
+  const iName = find('name'), iHandle = find('teams','handle'),
+        iLang = find('language','lang'), iState = find('state'),
+        iCount = find('active_cases','case count','casecount','count');
+  if(iName<0)  throw new Error('No "name" column found in the header row.');
+  if(iLang<0)  throw new Error('No "languages" column found in the header row.');
+  if(iState<0) throw new Error('No "states" column found in the header row.');
+  return rows.slice(1).map(r=>({
+    name:(r[iName]||'').trim(),
+    handle: iHandle>=0 ? (r[iHandle]||'').trim() : '',
+    languages: splitList(r[iLang]),
+    states: splitList(r[iState]),
+    caseCount: iCount>=0 ? Math.max(0, parseInt(r[iCount],10)||0) : 0,
+    status:'active'
+  })).filter(r=>r.name);
+}
+
+function previewRoster(incoming){
+  const bad = incoming.filter(r=>!r.languages.length || !r.states.length);
+  $('#rosterPreview').innerHTML = `
+    <div class="card">
+      <div class="stat">
+        <div><b>${incoming.length}</b><span>case managers</span></div>
+        <div><b>${[...new Set(incoming.flatMap(r=>r.states))].length}</b><span>states covered</span></div>
+        <div><b>${[...new Set(incoming.flatMap(r=>r.languages))].length}</b><span>languages</span></div>
+        <div><b${bad.length?' style="color:var(--red)"':''}>${bad.length}</b><span>incomplete</span></div>
+      </div>
+      <table><thead><tr><th>Name</th><th>Teams</th><th>Languages</th><th>States</th><th>Cases</th></tr></thead><tbody>
+      ${incoming.slice(0,25).map(r=>`<tr>
+        <td><strong>${esc(r.name)}</strong></td>
+        <td class="num" style="font-size:12.5px">${esc(r.handle)}</td>
+        <td>${r.languages.map(l=>`<span class="chip">${esc(l)}</span>`).join(' ')||'<span class="tag r">missing</span>'}</td>
+        <td>${r.states.map(s=>`<span class="chip">${esc(s)}</span>`).join(' ')||'<span class="tag r">missing</span>'}</td>
+        <td class="num">${r.caseCount}</td></tr>`).join('')}
+      </tbody></table>
+      ${incoming.length>25?`<p class="note">Showing the first 25 of ${incoming.length}.</p>`:''}
+      <div class="row" style="margin-top:16px">
+        <button class="btn" id="btnApplyRoster">Replace the roster</button>
+        <button class="btn ghost" id="btnMergeRoster">Add to the roster</button>
+        <button class="btn ghost" id="btnDropRoster">Discard</button>
+      </div>
+    </div>`;
+  const stamp = r => ({...r, id:'cm_'+Math.random().toString(36).slice(2,9)});
+  const done = msg => { toast(msg); $('#rosterFile').value=''; $('#rosterPreview').innerHTML=''; refreshOptionLists(); render(); };
+  $('#btnApplyRoster').onclick = () => { state.roster = incoming.map(stamp); done('Roster replaced.'); };
+  $('#btnMergeRoster').onclick = () => {
+    const have = new Set(state.roster.map(c=>c.name.toLowerCase()));
+    const add = incoming.filter(r=>!have.has(r.name.toLowerCase())).map(stamp);
+    state.roster = state.roster.concat(add); done(add.length+' added.');
+  };
+  $('#btnDropRoster').onclick = () => { $('#rosterFile').value=''; $('#rosterPreview').innerHTML=''; };
+}
+
+function download(filename, text, mime){
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([text],{type:mime}));
+  a.download=filename; a.click(); URL.revokeObjectURL(a.href);
+}
+$('#btnTemplate').addEventListener('click', ()=>{
+  download('roster-template.csv',
+    'name,teams_handle,languages,states,active_cases\n'+
+    '"Alvarez, Marisol",@malvarez,English;Spanish,CA;NV;AZ,0\n'+
+    '"Boone, Dana",@dboone,English,TX;NM,0\n', 'text/csv');
+  toast('Template downloaded.');
+});
+$('#btnSaveRoster').addEventListener('click', ()=>{
+  if(!state.roster.length) return toast('The roster is empty.');
+  download('roster.json', JSON.stringify({roster:state.roster.map(({id,...r})=>r)}, null, 2), 'application/json');
+  toast('Roster saved. Keep this file off the repository.');
+});
 
 /* ============================================================
    CSV IMPORT  (the weekly pull)
