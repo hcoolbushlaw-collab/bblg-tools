@@ -15,105 +15,85 @@
   --green:#1E7A4B; --green-bg:#E8F5EE;
   --red:#C0392B; --red-bg:#FBEDEB;
   --amber:#B7791F; --amber-bg:#FDF4E3;
+  --teal:#1F6F7A; --teal-bg:#E6F2F4;
   --sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Consolas,monospace;
   --r:10px;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{
-  font-family:var(--sans); background:var(--paper); color:var(--ink);
-  font-size:15px; line-height:1.5; -webkit-font-smoothing:antialiased;
-}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
 button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--navy);outline-offset:2px}
 
-/* ---------- shell ---------- */
 .shell{display:flex;min-height:100vh}
-.rail{
-  width:224px;flex-shrink:0;background:var(--navy);color:#fff;
-  display:flex;flex-direction:column;padding:20px 0;
-}
+.rail{width:238px;flex-shrink:0;background:var(--navy);color:#fff;display:flex;flex-direction:column;padding:20px 0}
 .brand{padding:0 20px 22px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:14px}
 .brand h1{font-size:15px;font-weight:600;margin:0;letter-spacing:-.01em}
 .brand p{margin:3px 0 0;font-size:11px;color:var(--ice);opacity:.75;font-family:var(--mono)}
 .nav{display:flex;flex-direction:column;gap:1px;padding:0 10px;flex:1}
-.nav button{
-  background:none;border:0;text-align:left;padding:9px 12px;border-radius:7px;
-  color:rgba(255,255,255,.72);cursor:pointer;font-size:14px;display:flex;
-  align-items:center;justify-content:space-between;gap:8px;
-}
+.nav button{background:none;border:0;text-align:left;padding:9px 12px;border-radius:7px;color:rgba(255,255,255,.72);cursor:pointer;font-size:13.5px;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .nav button:hover{background:rgba(255,255,255,.07);color:#fff}
 .nav button.on{background:rgba(255,255,255,.14);color:#fff;font-weight:500}
-.nav .pip{
-  font-family:var(--mono);font-size:11px;background:rgba(255,255,255,.18);
-  padding:1px 6px;border-radius:20px;
-}
+.nav .sep{font-size:10px;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ice);opacity:.55;padding:14px 12px 5px}
+.nav .pip{font-family:var(--mono);font-size:11px;background:rgba(255,255,255,.18);padding:1px 6px;border-radius:20px}
 .nav .pip.hot{background:var(--red);color:#fff}
 .railfoot{padding:14px 20px 0;border-top:1px solid rgba(255,255,255,.12);margin-top:14px}
 .railfoot label{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ice);cursor:pointer}
 .railfoot .who{margin-top:10px}
-.railfoot .who input{
-  width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
-  color:#fff;border-radius:6px;padding:6px 8px;font-size:12.5px;
-}
+.railfoot .who input{width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:6px;padding:6px 8px;font-size:12.5px}
 .railfoot .who input::placeholder{color:rgba(255,255,255,.45)}
 .railfoot .who span{display:block;font-size:10.5px;color:var(--ice);opacity:.7;margin-bottom:4px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em}
 
-.main{flex:1;min-width:0;padding:26px 30px 60px;max-width:1180px}
+.main{flex:1;min-width:0;padding:26px 30px 60px;max-width:1220px}
 .head{margin-bottom:20px}
 .head h2{font-size:23px;margin:0 0 3px;letter-spacing:-.02em;font-weight:600}
 .head p{margin:0;color:var(--muted);font-size:13.5px}
 .view{display:none}
 .view.on{display:block}
 
-/* ---------- primitives ---------- */
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
 .card+.card{margin-top:14px}
+.card h3{margin:0 0 4px;font-size:16px}
 .row{display:flex;gap:12px;flex-wrap:wrap}
 .field{display:flex;flex-direction:column;gap:5px;min-width:0}
 .field label{font-size:11px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-input[type=text],input[type=number],select,textarea{
-  border:1px solid var(--line);border-radius:7px;padding:8px 10px;background:#fff;width:100%;
-}
-input[type=text]:focus,select:focus,textarea:focus{border-color:var(--navy);outline:none}
+input[type=text],input[type=number],select,textarea{border:1px solid var(--line);border-radius:7px;padding:8px 10px;background:#fff;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--navy);outline:none}
 textarea{resize:vertical;min-height:64px}
-.btn{
-  border:1px solid var(--navy);background:var(--navy);color:#fff;padding:9px 16px;
-  border-radius:7px;cursor:pointer;font-weight:500;font-size:14px;
-}
+.btn{border:1px solid var(--navy);background:var(--navy);color:#fff;padding:9px 16px;border-radius:7px;cursor:pointer;font-weight:500;font-size:14px}
 .btn:hover{background:var(--navy-deep)}
-.btn[disabled]{opacity:.4;cursor:not-allowed}
 .btn.ghost{background:#fff;color:var(--navy)}
 .btn.ghost:hover{background:var(--paper)}
 .btn.ok{background:var(--green);border-color:var(--green)}
-.btn.ok:hover{filter:brightness(.92)}
 .btn.no{background:var(--red);border-color:var(--red)}
-.btn.no:hover{filter:brightness(.92)}
+.btn.away{background:var(--teal);border-color:var(--teal)}
+.btn.ok:hover,.btn.no:hover,.btn.away:hover{filter:brightness(.92)}
 .btn.sm{padding:5px 11px;font-size:13px}
-.btn.wide{width:100%;justify-content:center}
+.btn.wide{width:100%}
 
 table{width:100%;border-collapse:collapse;font-size:13.5px}
-th{
-  text-align:left;font-size:11px;font-family:var(--mono);text-transform:uppercase;
-  letter-spacing:.06em;color:var(--muted);font-weight:500;
-  padding:8px 10px;border-bottom:1px solid var(--line);
-}
+th{text-align:left;font-size:11px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
 td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
 tr:last-child td{border-bottom:0}
 .num{font-family:var(--mono)}
-.tag{
-  display:inline-block;font-size:11px;font-family:var(--mono);padding:2px 7px;
-  border-radius:20px;background:var(--paper);border:1px solid var(--line);color:var(--muted);
-}
+.tag{display:inline-block;font-size:11px;font-family:var(--mono);padding:2px 7px;border-radius:20px;background:var(--paper);border:1px solid var(--line);color:var(--muted)}
 .tag.g{background:var(--green-bg);color:var(--green);border-color:transparent}
 .tag.r{background:var(--red-bg);color:var(--red);border-color:transparent}
 .tag.a{background:var(--amber-bg);color:var(--amber);border-color:transparent}
+.tag.t{background:var(--teal-bg);color:var(--teal);border-color:transparent}
+.chip{font-size:11.5px;font-family:var(--mono);background:var(--paper);border:1px solid var(--line);border-radius:5px;padding:2px 6px}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
 .empty{padding:34px 20px;text-align:center;color:var(--muted);font-size:14px}
 .empty strong{display:block;color:var(--ink);font-weight:600;margin-bottom:4px}
 .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:14px}
+.bar .field{flex:1;min-width:140px}
+.stat{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.stat div{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:12px 18px;min-width:104px}
+.stat b{display:block;font-family:var(--mono);font-size:24px;font-weight:500;letter-spacing:-.02em}
+.stat span{font-size:11px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
 
-/* ---------- assign / signature timer ---------- */
 .stage{display:grid;grid-template-columns:1fr 300px;gap:14px;align-items:start}
 @media(max-width:900px){.stage{grid-template-columns:1fr}.shell{flex-direction:column}.rail{width:100%}}
 .cand{text-align:center;padding:30px 20px}
@@ -127,17 +107,12 @@ tr:last-child td{border-bottom:0}
 .dial .prog{stroke:var(--navy);transition:stroke-dashoffset 1s linear,stroke .3s}
 .dial.warn .prog{stroke:var(--amber)}
 .dial.crit .prog{stroke:var(--red)}
-.dial .read{
-  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
-}
+.dial .read{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .dial .read b{font-family:var(--mono);font-size:38px;font-weight:500;letter-spacing:-.02em}
 .dial .read span{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:2px}
 .dial.crit .read b{color:var(--red)}
-.acts{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
-.stepnote{
-  background:var(--paper);border:1px dashed var(--line);border-radius:8px;
-  padding:11px 14px;font-size:13px;color:var(--muted);margin-top:16px;text-align:left;
-}
+.acts{display:flex;gap:9px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.stepnote{background:var(--paper);border:1px dashed var(--line);border-radius:8px;padding:11px 14px;font-size:13px;color:var(--muted);margin-top:16px;text-align:left}
 .stepnote b{color:var(--ink);font-weight:600}
 .banner{border-radius:var(--r);padding:18px 20px;margin-bottom:14px}
 .banner.err{background:var(--red-bg);border:1px solid #F0C9C3}
@@ -145,66 +120,46 @@ tr:last-child td{border-bottom:0}
 .banner h4{margin:0 0 5px;font-size:15px}
 .banner p{margin:0;font-size:13.5px;color:var(--muted)}
 .banner.err h4{color:var(--red)} .banner.esc h4{color:var(--amber)}
-.attempts{margin-top:14px}
-.attempts h5{font-size:11px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 7px}
-.attempts li{font-size:13px;padding:5px 0;border-bottom:1px solid var(--line);list-style:none;display:flex;justify-content:space-between;gap:10px}
+.attempts h5{font-size:11px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:14px 0 7px}
 .attempts ul{margin:0;padding:0}
+.attempts li{font-size:13px;padding:5px 0;border-bottom:1px solid var(--line);list-style:none;display:flex;justify-content:space-between;gap:10px}
 
-/* ---------- modal ---------- */
 .veil{position:fixed;inset:0;background:rgba(22,28,72,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
 .veil.on{display:flex}
-.modal{background:#fff;border-radius:12px;padding:22px;width:100%;max-width:440px;box-shadow:0 18px 50px rgba(22,28,72,.25)}
+.modal{background:#fff;border-radius:12px;padding:22px;width:100%;max-width:440px;box-shadow:0 18px 50px rgba(22,28,72,.25);max-height:90vh;overflow:auto}
 .modal h3{margin:0 0 4px;font-size:18px}
 .modal p.sub{margin:0 0 16px;color:var(--muted);font-size:13.5px}
-.modal .row{margin-top:14px;justify-content:flex-end}
-
-.chips{display:flex;flex-wrap:wrap;gap:5px}
-.chip{font-size:11.5px;font-family:var(--mono);background:var(--paper);border:1px solid var(--line);border-radius:5px;padding:2px 6px}
-.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:14px}
-.bar .field{flex:1;min-width:150px}
-.stat{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:16px}
-.stat div{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:12px 18px;min-width:110px}
-.stat b{display:block;font-family:var(--mono);font-size:24px;font-weight:500;letter-spacing:-.02em}
-.stat span{font-size:11px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-.toast{
-  position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(120%);
-  background:var(--navy);color:#fff;padding:11px 20px;border-radius:8px;font-size:14px;
-  transition:transform .25s;z-index:60;box-shadow:0 8px 26px rgba(22,28,72,.3)
-}
+.modal .row{margin-top:16px;justify-content:flex-end}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(120%);background:var(--navy);color:#fff;padding:11px 20px;border-radius:8px;font-size:14px;transition:transform .25s;z-index:60;box-shadow:0 8px 26px rgba(22,28,72,.3)}
 .toast.on{transform:translateX(-50%) translateY(0)}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 <div class="shell">
   <aside class="rail">
-    <div class="brand">
-      <h1>Case Manager Assignment</h1>
-      <p>PROTOTYPE v0.1</p>
-    </div>
+    <div class="brand"><h1>Case Manager Assignment</h1><p>PROTOTYPE v0.3</p></div>
     <nav class="nav" id="nav">
       <button data-v="assign" class="on">Assign a Case Manager</button>
       <button data-v="queue">Queue <span class="pip" id="pipQ">0</span></button>
-      <button data-v="susp">Do not assign <span class="pip" id="pipS">0</span></button>
+      <button data-v="holds">Do not assign <span class="pip" id="pipS">0</span></button>
+      <div class="sep" data-sup>Supervisor</div>
       <button data-v="roster" data-sup>Case Manager Roster</button>
+      <button data-v="attorneys" data-sup>Attorney Roster</button>
       <button data-v="rosterfile" data-sup>Load the roster</button>
       <button data-v="import" data-sup>Weekly import</button>
       <button data-v="log" data-sup>Audit log <span class="pip" id="pipL">0</span></button>
     </nav>
     <div class="railfoot">
       <label><input type="checkbox" id="supMode"> Supervisor mode</label>
-      <div class="who">
-        <span>Signed in as</span>
-        <input type="text" id="repName" placeholder="Your name" value="">
-      </div>
+      <div class="who"><span>Signed in as</span><input type="text" id="repName" placeholder="Your name"></div>
     </div>
   </aside>
 
   <main class="main">
-    <!-- ============ ASSIGN ============ -->
+    <!-- ASSIGN -->
     <section class="view on" id="v-assign">
       <div class="head"><h2>Assign a Case Manager</h2><p>Filter by case type, language, and state, then work down the ranked list.</p></div>
-
       <div id="assignSetup">
         <div class="card">
           <div class="bar">
@@ -214,10 +169,9 @@ tr:last-child td{border-bottom:0}
             <div class="field"><label>State</label><select id="reqState"></select></div>
             <button class="btn" id="btnFind">Find next case manager</button>
           </div>
-          <p class="note">Only shows case managers who handle this case type. Excludes anyone on leave, on the do-not-assign list, or already asked about this case.</p>
+          <p class="note">Only shows case managers who handle this case type. Excludes anyone on leave, cooling off, on the do-not-assign list, or already asked about this case.</p>
         </div>
       </div>
-
       <div id="assignLive" style="display:none">
         <div id="liveBanner"></div>
         <div class="stage">
@@ -226,26 +180,19 @@ tr:last-child td{border-bottom:0}
             <h3 id="candName">—</h3>
             <div class="meta" id="candMeta"></div>
             <div class="handle" id="candHandle"></div>
-
             <div class="dial" id="dial">
               <svg width="190" height="190" viewBox="0 0 190 190">
                 <circle class="track" cx="95" cy="95" r="84" fill="none" stroke-width="9"></circle>
-                <circle class="prog" id="dialProg" cx="95" cy="95" r="84" fill="none" stroke-width="9"
-                        stroke-linecap="round" stroke-dasharray="527.8" stroke-dashoffset="0"></circle>
+                <circle class="prog" id="dialProg" cx="95" cy="95" r="84" fill="none" stroke-width="9" stroke-linecap="round" stroke-dasharray="527.8" stroke-dashoffset="0"></circle>
               </svg>
-              <div class="read"><b id="dialRead">3:00</b><span id="dialLabel">not started</span></div>
+              <div class="read"><b id="dialRead">2:00</b><span id="dialLabel">not started</span></div>
             </div>
-
             <div class="acts" id="acts"></div>
-
-            <div class="stepnote" id="stepnote">
-              <b>Step 1.</b> Message this case manager in Teams. <b>Step 2.</b> Start the timer as soon as you've sent it.
-            </div>
+            <div class="stepnote" id="stepnote"></div>
           </div>
-
           <div>
             <div class="card">
-              <div class="eyebrow" style="font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)">Working case</div>
+              <div style="font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)">Working case</div>
               <div style="font-family:var(--mono);font-size:18px;margin:6px 0 10px" id="workRef">—</div>
               <div class="chips" id="workChips"></div>
               <div class="attempts" id="attemptsBox"></div>
@@ -256,11 +203,12 @@ tr:last-child td{border-bottom:0}
       </div>
     </section>
 
-    <!-- ============ QUEUE ============ -->
+    <!-- QUEUE -->
     <section class="view" id="v-queue">
       <div class="head"><h2>Queue</h2><p>Everyone eligible right now, lowest case load first.</p></div>
       <div class="card">
         <div class="bar">
+          <div class="field"><label>Showing</label><select id="qWho"><option value="cm">Case managers</option><option value="atty">Attorneys</option></select></div>
           <div class="field"><label>Case type</label><select id="qType"></select></div>
           <div class="field"><label>Language</label><select id="qLang"></select></div>
           <div class="field"><label>State</label><select id="qState"></select></div>
@@ -269,38 +217,54 @@ tr:last-child td{border-bottom:0}
       </div>
     </section>
 
-    <!-- ============ SUSPENSIONS ============ -->
-    <section class="view" id="v-susp">
-      <div class="head"><h2>Do not assign</h2><p>Anyone who declined or let the timer run out, plus who's on leave.</p></div>
-      <div class="card"><div id="suspTable"></div></div>
+    <!-- HOLDS -->
+    <section class="view" id="v-holds">
+      <div class="head"><h2>Do not assign</h2><p>Everyone currently out of rotation, and why.</p></div>
       <div class="card">
-        <h3 style="margin:0 0 10px;font-size:15px">On leave</h3>
+        <h3>Penalty — 48 hours</h3>
+        <p class="note" style="margin:0 0 12px">Declined a case or let the timer run out.</p>
+        <div id="penTable"></div>
+      </div>
+      <div class="card">
+        <h3>Cooling off — back tomorrow</h3>
+        <p class="note" style="margin:0 0 12px">Took a case today, or reported out of office. No penalty attached.</p>
+        <div id="coolTable"></div>
+      </div>
+      <div class="card">
+        <h3>On leave</h3>
+        <p class="note" style="margin:0 0 12px">Set manually on the roster screens.</p>
         <div id="ptoTable"></div>
       </div>
     </section>
 
-    <!-- ============ ROSTER ============ -->
+    <!-- CM ROSTER -->
     <section class="view" id="v-roster">
-      <div class="head"><h2>Case Manager Roster</h2><p>Who can take cases, and what they cover. Supervisors only.</p></div>
-      <div class="card" id="rosterGate"></div>
+      <div class="head"><h2>Case Manager Roster</h2><p>Who can take cases, and what they cover.</p></div>
+      <div class="card" id="cmRosterBox"></div>
     </section>
 
-    <!-- ============ ROSTER FILE ============ -->
+    <!-- ATTORNEY ROSTER -->
+    <section class="view" id="v-attorneys">
+      <div class="head"><h2>Attorney Roster</h2><p>Attorneys, the case types they take, and the states where they practice.</p></div>
+      <div class="card" id="attyRosterBox"></div>
+    </section>
+
+    <!-- ROSTER FILE -->
     <section class="view" id="v-rosterfile">
       <div class="head"><h2>Load the roster</h2><p>Keep real names in a file on your machine, not in the code.</p></div>
       <div class="card">
-        <h3 style="margin:0 0 4px;font-size:16px">Load a roster file</h3>
+        <h3>Load a roster file</h3>
         <p class="note" style="margin:0 0 14px">Accepts a <strong>.csv</strong> you build in Excel, or a <strong>.json</strong> saved from this screen.</p>
-        <div class="field" style="max-width:420px">
-          <label>Roster file</label>
-          <input type="file" id="rosterFile" accept=".csv,.json,text/csv,application/json">
+        <div class="bar">
+          <div class="field" style="max-width:220px"><label>Load into</label>
+            <select id="rosterTarget"><option value="cm">Case Manager Roster</option><option value="atty">Attorney Roster</option></select></div>
+          <div class="field" style="max-width:400px"><label>Roster file</label><input type="file" id="rosterFile" accept=".csv,.json,text/csv,application/json"></div>
         </div>
         <p class="note">Read in your browser. Nothing is uploaded, and nothing is written back to the repository.</p>
       </div>
-
       <div class="card">
-        <h3 style="margin:0 0 4px;font-size:16px">Build the CSV in Excel</h3>
-        <p class="note" style="margin:0 0 12px">One case manager per row. Separate multiple case types, languages, or states with semicolons.</p>
+        <h3>Build the CSV in Excel</h3>
+        <p class="note" style="margin:0 0 12px">One person per row. Separate multiple case types, languages, or states with semicolons.</p>
         <table><thead><tr><th>name</th><th>teams_handle</th><th>case_types</th><th>languages</th><th>states</th></tr></thead>
         <tbody>
           <tr><td class="num">Alvarez, Marisol</td><td class="num">@malvarez</td><td class="num">MVA;PL</td><td class="num">English;Spanish</td><td class="num">CA;NV;AZ</td></tr>
@@ -308,27 +272,24 @@ tr:last-child td{border-bottom:0}
         </tbody></table>
         <div class="row" style="margin-top:16px">
           <button class="btn ghost" id="btnTemplate">Download a blank template</button>
-          <button class="btn ghost" id="btnSaveRoster">Save current roster as .json</button>
+          <button class="btn ghost" id="btnSaveRoster">Save both rosters as .json</button>
         </div>
         <p class="note">Write names the same way your SmartAdvocate export writes them, and the weekly import will match them automatically.</p>
       </div>
       <div id="rosterPreview"></div>
     </section>
 
-    <!-- ============ IMPORT ============ -->
+    <!-- IMPORT -->
     <section class="view" id="v-import">
-      <div class="head"><h2>Weekly import</h2><p>Drop in a SmartAdvocate export to refresh everyone's case counts.</p></div>
+      <div class="head"><h2>Weekly import</h2><p>Drop in a SmartAdvocate export to refresh case counts for both rosters.</p></div>
       <div class="card">
-        <div class="field" style="max-width:420px">
-          <label>Export file (.csv)</label>
-          <input type="file" id="csvFile" accept=".csv,text/csv">
-        </div>
+        <div class="field" style="max-width:420px"><label>Export file (.csv)</label><input type="file" id="csvFile" accept=".csv,text/csv"></div>
         <p class="note">The file is read in your browser. Nothing is uploaded anywhere.</p>
       </div>
       <div id="mapBox"></div>
     </section>
 
-    <!-- ============ LOG ============ -->
+    <!-- LOG -->
     <section class="view" id="v-log">
       <div class="head"><h2>Audit log</h2><p>Every case offered, and what happened.</p></div>
       <div class="stat" id="logStats"></div>
@@ -338,6 +299,7 @@ tr:last-child td{border-bottom:0}
           <div class="field"><label>Outcome</label><select id="fOut">
             <option value="">All</option><option value="accepted">Accepted</option>
             <option value="declined">Declined</option><option value="timeout">Timed out</option>
+            <option value="out_of_office">Out of office</option>
           </select></div>
           <button class="btn ghost" id="btnExport">Export CSV</button>
         </div>
@@ -347,10 +309,10 @@ tr:last-child td{border-bottom:0}
   </main>
 </div>
 
-<!-- decline modal -->
+<!-- decline reason -->
 <div class="veil" id="veil">
   <div class="modal">
-    <h3 id="mTitle">Why did they decline?</h3>
+    <h3>Why did they decline?</h3>
     <p class="sub" id="mSub"></p>
     <div class="field"><label>Reason</label><select id="mReason"></select></div>
     <div class="field" style="margin-top:12px"><label>Note (optional)</label><textarea id="mNote" placeholder="Anything worth recording"></textarea></div>
@@ -358,11 +320,11 @@ tr:last-child td{border-bottom:0}
   </div>
 </div>
 
-<!-- case manager editor -->
+<!-- person editor -->
 <div class="veil" id="cmVeil">
   <div class="modal">
-    <h3 id="cmTitle">Add a case manager</h3>
-    <p class="sub">Separate multiple languages or states with semicolons.</p>
+    <h3 id="cmTitle">Add</h3>
+    <p class="sub">Separate multiple case types, languages, or states with semicolons.</p>
     <div class="field"><label>Name</label><input type="text" id="cmName" placeholder="Last, First"></div>
     <div class="field" style="margin-top:12px"><label>Teams handle</label><input type="text" id="cmHandle" placeholder="@handle"></div>
     <div class="field" style="margin-top:12px"><label>Case types</label><input type="text" id="cmTypes" placeholder="MVA; CVA; PL; GVA"></div>
@@ -381,98 +343,109 @@ tr:last-child td{border-bottom:0}
    Single file. No backend. No data leaves this browser.
    ============================================================ */
 
-const TIMER_SECONDS = 120;          // R3 — 2 minutes
-const SUSPEND_HOURS = 48;           // R5 — 48 hours
+const TIMER_SECONDS = 120;        // R3 — 2 minutes
+const PENALTY_HOURS = 48;         // R5 — decline / timeout
+const COOLOFF_MODE  = 'endOfDay'; // 'endOfDay' | 'rolling24'   ← flip if stakeholders meant a rolling day
 const RING = 2 * Math.PI * 84;
 
-const LANGUAGES = ['English','Spanish'];
+const LANGUAGES  = ['English','Spanish'];
 const CASE_TYPES = ['MVA','CVA','PL','GVA'];
-const STATES = ['AZ','CA','CO','FL','GA','IL','NV','NM','NY','OR','TX','WA'];
+const STATES     = ['AZ','CA','CO','FL','GA','IL','NV','NM','NY','OR','TX','WA'];
 
 const DECLINE_REASONS = [
-  'No response within the timer',
   'At capacity',
   'Not licensed / not comfortable with this state',
   'Case type outside their experience',
   'Conflict of interest',
-  'Out of office unexpectedly',
   'Other'
 ];
+const TIMEOUT_REASON = 'No response within the timer';
 
 /* ---- seed data: entirely fictional ---- */
-let state = {
-  rep: '',
-  supervisor: false,
-  roster: [
-    mk('Alvarez, Marisol','@malvarez',['English','Spanish'],['CA','NV','AZ'],['MVA','PL'],38),
-    mk('Boone, Dana','@dboone',['English'],['TX','NM'],['MVA','CVA'],44),
-    mk('Castellanos, Rafael','@rcastellanos',['English','Spanish'],['TX','NM','AZ'],['MVA','GVA','PL'],31),
-    mk('Dutta, Priya','@pdutta',['English'],['NY','IL'],['CVA','GVA'],52),
-    mk('Ellison, Grace','@gellison',['English'],['CA','OR','WA'],['MVA','PL','GVA'],29),
-    mk('Fontaine, Marcus','@mfontaine',['English'],['GA','FL'],['MVA','CVA'],47),
-    mk('Guzman, Elena','@eguzman',['English','Spanish'],['CA','AZ','NV'],['MVA','GVA'],31),
-    mk('Hollis, Wren','@whollis',['English'],['CO','NM','AZ'],['PL','GVA'],36),
-    mk('Iyer, Nikhil','@niyer',['English'],['IL','NY'],['MVA','CVA','PL'],41),
-    mk('Jarrett, Colleen','@cjarrett',['English'],['FL','GA'],['MVA','PL'],25),
-    mk('Kowalski, Tomasz','@tkowalski',['English'],['IL','CO'],['CVA','GVA'],49),
-    mk('Lozano, Beatriz','@blozano',['English','Spanish'],['TX','FL'],['MVA','CVA','PL'],33),
-  ],
-  suspensions: [],
-  events: [],
-  offer: null,
-  seq: 1
-};
-function mk(name,handle,langs,states,types,count){
-  return {id:'cm_'+Math.random().toString(36).slice(2,9), name, handle,
+function mk(kind,name,handle,langs,states,types,count){
+  return {id:'p_'+Math.random().toString(36).slice(2,9), kind, name, handle,
           languages:langs, states, caseTypes:types, caseCount:count, status:'active'};
 }
+let state = {
+  rep:'', supervisor:false, seq:1,
+  cms: [
+    mk('cm','Alvarez, Marisol','@malvarez',['English','Spanish'],['CA','NV','AZ'],['MVA','PL'],38),
+    mk('cm','Boone, Dana','@dboone',['English'],['TX','NM'],['MVA','CVA'],44),
+    mk('cm','Castellanos, Rafael','@rcastellanos',['English','Spanish'],['TX','NM','AZ'],['MVA','GVA','PL'],31),
+    mk('cm','Dutta, Priya','@pdutta',['English'],['NY','IL'],['CVA','GVA'],52),
+    mk('cm','Ellison, Grace','@gellison',['English'],['CA','OR','WA'],['MVA','PL','GVA'],29),
+    mk('cm','Fontaine, Marcus','@mfontaine',['English'],['GA','FL'],['MVA','CVA'],47),
+    mk('cm','Guzman, Elena','@eguzman',['English','Spanish'],['CA','AZ','NV'],['MVA','GVA'],31),
+    mk('cm','Hollis, Wren','@whollis',['English'],['CO','NM','AZ'],['PL','GVA'],36),
+    mk('cm','Iyer, Nikhil','@niyer',['English'],['IL','NY'],['MVA','CVA','PL'],41),
+    mk('cm','Jarrett, Colleen','@cjarrett',['English'],['FL','GA'],['MVA','PL'],25),
+    mk('cm','Kowalski, Tomasz','@tkowalski',['English'],['IL','CO'],['CVA','GVA'],49),
+    mk('cm','Lozano, Beatriz','@blozano',['English','Spanish'],['TX','FL'],['MVA','CVA','PL'],33),
+  ],
+  attorneys: [
+    mk('atty','Marchetti, Sofia','@smarchetti',['English','Spanish'],['CA','NV'],['MVA','PL'],86),
+    mk('atty','Okonkwo, Daniel','@dokonkwo',['English'],['TX','NM','CO'],['MVA','CVA'],94),
+    mk('atty','Reyes, Adriana','@areyes',['English','Spanish'],['CA','AZ','NV'],['MVA','GVA','PL'],71),
+    mk('atty','Sandoval, Peter','@psandoval',['English'],['FL','GA'],['CVA','GVA'],103),
+    mk('atty','Thornbury, Alice','@athornbury',['English'],['NY','IL'],['MVA','PL','GVA'],78),
+  ],
+  holds: [],
+  events: [],
+  offer: null
+};
 
 /* ---- helpers ---- */
 const $ = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
 const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const now = () => Date.now();
-function fmtTime(ms){ const d=new Date(ms);
-  return d.toLocaleDateString(undefined,{month:'short',day:'numeric'})+' '+d.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'}); }
-function clock(sec){ const m=Math.floor(sec/60), s=sec%60; return m+':'+String(s).padStart(2,'0'); }
+const splitList = s => String(s||'').split(/[;,]/).map(x=>x.trim()).filter(Boolean);
+const people = kind => kind==='atty' ? state.attorneys : state.cms;
+const allPeople = () => state.cms.concat(state.attorneys);
+const findPerson = id => allPeople().find(p=>p.id===id);
+function fmtTime(ms){const d=new Date(ms);
+  return d.toLocaleDateString(undefined,{month:'short',day:'numeric'})+' '+d.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'});}
+function clock(sec){const m=Math.floor(sec/60),s=sec%60;return m+':'+String(s).padStart(2,'0');}
 function countdown(ms){
   if(ms<=0) return 'expired';
   const h=Math.floor(ms/3.6e6), m=Math.floor(ms%3.6e6/6e4);
   return h>0 ? h+'h '+m+'m' : m+'m';
 }
 let toastT;
-function toast(msg){
-  const t=$('#toast'); t.textContent=msg; t.classList.add('on');
-  clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('on'),2600);
-}
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('on');
+  clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),2800);}
 
-/* ---- eligibility (R1) ---- */
-function activeSuspension(cmId){
-  return state.suspensions.find(s => s.cmId===cmId && !s.clearedAt && s.expiresAt > now());
-}
-function eligible(lang, st, type, excludeIds=[]){
-  return state.roster.filter(cm =>
-    cm.status==='active' &&
-    (!lang || cm.languages.includes(lang)) &&
-    (!st   || cm.states.includes(st)) &&
-    (!type || (cm.caseTypes||[]).includes(type)) &&
-    !activeSuspension(cm.id) &&
-    !excludeIds.includes(cm.id)
-  ).sort((a,b) => a.caseCount - b.caseCount || a.name.localeCompare(b.name)); // R2
-}
-
-/* ---- suspensions (R5) ---- */
-function suspend(cmId, trigger, reason, note){
-  state.suspensions.push({
-    id:'s_'+(state.seq++), cmId, trigger, reason, note:note||'',
-    startedAt: now(), expiresAt: now() + SUSPEND_HOURS*3600*1000,
+/* ---- holds: penalty (48h) vs cool-off (end of day) ---- */
+function endOfDay(ts){const d=new Date(ts||now());d.setHours(24,0,0,0);return d.getTime();}
+function cooloffUntil(){return COOLOFF_MODE==='rolling24' ? now()+24*3600*1000 : endOfDay();}
+function addHold(personId, kind, source, reason, note){
+  state.holds.push({
+    id:'h_'+(state.seq++), personId, kind, source,
+    reason:reason||'', note:note||'',
+    startedAt:now(),
+    expiresAt: kind==='penalty' ? now()+PENALTY_HOURS*3600*1000 : cooloffUntil(),
     clearedAt:null, clearedBy:null
   });
 }
+const activeHold = id => state.holds.find(h=>h.personId===id && !h.clearedAt && h.expiresAt>now());
+const liveHolds = kind => state.holds
+  .filter(h=>!h.clearedAt && h.expiresAt>now() && h.kind===kind)
+  .sort((a,b)=>a.expiresAt-b.expiresAt);
 
-/* ============================================================
-   NAV
-   ============================================================ */
+/* ---- eligibility (R1) ---- */
+function eligible(kind, lang, st, type, excludeIds){
+  excludeIds = excludeIds || [];
+  return people(kind).filter(p =>
+    p.status==='active' &&
+    (!lang || p.languages.includes(lang)) &&
+    (!st   || p.states.includes(st)) &&
+    (!type || (p.caseTypes||[]).includes(type)) &&
+    !activeHold(p.id) &&
+    !excludeIds.includes(p.id)
+  ).sort((a,b) => a.caseCount - b.caseCount || a.name.localeCompare(b.name)); // R2
+}
+
+/* ============================================================ NAV */
 $('#nav').addEventListener('click', e => {
   const b = e.target.closest('button[data-v]'); if(!b) return;
   $$('.nav button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
@@ -481,129 +454,125 @@ $('#nav').addEventListener('click', e => {
   render();
 });
 $('#supMode').addEventListener('change', e => {
-  state.supervisor = e.target.checked;
-  applyRoleVisibility();
-  render();
+  state.supervisor = e.target.checked; applyRoleVisibility(); render();
 });
+$('#repName').addEventListener('input', e => { state.rep = e.target.value; });
 
 function applyRoleVisibility(){
-  $$('.nav button[data-sup]').forEach(b => {
-    b.style.display = state.supervisor ? '' : 'none';
-  });
-  // if the open view just became supervisor-only, fall back to the assign screen
+  $$('.nav [data-sup]').forEach(el => el.style.display = state.supervisor ? '' : 'none');
   const open = $('.nav button.on');
   if(open && open.hasAttribute('data-sup') && !state.supervisor){
     $$('.nav button').forEach(x=>x.classList.remove('on'));
     $$('.view').forEach(v=>v.classList.remove('on'));
-    const home = $('.nav button[data-v="assign"]');
-    home.classList.add('on'); $('#v-assign').classList.add('on');
+    $('.nav button[data-v="assign"]').classList.add('on');
+    $('#v-assign').classList.add('on');
   }
 }
-$('#repName').addEventListener('input', e => { state.rep = e.target.value; });
 
-/* ============================================================
-   ASSIGN
-   ============================================================ */
+/* ============================================================ SELECTS */
 function fillSelect(sel, items, allLabel){
-  sel.innerHTML = (allLabel?`<option value="">${allLabel}</option>`:'') +
+  const keep = sel.value;
+  sel.innerHTML = (allLabel?`<option value="">${esc(allLabel)}</option>`:'') +
     items.map(i=>`<option value="${esc(i)}">${esc(i)}</option>`).join('');
+  if(items.includes(keep) || (allLabel && keep==='')) sel.value = keep;
 }
-fillSelect($('#reqType'), CASE_TYPES);
-fillSelect($('#reqLang'), LANGUAGES);
-fillSelect($('#reqState'), STATES);
-fillSelect($('#qType'), CASE_TYPES, 'Any case type');
-fillSelect($('#qLang'), LANGUAGES, 'Any language');
-fillSelect($('#qState'), STATES, 'Any state');
-$('#qType').addEventListener('change', render);
-$('#qLang').addEventListener('change', render);
-$('#qState').addEventListener('change', render);
+function refreshOptionLists(){
+  const pool = allPeople();
+  const langs = [...new Set(pool.flatMap(p=>p.languages))].sort();
+  const sts   = [...new Set(pool.flatMap(p=>p.states))].sort();
+  const tys   = [...new Set(pool.flatMap(p=>p.caseTypes||[]))].sort();
+  fillSelect($('#reqType'),  tys.length?tys:CASE_TYPES);
+  fillSelect($('#reqLang'),  langs.length?langs:LANGUAGES);
+  fillSelect($('#reqState'), sts.length?sts:STATES);
+  fillSelect($('#qType'),  tys.length?tys:CASE_TYPES, 'Any case type');
+  fillSelect($('#qLang'),  langs.length?langs:LANGUAGES, 'Any language');
+  fillSelect($('#qState'), sts.length?sts:STATES, 'Any state');
+}
+['#qWho','#qType','#qLang','#qState','#fCm','#fOut'].forEach(s=>$(s).addEventListener('change', render));
 
+/* ============================================================ ASSIGN */
 $('#btnFind').addEventListener('click', () => {
   const ref = $('#caseRef').value.trim();
   if(!ref) return toast('Add a case reference first.');
   if(!state.rep.trim()) return toast('Add your name in the sidebar first.');
-  state.offer = {
-    caseRef: ref, type: $('#reqType').value,
-    lang: $('#reqLang').value, state: $('#reqState').value,
-    attempted: [], cm: null, offeredAt: null, timerStartedAt: null, escalated: false
-  };
+  state.offer = {caseRef:ref, type:$('#reqType').value, lang:$('#reqLang').value, state:$('#reqState').value,
+                 attempted:[], person:null, offeredAt:null, timerStartedAt:null, escalated:false};
   nextCandidate();
 });
 
 function nextCandidate(){
   const o = state.offer;
-  const pool = eligible(o.lang, o.state, o.type, o.attempted);
   stopTimer();
+  const pool = eligible('cm', o.lang, o.state, o.type, o.attempted);
   if(pool.length === 0){
-    o.cm = null;
-    o.escalated = o.attempted.length > 0;   // R8 vs escalation
+    o.person = null;
+    o.escalated = o.attempted.length > 0;
     if(o.escalated){
-      // record the escalation against the last attempt
       const last = state.events.filter(e=>e.caseRef===o.caseRef).pop();
       if(last) last.escalated = true;
     }
   } else {
-    o.cm = pool[0];
-    o.offeredAt = now();
-    o.timerStartedAt = null;
+    o.person = pool[0]; o.offeredAt = now(); o.timerStartedAt = null;
   }
   render();
 }
 
-let timerH = null, timerEnd = 0;
+let timerH=null, timerEnd=0;
 function startTimer(){
   state.offer.timerStartedAt = now();
   timerEnd = now() + TIMER_SECONDS*1000;
-  tick();
-  timerH = setInterval(tick, 250);
-  render();
+  tick(); timerH = setInterval(tick, 250); render();
 }
 function stopTimer(){ if(timerH){clearInterval(timerH); timerH=null;} }
 function tick(){
-  const left = Math.max(0, Math.ceil((timerEnd - now())/1000));
-  const dial=$('#dial'), prog=$('#dialProg'), read=$('#dialRead'), lab=$('#dialLabel');
-  if(!dial) return;
-  if(read) read.textContent = clock(left);
-  if(lab) lab.textContent = left>0 ? 'remaining' : 'time is up';
-  if(prog) prog.setAttribute('stroke-dashoffset', String(RING * (1 - left/TIMER_SECONDS)));
-  dial.classList.toggle('warn', left<=60 && left>20);
-  dial.classList.toggle('crit', left<=20);
-  if(left<=0){ stopTimer(); resolve('timeout', DECLINE_REASONS[0], ''); }
+  const left = Math.max(0, Math.ceil((timerEnd-now())/1000));
+  const dial=$('#dial'); if(!dial) return;
+  $('#dialRead').textContent = clock(left);
+  $('#dialLabel').textContent = left>0 ? 'remaining' : 'time is up';
+  $('#dialProg').setAttribute('stroke-dashoffset', String(RING*(1-left/TIMER_SECONDS)));
+  dial.classList.toggle('warn', left<=45 && left>15);
+  dial.classList.toggle('crit', left<=15);
+  if(left<=0){ stopTimer(); resolve('timeout', TIMEOUT_REASON, ''); }
 }
 
+/* outcome handling */
 function resolve(outcome, reason, note){
-  const o = state.offer; if(!o || !o.cm) return;
+  const o = state.offer; if(!o || !o.person) return;
   stopTimer();
-  const cm = o.cm;
+  const p = o.person;
   state.events.push({
-    id:'e_'+(state.seq++), caseRef:o.caseRef, cmId:cm.id, cmName:cm.name,
-    rep: state.rep || '—', offeredAt:o.offeredAt, timerStartedAt:o.timerStartedAt,
-    resolvedAt: now(), outcome, reason: reason||'', note: note||'',
+    id:'e_'+(state.seq++), caseRef:o.caseRef, personId:p.id, personName:p.name,
+    rep:state.rep||'—', offeredAt:o.offeredAt, timerStartedAt:o.timerStartedAt,
+    resolvedAt:now(), outcome, reason:reason||'', note:note||'',
     lang:o.lang, state:o.state, type:o.type, escalated:false
   });
+
   if(outcome==='accepted'){
-    cm.caseCount += 1;                                  // R11
-    toast(cm.name.split(',')[0] + ' took ' + o.caseRef);
-    state.offer = null; $('#caseRef').value='';
-    render(); return;
+    p.caseCount += 1;                                    // R11
+    addHold(p.id,'cooloff','accepted','Took a case today','');   // new: daily cool-off
+    toast(p.name.split(',')[0] + ' took ' + o.caseRef + ' — cooling off until tomorrow');
+    state.offer = null; $('#caseRef').value=''; render(); return;
   }
-  suspend(cm.id, outcome, reason, note);                // R4 + R5
-  o.attempted.push(cm.id);                              // R12
-  toast(outcome==='timeout' ? 'No response — on the list for 48 hours' : 'Declined — on the list for 48 hours');
+  if(outcome==='out_of_office'){
+    addHold(p.id,'cooloff','ooo','Out of office',note);          // no penalty
+    o.attempted.push(p.id);
+    toast(p.name.split(',')[0] + ' marked out of office — back tomorrow');
+    nextCandidate(); return;
+  }
+  addHold(p.id,'penalty',outcome,reason,note);           // R4 + R5
+  o.attempted.push(p.id);                                // R12
+  toast(outcome==='timeout' ? 'No response — 48 hours on the do-not-assign list'
+                            : 'Declined — 48 hours on the do-not-assign list');
   nextCandidate();
 }
 
-$('#btnAbandon').addEventListener('click', () => {
-  stopTimer(); state.offer=null; render(); toast('Case cancelled.');
-});
+$('#btnAbandon').addEventListener('click', ()=>{ stopTimer(); state.offer=null; render(); toast('Case cancelled.'); });
 
-/* decline modal */
-let pendingOutcome = null;
+let pendingOutcome=null;
 function askReason(outcome){
   pendingOutcome = outcome;
-  $('#mTitle').textContent = 'Why did they decline?';
-  $('#mSub').textContent = state.offer.cm.name + ' — ' + state.offer.caseRef;
-  fillSelect($('#mReason'), DECLINE_REASONS.filter(r=>r!==DECLINE_REASONS[0]));
+  $('#mSub').textContent = state.offer.person.name + ' — ' + state.offer.caseRef;
+  fillSelect($('#mReason'), DECLINE_REASONS);
   $('#mNote').value=''; $('#veil').classList.add('on');
 }
 $('#mCancel').addEventListener('click', ()=> $('#veil').classList.remove('on'));
@@ -612,7 +581,6 @@ $('#mSave').addEventListener('click', ()=>{
   resolve(pendingOutcome, $('#mReason').value, $('#mNote').value.trim());
 });
 
-/* ---- render assign ---- */
 function renderAssign(){
   const o = state.offer;
   $('#assignSetup').style.display = o ? 'none' : 'block';
@@ -620,250 +588,255 @@ function renderAssign(){
   if(!o) return;
 
   $('#workRef').textContent = o.caseRef;
-  $('#workChips').innerHTML = `<span class="chip">${esc(o.type)}</span><span class="chip">${esc(o.lang)}</span><span class="chip">${esc(o.state)}</span>`;
+  $('#workChips').innerHTML = [o.type,o.lang,o.state].map(x=>`<span class="chip">${esc(x)}</span>`).join('');
 
-  // attempts list
   const tried = state.events.filter(e=>e.caseRef===o.caseRef);
-  $('#attemptsBox').innerHTML = tried.length ? `<h5>Already asked</h5><ul>` + tried.map(e=>
-    `<li><span>${esc(e.cmName.split(',')[0])}</span><span class="tag ${e.outcome==='accepted'?'g':'r'}">${e.outcome==='timeout'?'no reply':e.outcome}</span></li>`
-  ).join('') + `</ul>` : '';
+  $('#attemptsBox').innerHTML = tried.length
+    ? `<h5>Already asked</h5><ul>` + tried.map(e=>{
+        const lbl = e.outcome==='timeout' ? 'no reply' : e.outcome==='out_of_office' ? 'out of office' : e.outcome;
+        const cls = e.outcome==='accepted' ? 'g' : e.outcome==='out_of_office' ? 't' : 'r';
+        return `<li><span>${esc(e.personName.split(',')[0])}</span><span class="tag ${cls}">${lbl}</span></li>`;
+      }).join('') + `</ul>` : '';
 
   const banner = $('#liveBanner');
-  if(!o.cm){
-    if(o.escalated){
-      banner.innerHTML = `<div class="banner esc"><h4>Everyone eligible has passed on this one</h4>
-        <p>${tried.length} case manager${tried.length===1?'':'s'} asked, none took it. This needs a supervisor.</p></div>`;
-    } else {
-      banner.innerHTML = `<div class="banner err"><h4>Nobody covers ${esc(o.type)} · ${esc(o.lang)} in ${esc(o.state)}</h4>
-        <p>No one on the roster matches. Filters are not widened automatically — check the roster or escalate.</p></div>`;
-    }
-    $('#candEyebrow').textContent = 'No candidate';
-    $('#candName').textContent = '—';
-    $('#candMeta').textContent = ''; $('#candHandle').textContent='';
-    $('#acts').innerHTML = `<button class="btn ghost" onclick="location.reload()">Start over</button>`;
-    $('#stepnote').style.display='none';
-    $('#dial').style.display='none';
+  if(!o.person){
+    banner.innerHTML = o.escalated
+      ? `<div class="banner esc"><h4>Everyone eligible has passed on this one</h4>
+         <p>${tried.length} case manager${tried.length===1?'':'s'} asked, none took it. This needs a supervisor.</p></div>`
+      : `<div class="banner err"><h4>Nobody covers ${esc(o.type)} · ${esc(o.lang)} in ${esc(o.state)}</h4>
+         <p>No one on the roster matches. Filters are not widened automatically — check the roster or escalate.</p></div>`;
+    $('#candEyebrow').textContent='No candidate'; $('#candName').textContent='—';
+    $('#candMeta').textContent=''; $('#candHandle').textContent='';
+    $('#acts').innerHTML=`<button class="btn ghost" id="btnDone">Start over</button>`;
+    $('#btnDone').onclick=()=>{state.offer=null;$('#caseRef').value='';render();};
+    $('#stepnote').style.display='none'; $('#dial').style.display='none';
     return;
   }
 
-  banner.innerHTML = '';
-  $('#dial').style.display='block';
-  $('#stepnote').style.display='block';
-  const cm = o.cm;
-  $('#candEyebrow').textContent = tried.length ? 'Next up · attempt ' + (tried.length+1) : 'Next up';
-  $('#candName').textContent = cm.name;
-  $('#candMeta').innerHTML = `<span class="num">${cm.caseCount}</span> active cases · ${esc((cm.caseTypes||[]).join(', '))} · ${esc(cm.states.join(', '))}`;
-  $('#candHandle').textContent = cm.handle;
+  banner.innerHTML=''; $('#dial').style.display='block'; $('#stepnote').style.display='block';
+  const p = o.person;
+  $('#candEyebrow').textContent = tried.length ? 'Next up · attempt '+(tried.length+1) : 'Next up';
+  $('#candName').textContent = p.name;
+  $('#candMeta').innerHTML = `<span class="num">${p.caseCount}</span> active cases · ${esc((p.caseTypes||[]).join(', '))} · ${esc(p.states.join(', '))}`;
+  $('#candHandle').textContent = p.handle;
 
-  const started = !!o.timerStartedAt;
-  if(!started){
+  if(!o.timerStartedAt){
     $('#dialRead').textContent = clock(TIMER_SECONDS);
     $('#dialLabel').textContent = 'not started';
     $('#dialProg').setAttribute('stroke-dashoffset','0');
     $('#dial').classList.remove('warn','crit');
     $('#acts').innerHTML = `<button class="btn" id="btnStart">I've messaged them — start the timer</button>`;
     $('#btnStart').onclick = startTimer;
-    $('#stepnote').innerHTML = `<b>Step 1.</b> Message ${esc(cm.handle)} in Teams. <b>Step 2.</b> Start the timer as soon as you've sent it.`;
+    $('#stepnote').innerHTML = `<b>Step 1.</b> Message ${esc(p.handle)} in Teams. <b>Step 2.</b> Start the timer as soon as you've sent it.`;
   } else {
     $('#acts').innerHTML =
       `<button class="btn ok" id="btnYes">They took it</button>
-       <button class="btn no" id="btnNo">They passed</button>`;
+       <button class="btn no" id="btnNo">They passed</button>
+       <button class="btn away" id="btnOoo">Out of office</button>`;
     $('#btnYes').onclick = () => resolve('accepted','','');
     $('#btnNo').onclick  = () => askReason('declined');
-    $('#stepnote').innerHTML = `If the timer runs out, this counts as a pass and they go on the do-not-assign list for 48 hours.`;
+    $('#btnOoo').onclick = () => resolve('out_of_office','Out of office','');
+    $('#stepnote').innerHTML = `If the timer runs out it counts as a pass — 48 hours off the list. <b>Out of office</b> carries no penalty; they come back tomorrow.`;
   }
 }
 
-/* ============================================================
-   QUEUE
-   ============================================================ */
+/* ============================================================ QUEUE */
 function renderQueue(){
-  const lang=$('#qLang').value, st=$('#qState').value, ty=$('#qType').value;
-  const list = eligible(lang, st, ty);
-  $('#pipQ').textContent = list.length;
+  const kind=$('#qWho').value;
+  const list = eligible(kind, $('#qLang').value, $('#qState').value, $('#qType').value);
+  $('#pipQ').textContent = eligible('cm','','','').length;
   if(!list.length){
-    $('#queueTable').innerHTML = `<div class="empty"><strong>Nobody is eligible</strong>Adjust the filters, or check who's on leave and who's suspended.</div>`;
+    $('#queueTable').innerHTML = `<div class="empty"><strong>Nobody is eligible</strong>Adjust the filters, or check the do-not-assign list.</div>`;
     return;
   }
   $('#queueTable').innerHTML = `<table><thead><tr>
-    <th style="width:44px">#</th><th>Case manager</th><th>Active cases</th><th>Case types</th><th>Languages</th><th>States</th></tr></thead><tbody>`
-    + list.map((cm,i)=>`<tr>
+    <th style="width:44px">#</th><th>${kind==='atty'?'Attorney':'Case manager'}</th><th>Active cases</th>
+    <th>Case types</th><th>Languages</th><th>States</th></tr></thead><tbody>`
+    + list.map((p,i)=>`<tr>
         <td class="num" style="color:var(--muted)">${i+1}</td>
-        <td><strong>${esc(cm.name)}</strong><div style="font-family:var(--mono);font-size:12px;color:var(--muted)">${esc(cm.handle)}</div></td>
-        <td class="num">${cm.caseCount}</td>
-        <td>${(cm.caseTypes||[]).map(t=>`<span class="chip">${esc(t)}</span>`).join(' ')}</td>
-        <td>${cm.languages.map(l=>`<span class="chip">${esc(l)}</span>`).join(' ')}</td>
-        <td>${cm.states.map(s=>`<span class="chip">${esc(s)}</span>`).join(' ')}</td>
+        <td><strong>${esc(p.name)}</strong><div style="font-family:var(--mono);font-size:12px;color:var(--muted)">${esc(p.handle)}</div></td>
+        <td class="num">${p.caseCount}</td>
+        <td>${(p.caseTypes||[]).map(t=>`<span class="chip">${esc(t)}</span>`).join(' ')}</td>
+        <td>${p.languages.map(l=>`<span class="chip">${esc(l)}</span>`).join(' ')}</td>
+        <td>${p.states.map(s=>`<span class="chip">${esc(s)}</span>`).join(' ')}</td>
       </tr>`).join('') + `</tbody></table>`;
 }
 
-/* ============================================================
-   SUSPENSIONS + PTO
-   ============================================================ */
-function renderSusp(){
-  const live = state.suspensions.filter(s=>!s.clearedAt && s.expiresAt>now())
-    .sort((a,b)=>a.expiresAt-b.expiresAt);
-  $('#pipS').textContent = live.length;
-  $('#nav .pip.hot')&&0;
-  const pip=$('#pipS'); pip.classList.toggle('hot', live.length>0);
+/* ============================================================ HOLDS */
+function renderHolds(){
+  const pen = liveHolds('penalty'), cool = liveHolds('cooloff');
+  const pip=$('#pipS'); pip.textContent = pen.length+cool.length;
+  pip.classList.toggle('hot', pen.length>0);
 
-  $('#suspTable').innerHTML = live.length ? `<table><thead><tr>
-      <th>Case manager</th><th>Why</th><th>Reason given</th><th>Comes back in</th><th></th></tr></thead><tbody>`
-    + live.map(s=>{
-        const cm = state.roster.find(c=>c.id===s.cmId) || {name:'(removed)'};
-        return `<tr>
-          <td><strong>${esc(cm.name)}</strong></td>
-          <td><span class="tag ${s.trigger==='timeout'?'a':'r'}">${s.trigger==='timeout'?'no reply':'declined'}</span></td>
-          <td>${esc(s.reason)}${s.note?`<div style="font-size:12px;color:var(--muted)">${esc(s.note)}</div>`:''}</td>
-          <td class="num">${countdown(s.expiresAt-now())}</td>
-          <td style="text-align:right">${state.supervisor
-            ? `<button class="btn ghost sm" data-clear="${s.id}">Put back now</button>`
-            : `<span class="tag">supervisor only</span>`}</td></tr>`;
-      }).join('') + `</tbody></table>`
-    : `<div class="empty"><strong>Nobody is on the list</strong>People land here when they decline a case or let the timer run out.</div>`;
+  const row = h => {
+    const p = findPerson(h.personId) || {name:'(removed)', kind:'cm'};
+    const src = h.source==='timeout' ? 'no reply' : h.source==='ooo' ? 'out of office'
+              : h.source==='accepted' ? 'took a case' : 'declined';
+    const cls = h.kind==='penalty' ? (h.source==='timeout'?'a':'r') : 't';
+    return `<tr>
+      <td><strong>${esc(p.name)}</strong>${p.kind==='atty'?' <span class="tag">attorney</span>':''}</td>
+      <td><span class="tag ${cls}">${src}</span></td>
+      <td>${esc(h.reason)}${h.note?`<div style="font-size:12px;color:var(--muted)">${esc(h.note)}</div>`:''}</td>
+      <td class="num">${countdown(h.expiresAt-now())}</td>
+      <td style="text-align:right">${state.supervisor
+        ? `<button class="btn ghost sm" data-clear="${h.id}">Put back now</button>`
+        : `<span class="tag">supervisor only</span>`}</td></tr>`;
+  };
+  const table = (arr, emptyMsg) => arr.length
+    ? `<table><thead><tr><th>Name</th><th>Why</th><th>Reason given</th><th>Back in</th><th></th></tr></thead><tbody>${arr.map(row).join('')}</tbody></table>`
+    : `<div class="empty" style="padding:22px"><strong>Nobody here</strong>${emptyMsg}</div>`;
+
+  $('#penTable').innerHTML  = table(pen, 'People land here when they decline or let the timer run out.');
+  $('#coolTable').innerHTML = table(cool, 'People land here after taking a case, or when marked out of office.');
 
   $$('[data-clear]').forEach(b=>b.onclick=()=>{
-    const s = state.suspensions.find(x=>x.id===b.dataset.clear);
-    s.clearedAt = now(); s.clearedBy = state.rep||'supervisor';
+    const h=state.holds.find(x=>x.id===b.dataset.clear);
+    h.clearedAt=now(); h.clearedBy=state.rep||'supervisor';
     toast('Back in rotation.'); render();
   });
 
-  const pto = state.roster.filter(c=>c.status==='pto');
-  $('#ptoTable').innerHTML = pto.length ? `<table><tbody>` + pto.map(cm=>`<tr>
-      <td><strong>${esc(cm.name)}</strong></td><td><span class="tag a">on leave</span></td>
-      <td style="text-align:right">${state.supervisor?`<button class="btn ghost sm" data-pto="${cm.id}">Mark available</button>`:''}</td>
-    </tr>`).join('') + `</tbody></table>`
-    : `<div class="empty" style="padding:20px"><strong>Nobody is on leave</strong>Set this on the roster screen.</div>`;
-  $$('[data-pto]').forEach(b=>b.onclick=()=>{
-    state.roster.find(c=>c.id===b.dataset.pto).status='active'; toast('Back in rotation.'); render();
-  });
+  const pto = allPeople().filter(p=>p.status==='pto');
+  $('#ptoTable').innerHTML = pto.length
+    ? `<table><tbody>` + pto.map(p=>`<tr>
+        <td><strong>${esc(p.name)}</strong>${p.kind==='atty'?' <span class="tag">attorney</span>':''}</td>
+        <td><span class="tag a">on leave</span></td>
+        <td style="text-align:right">${state.supervisor?`<button class="btn ghost sm" data-pto="${p.id}">Mark available</button>`:''}</td>
+      </tr>`).join('') + `</tbody></table>`
+    : `<div class="empty" style="padding:22px"><strong>Nobody is on leave</strong>Set this on the roster screens.</div>`;
+  $$('[data-pto]').forEach(b=>b.onclick=()=>{ findPerson(b.dataset.pto).status='active'; toast('Back in rotation.'); render(); });
 }
 
-/* ============================================================
-   ROSTER
-   ============================================================ */
-function renderRoster(){
+/* ============================================================ ROSTERS */
+function renderRoster(kind, box){
+  const label = kind==='atty' ? 'attorney' : 'case manager';
+  const list = people(kind);
   if(!state.supervisor){
-    $('#rosterGate').innerHTML = `<div class="empty"><strong>Supervisors only</strong>Turn on supervisor mode in the sidebar to edit the roster.</div>`;
+    box.innerHTML = `<div class="empty"><strong>Supervisors only</strong>Turn on supervisor mode in the sidebar to view or edit this roster.</div>`;
     return;
   }
-  $('#rosterGate').innerHTML = `
+  box.innerHTML = `
     <div class="row" style="margin-bottom:14px;justify-content:space-between;align-items:center">
-      <div style="color:var(--muted);font-size:13.5px">${state.roster.length} case manager${state.roster.length===1?'':'s'} · ${state.roster.filter(c=>c.status==='active').length} available</div>
+      <div style="color:var(--muted);font-size:13.5px">${list.length} ${label}${list.length===1?'':'s'} · ${list.filter(p=>p.status==='active').length} available</div>
       <div class="row" style="margin:0">
-        <button class="btn ghost sm" id="btnClearRoster">Clear all</button>
-        <button class="btn sm" id="btnAddCm">Add a case manager</button>
+        <button class="btn ghost sm" data-clearall="${kind}">Clear all</button>
+        <button class="btn sm" data-add="${kind}">Add ${label==='attorney'?'an':'a'} ${label}</button>
       </div>
     </div>
-    ${state.roster.length ? `
-    <table><thead><tr><th>Case manager</th><th>Teams</th><th>Case types</th><th>Languages</th><th>States</th><th>Active cases</th><th>Status</th><th></th></tr></thead>
-    <tbody>${state.roster.map(cm=>`<tr>
-      <td><strong>${esc(cm.name)}</strong></td>
-      <td class="num" style="font-size:12.5px">${esc(cm.handle)}</td>
-      <td>${(cm.caseTypes||[]).map(t=>`<span class="chip">${esc(t)}</span>`).join(' ')||'<span class="tag r">none</span>'}</td>
-      <td>${cm.languages.map(l=>`<span class="chip">${esc(l)}</span>`).join(' ')}</td>
-      <td>${cm.states.map(s=>`<span class="chip">${esc(s)}</span>`).join(' ')}</td>
-      <td class="num">${cm.caseCount}</td>
-      <td><span class="tag ${cm.status==='pto'?'a':'g'}">${cm.status==='pto'?'on leave':'available'}</span></td>
+    ${list.length ? `<table><thead><tr><th>Name</th><th>Teams</th><th>Case types</th><th>Languages</th><th>States</th><th>Active cases</th><th>Status</th><th></th></tr></thead>
+    <tbody>${list.map(p=>`<tr>
+      <td><strong>${esc(p.name)}</strong></td>
+      <td class="num" style="font-size:12.5px">${esc(p.handle)}</td>
+      <td>${(p.caseTypes||[]).map(t=>`<span class="chip">${esc(t)}</span>`).join(' ')||'<span class="tag r">none</span>'}</td>
+      <td>${p.languages.map(l=>`<span class="chip">${esc(l)}</span>`).join(' ')}</td>
+      <td>${p.states.map(s=>`<span class="chip">${esc(s)}</span>`).join(' ')}</td>
+      <td class="num">${p.caseCount}</td>
+      <td><span class="tag ${p.status==='pto'?'a':'g'}">${p.status==='pto'?'on leave':'available'}</span></td>
       <td style="text-align:right;white-space:nowrap">
-        <button class="btn ghost sm" data-toggle="${cm.id}">${cm.status==='pto'?'Available':'On leave'}</button>
-        <button class="btn ghost sm" data-edit="${cm.id}">Edit</button>
-        <button class="btn ghost sm" data-del="${cm.id}">Remove</button>
-      </td>
-    </tr>`).join('')}</tbody></table>`
-    : `<div class="empty"><strong>The roster is empty</strong>Add people one at a time, or load a roster file from "Load the roster".</div>`}`;
-
-  $('#btnAddCm').onclick = () => openCmEditor(null);
-  $('#btnClearRoster').onclick = () => {
-    if(!state.roster.length) return;
-    if(confirm('Remove every case manager from the roster?')){ state.roster=[]; toast('Roster cleared.'); render(); }
-  };
-  $$('[data-toggle]').forEach(b=>b.onclick=()=>{
-    const cm=state.roster.find(c=>c.id===b.dataset.toggle);
-    cm.status = cm.status==='pto' ? 'active' : 'pto';
-    toast(cm.name.split(',')[0] + (cm.status==='pto'?' set to on leave':' back in rotation')); render();
+        <button class="btn ghost sm" data-toggle="${p.id}">${p.status==='pto'?'Available':'On leave'}</button>
+        <button class="btn ghost sm" data-edit="${p.id}">Edit</button>
+        <button class="btn ghost sm" data-del="${p.id}">Remove</button>
+      </td></tr>`).join('')}</tbody></table>`
+    : `<div class="empty"><strong>This roster is empty</strong>Add people one at a time, or load a roster file from "Load the roster".</div>`}`;
+}
+function wireRosterButtons(){
+  $$('[data-add]').forEach(b=>b.onclick=()=>openEditor(b.dataset.add,null));
+  $$('[data-clearall]').forEach(b=>b.onclick=()=>{
+    const k=b.dataset.clearall;
+    if(!people(k).length) return;
+    if(confirm('Remove everyone from this roster?')){
+      if(k==='atty') state.attorneys=[]; else state.cms=[];
+      toast('Roster cleared.'); refreshOptionLists(); render();
+    }
   });
-  $$('[data-edit]').forEach(b=>b.onclick=()=> openCmEditor(b.dataset.edit));
+  $$('[data-toggle]').forEach(b=>b.onclick=()=>{
+    const p=findPerson(b.dataset.toggle);
+    p.status = p.status==='pto' ? 'active' : 'pto';
+    toast(p.name.split(',')[0] + (p.status==='pto'?' set to on leave':' back in rotation')); render();
+  });
+  $$('[data-edit]').forEach(b=>b.onclick=()=>{
+    const p=findPerson(b.dataset.edit); openEditor(p.kind, p.id);
+  });
   $$('[data-del]').forEach(b=>b.onclick=()=>{
-    const cm=state.roster.find(c=>c.id===b.dataset.del);
-    if(confirm('Remove '+cm.name+' from the roster?')){
-      state.roster = state.roster.filter(c=>c.id!==cm.id); toast('Removed.'); render();
+    const p=findPerson(b.dataset.del);
+    if(confirm('Remove '+p.name+'?')){
+      if(p.kind==='atty') state.attorneys=state.attorneys.filter(x=>x.id!==p.id);
+      else state.cms=state.cms.filter(x=>x.id!==p.id);
+      toast('Removed.'); refreshOptionLists(); render();
     }
   });
 }
 
-/* ---- add / edit one case manager ---- */
-let editingId = null;
-function openCmEditor(id){
-  editingId = id;
-  const cm = id ? state.roster.find(c=>c.id===id) : null;
-  $('#cmTitle').textContent = cm ? 'Edit case manager' : 'Add a case manager';
-  $('#cmName').value   = cm ? cm.name : '';
-  $('#cmHandle').value = cm ? cm.handle : '';
-  $('#cmTypes').value  = cm ? (cm.caseTypes||[]).join('; ') : CASE_TYPES.join('; ');
-  $('#cmLangs').value  = cm ? cm.languages.join('; ') : 'English';
-  $('#cmStates').value = cm ? cm.states.join('; ') : '';
-  $('#cmCount').value  = cm ? cm.caseCount : 0;
+let editing = {kind:'cm', id:null};
+function openEditor(kind, id){
+  editing = {kind, id};
+  const p = id ? findPerson(id) : null;
+  $('#cmTitle').textContent = (p?'Edit ':'Add ') + (kind==='atty'?'attorney':'case manager');
+  $('#cmName').value   = p ? p.name : '';
+  $('#cmHandle').value = p ? p.handle : '';
+  $('#cmTypes').value  = p ? (p.caseTypes||[]).join('; ') : CASE_TYPES.join('; ');
+  $('#cmLangs').value  = p ? p.languages.join('; ') : 'English';
+  $('#cmStates').value = p ? p.states.join('; ') : '';
+  $('#cmCount').value  = p ? p.caseCount : 0;
   $('#cmVeil').classList.add('on');
 }
 $('#cmCancel').addEventListener('click', ()=> $('#cmVeil').classList.remove('on'));
 $('#cmSave').addEventListener('click', ()=>{
-  const name = $('#cmName').value.trim();
-  const states = splitList($('#cmStates').value);
-  const langs  = splitList($('#cmLangs').value);
-  const types  = splitList($('#cmTypes').value).map(t=>t.toUpperCase());
-  if(!name)         return toast('Add a name.');
-  if(!types.length) return toast('Add at least one case type.');
-  if(!langs.length) return toast('Add at least one language.');
-  if(!states.length)return toast('Add at least one state.');
-  const count = Math.max(0, parseInt($('#cmCount').value,10) || 0);
-  if(editingId){
-    const cm = state.roster.find(c=>c.id===editingId);
-    Object.assign(cm, {name, handle:$('#cmHandle').value.trim(), languages:langs, states, caseTypes:types, caseCount:count});
+  const name  = $('#cmName').value.trim();
+  const types = splitList($('#cmTypes').value).map(t=>t.toUpperCase());
+  const langs = splitList($('#cmLangs').value);
+  const sts   = splitList($('#cmStates').value);
+  if(!name)        return toast('Add a name.');
+  if(!types.length)return toast('Add at least one case type.');
+  if(!langs.length)return toast('Add at least one language.');
+  if(!sts.length)  return toast('Add at least one state.');
+  const count = Math.max(0, parseInt($('#cmCount').value,10)||0);
+  if(editing.id){
+    Object.assign(findPerson(editing.id), {name, handle:$('#cmHandle').value.trim(),
+      caseTypes:types, languages:langs, states:sts, caseCount:count});
     toast('Updated.');
   } else {
-    state.roster.push({
-      id:'cm_'+Math.random().toString(36).slice(2,9), name,
-      handle:$('#cmHandle').value.trim(), languages:langs, states, caseTypes:types,
-      caseCount:count, status:'active'
-    });
+    const p = mk(editing.kind, name, $('#cmHandle').value.trim(), langs, sts, types, count);
+    (editing.kind==='atty'?state.attorneys:state.cms).push(p);
     toast('Added.');
   }
-  $('#cmVeil').classList.remove('on');
-  refreshOptionLists(); render();
+  $('#cmVeil').classList.remove('on'); refreshOptionLists(); render();
 });
 
-const splitList = s => String(s||'').split(/[;,]/).map(x=>x.trim()).filter(Boolean);
-
-/* keep the language/state dropdowns in step with whoever is on the roster */
-function refreshOptionLists(){
-  const langs = [...new Set(state.roster.flatMap(c=>c.languages))].sort();
-  const sts   = [...new Set(state.roster.flatMap(c=>c.states))].sort();
-  const tys   = [...new Set(state.roster.flatMap(c=>c.caseTypes||[]))].sort();
-  const keep = {rt:$('#reqType').value, rl:$('#reqLang').value, rs:$('#reqState').value,
-                qt:$('#qType').value, ql:$('#qLang').value, qs:$('#qState').value};
-  fillSelect($('#reqType'), tys.length?tys:CASE_TYPES);
-  fillSelect($('#reqLang'), langs.length?langs:LANGUAGES);
-  fillSelect($('#reqState'), sts.length?sts:STATES);
-  fillSelect($('#qType'), tys.length?tys:CASE_TYPES, 'Any case type');
-  fillSelect($('#qLang'), langs.length?langs:LANGUAGES, 'Any language');
-  fillSelect($('#qState'), sts.length?sts:STATES, 'Any state');
-  $('#reqType').value=keep.rt; $('#reqLang').value=keep.rl; $('#reqState').value=keep.rs;
-  $('#qType').value=keep.qt;   $('#qLang').value=keep.ql;   $('#qState').value=keep.qs;
+/* ============================================================ CSV */
+function parseCSV(text){
+  const rows=[]; let row=[], cell='', q=false;
+  text = text.replace(/\r\n/g,'\n').replace(/\r/g,'\n');
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(q){ if(c==='"'){ if(text[i+1]==='"'){cell+='"';i++;} else q=false; } else cell+=c; }
+    else { if(c==='"')q=true;
+      else if(c===','){row.push(cell);cell='';}
+      else if(c==='\n'){row.push(cell);rows.push(row);row=[];cell='';}
+      else cell+=c; }
+  }
+  if(cell.length||row.length){row.push(cell);rows.push(row);}
+  return rows.filter(r=>r.some(v=>v.trim()!==''));
+}
+const norm = s => String(s||'').toLowerCase().replace(/[^a-z]/g,'');
+function matchPerson(list, who){
+  return list.find(p => norm(p.name)===norm(who)) ||
+         list.find(p => {
+           const [last,first] = p.name.split(',').map(s=>s.trim());
+           return norm(who)===norm(first+' '+last) || norm(who)===norm(last+' '+first);
+         });
 }
 
-/* ============================================================
-   ROSTER FILE  (csv or json, read locally)
-   ============================================================ */
+/* ---- roster file ---- */
 $('#rosterFile').addEventListener('change', e=>{
   const f=e.target.files[0]; if(!f) return;
+  const kind=$('#rosterTarget').value;
   const rd=new FileReader();
-  rd.onload = () => {
+  rd.onload=()=>{
     try{
-      const isJson = f.name.toLowerCase().endsWith('.json');
-      const incoming = isJson ? readRosterJSON(rd.result) : readRosterCSV(rd.result);
+      const incoming = f.name.toLowerCase().endsWith('.json')
+        ? readRosterJSON(rd.result, kind) : readRosterCSV(rd.result, kind);
       if(!incoming.length){ toast('No usable rows in that file.'); return; }
-      previewRoster(incoming);
+      previewRoster(incoming, kind);
     }catch(err){
       $('#rosterPreview').innerHTML =
         `<div class="card"><div class="banner err"><h4>That file couldn't be read</h4><p>${esc(err.message)}</p></div></div>`;
@@ -871,54 +844,49 @@ $('#rosterFile').addEventListener('change', e=>{
   };
   rd.readAsText(f);
 });
-
-function readRosterJSON(txt){
+function readRosterJSON(txt, kind){
   const data = JSON.parse(txt);
-  const arr = Array.isArray(data) ? data : data.roster;
-  if(!Array.isArray(arr)) throw new Error('Expected a list of case managers, or an object with a "roster" list.');
+  const arr = Array.isArray(data) ? data : (kind==='atty' ? (data.attorneys||data.roster) : (data.cms||data.roster));
+  if(!Array.isArray(arr)) throw new Error('Expected a list of people, or an object with a "roster" list.');
   return arr.map(r=>({
-    name:String(r.name||'').trim(),
-    handle:String(r.handle||r.teams_handle||'').trim(),
+    kind, name:String(r.name||'').trim(), handle:String(r.handle||r.teams_handle||'').trim(),
     languages: Array.isArray(r.languages)?r.languages:splitList(r.languages),
     states: Array.isArray(r.states)?r.states:splitList(r.states),
     caseTypes: (Array.isArray(r.caseTypes)?r.caseTypes:splitList(r.caseTypes||r.case_types)).map(t=>String(t).toUpperCase()),
     caseCount: Math.max(0, parseInt(r.caseCount ?? r.active_cases ?? 0,10)||0),
-    status: r.status==='pto' ? 'pto' : 'active'
+    status: r.status==='pto'?'pto':'active'
   })).filter(r=>r.name);
 }
-
-function readRosterCSV(txt){
+function readRosterCSV(txt, kind){
   const rows = parseCSV(txt);
-  if(rows.length<2) throw new Error('The file needs a header row and at least one case manager.');
+  if(rows.length<2) throw new Error('The file needs a header row and at least one person.');
   const h = rows[0].map(x=>x.trim().toLowerCase());
-  const find = (...names) => h.findIndex(x => names.some(n => x.includes(n)));
-  const iName = find('name'), iHandle = find('teams','handle'),
-        iLang = find('language','lang'), iState = find('state'),
-        iType = find('case_type','case type','casetype','type'),
-        iCount = find('active_cases','case count','casecount','count');
+  const find=(...names)=>h.findIndex(x=>names.some(n=>x.includes(n)));
+  const iName=find('name'), iHandle=find('teams','handle'), iLang=find('language','lang'),
+        iState=find('state'), iType=find('case_type','case type','casetype','type'),
+        iCount=find('active_cases','case count','casecount','count');
   if(iName<0)  throw new Error('No "name" column found in the header row.');
+  if(iType<0)  throw new Error('No "case_types" column found in the header row.');
   if(iLang<0)  throw new Error('No "languages" column found in the header row.');
   if(iState<0) throw new Error('No "states" column found in the header row.');
   return rows.slice(1).map(r=>({
-    name:(r[iName]||'').trim(),
-    handle: iHandle>=0 ? (r[iHandle]||'').trim() : '',
-    languages: splitList(r[iLang]),
-    states: splitList(r[iState]),
-    caseTypes: iType>=0 ? splitList(r[iType]).map(t=>t.toUpperCase()) : [],
-    caseCount: iCount>=0 ? Math.max(0, parseInt(r[iCount],10)||0) : 0,
+    kind, name:(r[iName]||'').trim(),
+    handle: iHandle>=0?(r[iHandle]||'').trim():'',
+    languages: splitList(r[iLang]), states: splitList(r[iState]),
+    caseTypes: splitList(r[iType]).map(t=>t.toUpperCase()),
+    caseCount: iCount>=0 ? Math.max(0,parseInt(r[iCount],10)||0) : 0,
     status:'active'
   })).filter(r=>r.name);
 }
-
-function previewRoster(incoming){
-  const bad = incoming.filter(r=>!r.languages.length || !r.states.length || !r.caseTypes.length);
+function previewRoster(incoming, kind){
+  const bad = incoming.filter(r=>!r.languages.length||!r.states.length||!r.caseTypes.length);
   $('#rosterPreview').innerHTML = `
     <div class="card">
-      <div class="stat">
-        <div><b>${incoming.length}</b><span>case managers</span></div>
-        <div><b>${[...new Set(incoming.flatMap(r=>r.states))].length}</b><span>states covered</span></div>
+      <h3>Loading into the ${kind==='atty'?'Attorney':'Case Manager'} Roster</h3>
+      <div class="stat" style="margin-top:14px">
+        <div><b>${incoming.length}</b><span>people</span></div>
         <div><b>${[...new Set(incoming.flatMap(r=>r.caseTypes))].length}</b><span>case types</span></div>
-        <div><b>${[...new Set(incoming.flatMap(r=>r.languages))].length}</b><span>languages</span></div>
+        <div><b>${[...new Set(incoming.flatMap(r=>r.states))].length}</b><span>states</span></div>
         <div><b${bad.length?' style="color:var(--red)"':''}>${bad.length}</b><span>incomplete</span></div>
       </div>
       <table><thead><tr><th>Name</th><th>Teams</th><th>Case types</th><th>Languages</th><th>States</th><th>Cases</th></tr></thead><tbody>
@@ -932,20 +900,26 @@ function previewRoster(incoming){
       </tbody></table>
       ${incoming.length>25?`<p class="note">Showing the first 25 of ${incoming.length}.</p>`:''}
       <div class="row" style="margin-top:16px">
-        <button class="btn" id="btnApplyRoster">Replace the roster</button>
-        <button class="btn ghost" id="btnMergeRoster">Add to the roster</button>
+        <button class="btn" id="btnApplyRoster">Replace this roster</button>
+        <button class="btn ghost" id="btnMergeRoster">Add to this roster</button>
         <button class="btn ghost" id="btnDropRoster">Discard</button>
       </div>
     </div>`;
-  const stamp = r => ({...r, id:'cm_'+Math.random().toString(36).slice(2,9)});
-  const done = msg => { toast(msg); $('#rosterFile').value=''; $('#rosterPreview').innerHTML=''; refreshOptionLists(); render(); };
-  $('#btnApplyRoster').onclick = () => { state.roster = incoming.map(stamp); done('Roster replaced.'); };
-  $('#btnMergeRoster').onclick = () => {
-    const have = new Set(state.roster.map(c=>c.name.toLowerCase()));
-    const add = incoming.filter(r=>!have.has(r.name.toLowerCase())).map(stamp);
-    state.roster = state.roster.concat(add); done(add.length+' added.');
+  const stamp = r => Object.assign({id:'p_'+Math.random().toString(36).slice(2,9)}, r);
+  const finish = msg => { toast(msg); $('#rosterFile').value=''; $('#rosterPreview').innerHTML=''; refreshOptionLists(); render(); };
+  $('#btnApplyRoster').onclick = ()=>{
+    const arr = incoming.map(stamp);
+    if(kind==='atty') state.attorneys=arr; else state.cms=arr;
+    finish('Roster replaced.');
   };
-  $('#btnDropRoster').onclick = () => { $('#rosterFile').value=''; $('#rosterPreview').innerHTML=''; };
+  $('#btnMergeRoster').onclick = ()=>{
+    const target = people(kind);
+    const have = new Set(target.map(p=>norm(p.name)));
+    const add = incoming.filter(r=>!have.has(norm(r.name))).map(stamp);
+    if(kind==='atty') state.attorneys=target.concat(add); else state.cms=target.concat(add);
+    finish(add.length+' added.');
+  };
+  $('#btnDropRoster').onclick = ()=>{ $('#rosterFile').value=''; $('#rosterPreview').innerHTML=''; };
 }
 
 function download(filename, text, mime){
@@ -957,63 +931,46 @@ $('#btnTemplate').addEventListener('click', ()=>{
   download('roster-template.csv',
     'name,teams_handle,case_types,languages,states,active_cases\n'+
     '"Alvarez, Marisol",@malvarez,MVA;PL,English;Spanish,CA;NV;AZ,0\n'+
-    '"Boone, Dana",@dboone,MVA;CVA,English,TX;NM,0\n', 'text/csv');
+    '"Boone, Dana",@dboone,MVA;CVA,English,TX;NM,0\n','text/csv');
   toast('Template downloaded.');
 });
 $('#btnSaveRoster').addEventListener('click', ()=>{
-  if(!state.roster.length) return toast('The roster is empty.');
-  download('roster.json', JSON.stringify({roster:state.roster.map(({id,...r})=>r)}, null, 2), 'application/json');
-  toast('Roster saved. Keep this file off the repository.');
+  const strip = p => { const {id,...rest}=p; return rest; };
+  download('rosters.json', JSON.stringify({
+    cms: state.cms.map(strip), attorneys: state.attorneys.map(strip)
+  },null,2), 'application/json');
+  toast('Saved. Keep this file off the repository.');
 });
 
-/* ============================================================
-   CSV IMPORT  (the weekly pull)
-   ============================================================ */
-function parseCSV(text){
-  const rows=[]; let row=[], cell='', q=false;
-  text = text.replace(/\r\n/g,'\n').replace(/\r/g,'\n');
-  for(let i=0;i<text.length;i++){
-    const c=text[i];
-    if(q){
-      if(c==='"'){ if(text[i+1]==='"'){cell+='"';i++;} else q=false; }
-      else cell+=c;
-    } else {
-      if(c==='"') q=true;
-      else if(c===','){ row.push(cell); cell=''; }
-      else if(c==='\n'){ row.push(cell); rows.push(row); row=[]; cell=''; }
-      else cell+=c;
-    }
-  }
-  if(cell.length||row.length){ row.push(cell); rows.push(row); }
-  return rows.filter(r=>r.some(v=>v.trim()!==''));
-}
-
-let parsed = null;
+/* ---- weekly import: case managers + attorneys ---- */
+let parsed=null;
 $('#csvFile').addEventListener('change', e=>{
   const f=e.target.files[0]; if(!f) return;
   const rd=new FileReader();
-  rd.onload = () => {
-    const rows = parseCSV(rd.result);
+  rd.onload=()=>{
+    const rows=parseCSV(rd.result);
     if(rows.length<2){ toast('That file looks empty.'); return; }
-    parsed = { headers: rows[0].map(h=>h.trim()), rows: rows.slice(1) };
+    parsed={headers:rows[0].map(h=>h.trim()), rows:rows.slice(1)};
     renderMapper();
   };
   rd.readAsText(f);
 });
-
+function colLetter(i){ let s=''; i++; while(i>0){ const m=(i-1)%26; s=String.fromCharCode(65+m)+s; i=(i-m-1)/26; } return s; }
 function renderMapper(){
-  const h = parsed.headers;
-  const guess = (...names) => {
-    const i = h.findIndex(x => names.some(n => x.toLowerCase().includes(n)));
-    return i<0 ? 0 : i;
-  };
+  const h=parsed.headers;
+  const guess=(...names)=>{ const i=h.findIndex(x=>names.some(n=>x.toLowerCase().includes(n))); return i<0?-1:i; };
+  const opts = sel => h.map((x,i)=>`<option value="${i}"${i===sel?' selected':''}>${colLetter(i)} — ${esc(x)}</option>`).join('');
+  const gCm = guess('case manager','casemanager','assigned','owner');
+  const gAt = guess('attorney','atty','lead attorney');
+  const gSt = guess('status','case status','stage');
   $('#mapBox').innerHTML = `
     <div class="card">
-      <h3 style="margin:0 0 4px;font-size:16px">Match up the columns</h3>
-      <p class="note" style="margin:0 0 14px">Read ${parsed.rows.length} rows. Tell it which columns to use.</p>
+      <h3>Match up the columns</h3>
+      <p class="note" style="margin:0 0 14px">Read ${parsed.rows.length} rows across ${h.length} columns.</p>
       <div class="bar">
-        <div class="field"><label>Case manager</label><select id="colCm">${h.map((x,i)=>`<option value="${i}">${esc(x)}</option>`).join('')}</select></div>
-        <div class="field"><label>Case status</label><select id="colSt">${h.map((x,i)=>`<option value="${i}">${esc(x)}</option>`).join('')}</select></div>
+        <div class="field"><label>Case manager</label><select id="colCm">${opts(gCm>=0?gCm:0)}</select></div>
+        <div class="field"><label>Attorney</label><select id="colAt"><option value="-1">Skip attorneys</option>${opts(gAt>=0?gAt:(h.length>13?13:-1))}</select></div>
+        <div class="field"><label>Case status</label><select id="colSt">${opts(gSt>=0?gSt:0)}</select></div>
       </div>
       <div class="field" style="margin-top:12px">
         <label>Count a case as active unless its status contains any of these</label>
@@ -1022,126 +979,119 @@ function renderMapper(){
       <div class="row" style="margin-top:16px"><button class="btn" id="btnPreview">Preview the counts</button></div>
     </div>
     <div id="previewBox"></div>`;
-  $('#colCm').value = guess('case manager','casemanager','assigned','owner','manager');
-  $('#colSt').value = guess('status','case status','stage');
+  if(gAt<0 && h.length>13) $('#colAt').value='13';   // column N default
   $('#btnPreview').onclick = preview;
 }
-
-let pendingCounts = null;
+let pending=null;
 function preview(){
-  const ci=+$('#colCm').value, si=+$('#colSt').value;
-  const dead = $('#deadWords').value.split(',').map(s=>s.trim().toLowerCase()).filter(Boolean);
-  const counts = {}; let skipped=0;
+  const ci=+$('#colCm').value, ai=+$('#colAt').value, si=+$('#colSt').value;
+  const dead=$('#deadWords').value.split(',').map(s=>s.trim().toLowerCase()).filter(Boolean);
+  const cmCounts={}, atCounts={}; let skipped=0;
   parsed.rows.forEach(r=>{
-    const who=(r[ci]||'').trim(); const st=(r[si]||'').trim().toLowerCase();
-    if(!who) return;
+    const st=(r[si]||'').trim().toLowerCase();
     if(dead.some(d=>st.includes(d))){ skipped++; return; }
-    counts[who]=(counts[who]||0)+1;
+    const c=(r[ci]||'').trim(); if(c) cmCounts[c]=(cmCounts[c]||0)+1;
+    if(ai>=0){ const a=(r[ai]||'').trim(); if(a) atCounts[a]=(atCounts[a]||0)+1; }
   });
-  // match against roster: exact, then loose surname match
-  const norm = s => s.toLowerCase().replace(/[^a-z]/g,'');
-  const matched=[], unmatched=[];
-  Object.entries(counts).forEach(([who,n])=>{
-    const cm = state.roster.find(c => norm(c.name)===norm(who)) ||
-               state.roster.find(c => {
-                 const [last,first] = c.name.split(',').map(s=>s.trim());
-                 return norm(who)===norm(first+' '+last) || norm(who)===norm(last+' '+first);
-               });
-    if(cm) matched.push({cm, from:cm.caseCount, to:n, who});
-    else unmatched.push({who, n});
-  });
-  pendingCounts = matched;
+  const build=(counts,list)=>{
+    const matched=[],unmatched=[];
+    Object.entries(counts).forEach(([who,n])=>{
+      const p=matchPerson(list,who);
+      if(p) matched.push({p,from:p.caseCount,to:n}); else unmatched.push(who);
+    });
+    return {matched,unmatched};
+  };
+  const cmRes=build(cmCounts,state.cms);
+  const atRes=ai>=0 ? build(atCounts,state.attorneys) : {matched:[],unmatched:[]};
+  pending={cm:cmRes.matched, at:atRes.matched};
+
+  const tbl=(res,title)=> res.matched.length||res.unmatched.length ? `
+    <h3 style="margin-top:18px">${title}</h3>
+    ${res.matched.length?`<table><thead><tr><th>Name</th><th>Now</th><th>After import</th><th>Change</th></tr></thead><tbody>`
+      + res.matched.map(m=>{const d=m.to-m.from;
+        return `<tr><td><strong>${esc(m.p.name)}</strong></td><td class="num">${m.from}</td><td class="num">${m.to}</td>
+        <td class="num" style="color:${d>0?'var(--red)':d<0?'var(--green)':'var(--muted)'}">${d>0?'+':''}${d}</td></tr>`;
+      }).join('')+`</tbody></table>`:''}
+    ${res.unmatched.length?`<div class="banner err" style="margin-top:12px"><h4>${res.unmatched.length} name${res.unmatched.length===1?'':'s'} didn't match this roster</h4>
+      <p>${res.unmatched.slice(0,8).map(esc).join(' · ')}${res.unmatched.length>8?' …':''}</p></div>`:''}` : '';
+
   $('#previewBox').innerHTML = `
     <div class="card">
       <div class="stat">
         <div><b>${parsed.rows.length}</b><span>rows read</span></div>
         <div><b>${skipped}</b><span>not active</span></div>
-        <div><b>${matched.length}</b><span>matched</span></div>
-        <div><b>${unmatched.length}</b><span>unmatched</span></div>
+        <div><b>${cmRes.matched.length}</b><span>CMs matched</span></div>
+        <div><b>${atRes.matched.length}</b><span>attorneys matched</span></div>
       </div>
-      ${matched.length?`<table><thead><tr><th>Case manager</th><th>Now</th><th>After import</th><th>Change</th></tr></thead><tbody>`
-        + matched.map(m=>{
-            const d=m.to-m.from;
-            return `<tr><td><strong>${esc(m.cm.name)}</strong></td><td class="num">${m.from}</td><td class="num">${m.to}</td>
-              <td class="num" style="color:${d>0?'var(--red)':d<0?'var(--green)':'var(--muted)'}">${d>0?'+':''}${d}</td></tr>`;
-          }).join('') + `</tbody></table>`:''}
-      ${unmatched.length?`<div class="banner err" style="margin-top:14px"><h4>${unmatched.length} name${unmatched.length===1?"":"s"} in the file didn't match the roster</h4>
-        <p>${unmatched.slice(0,8).map(u=>esc(u.who)).join(' · ')}${unmatched.length>8?' …':''}</p></div>`:''}
+      ${tbl(cmRes,'Case managers')}
+      ${ai>=0?tbl(atRes,'Attorneys'):''}
       <div class="row" style="margin-top:16px">
         <button class="btn" id="btnApply">Update case counts</button>
         <button class="btn ghost" id="btnDiscard">Discard</button>
       </div>
     </div>`;
-  $('#btnApply').onclick = () => {
-    pendingCounts.forEach(m => m.cm.caseCount = m.to);
-    toast('Case counts updated for ' + pendingCounts.length + ' people.');
+  $('#btnApply').onclick=()=>{
+    pending.cm.forEach(m=>m.p.caseCount=m.to);
+    pending.at.forEach(m=>m.p.caseCount=m.to);
+    toast('Updated '+(pending.cm.length+pending.at.length)+' people.');
     $('#mapBox').innerHTML=''; $('#csvFile').value=''; parsed=null; render();
   };
-  $('#btnDiscard').onclick = () => { $('#mapBox').innerHTML=''; $('#csvFile').value=''; parsed=null; };
+  $('#btnDiscard').onclick=()=>{ $('#mapBox').innerHTML=''; $('#csvFile').value=''; parsed=null; };
 }
 
-/* ============================================================
-   AUDIT LOG
-   ============================================================ */
+/* ============================================================ LOG */
 function renderLog(){
   $('#pipL').textContent = state.events.length;
-  const cmSel=$('#fCm');
-  const keep = cmSel.value;
-  cmSel.innerHTML = `<option value="">All</option>` + state.roster.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
-  cmSel.value = keep;
-
-  const f1=cmSel.value, f2=$('#fOut').value;
-  const rows = state.events.filter(e => (!f1||e.cmId===f1) && (!f2||e.outcome===f2))
-                           .slice().reverse();
-
-  const acc = state.events.filter(e=>e.outcome==='accepted').length;
-  const dec = state.events.filter(e=>e.outcome==='declined').length;
-  const to  = state.events.filter(e=>e.outcome==='timeout').length;
+  const sel=$('#fCm'), keep=sel.value;
+  sel.innerHTML = `<option value="">All</option>` + state.cms.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('');
+  sel.value = keep;
+  const rows = state.events.filter(e=>(!sel.value||e.personId===sel.value) && (!$('#fOut').value||e.outcome===$('#fOut').value)).slice().reverse();
+  const n = o => state.events.filter(e=>e.outcome===o).length;
   $('#logStats').innerHTML = `
     <div><b>${state.events.length}</b><span>offers</span></div>
-    <div><b style="color:var(--green)">${acc}</b><span>accepted</span></div>
-    <div><b style="color:var(--red)">${dec}</b><span>declined</span></div>
-    <div><b style="color:var(--amber)">${to}</b><span>no reply</span></div>`;
-
+    <div><b style="color:var(--green)">${n('accepted')}</b><span>accepted</span></div>
+    <div><b style="color:var(--red)">${n('declined')}</b><span>declined</span></div>
+    <div><b style="color:var(--amber)">${n('timeout')}</b><span>no reply</span></div>
+    <div><b style="color:var(--teal)">${n('out_of_office')}</b><span>out of office</span></div>`;
   $('#logTable').innerHTML = rows.length ? `<table><thead><tr>
       <th>When</th><th>Case</th><th>Type</th><th>Case manager</th><th>Outcome</th><th>Reason</th><th>Handled by</th></tr></thead><tbody>`
-    + rows.map(e=>`<tr>
-        <td style="white-space:nowrap;font-size:12.5px;color:var(--muted)">${fmtTime(e.resolvedAt)}</td>
-        <td class="num">${esc(e.caseRef)}${e.escalated?' <span class="tag a">escalated</span>':''}</td>
-        <td><span class="chip">${esc(e.type||'')}</span></td>
-        <td>${esc(e.cmName)}</td>
-        <td><span class="tag ${e.outcome==='accepted'?'g':e.outcome==='timeout'?'a':'r'}">${e.outcome==='timeout'?'no reply':e.outcome}</span></td>
-        <td style="font-size:12.5px">${esc(e.reason)}${e.note?`<div style="color:var(--muted)">${esc(e.note)}</div>`:''}</td>
-        <td style="font-size:12.5px">${esc(e.rep)}</td></tr>`).join('') + `</tbody></table>`
+    + rows.map(e=>{
+        const lbl = e.outcome==='timeout'?'no reply':e.outcome==='out_of_office'?'out of office':e.outcome;
+        const cls = e.outcome==='accepted'?'g':e.outcome==='out_of_office'?'t':e.outcome==='timeout'?'a':'r';
+        return `<tr>
+          <td style="white-space:nowrap;font-size:12.5px;color:var(--muted)">${fmtTime(e.resolvedAt)}</td>
+          <td class="num">${esc(e.caseRef)}${e.escalated?' <span class="tag a">escalated</span>':''}</td>
+          <td><span class="chip">${esc(e.type||'')}</span></td>
+          <td>${esc(e.personName)}</td>
+          <td><span class="tag ${cls}">${lbl}</span></td>
+          <td style="font-size:12.5px">${esc(e.reason)}${e.note?`<div style="color:var(--muted)">${esc(e.note)}</div>`:''}</td>
+          <td style="font-size:12.5px">${esc(e.rep)}</td></tr>`;
+      }).join('') + `</tbody></table>`
     : `<div class="empty"><strong>Nothing recorded yet</strong>Assign a case and every offer shows up here.</div>`;
 }
-$('#fCm').addEventListener('change', render);
-$('#fOut').addEventListener('change', render);
-
 $('#btnExport').addEventListener('click', ()=>{
   if(!state.events.length) return toast('Nothing to export yet.');
   const cols=['resolved_at','case_ref','case_type','case_manager','outcome','reason','note','handled_by','language','state','escalated'];
   const q=v=>`"${String(v??'').replace(/"/g,'""')}"`;
   const csv=[cols.join(',')].concat(state.events.map(e=>[
-    new Date(e.resolvedAt).toISOString(), e.caseRef, e.type||'', e.cmName, e.outcome,
-    e.reason, e.note, e.rep, e.lang, e.state, e.escalated
-  ].map(q).join(','))).join('\n');
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
-  a.download='assignment-log-'+new Date().toISOString().slice(0,10)+'.csv';
-  a.click(); URL.revokeObjectURL(a.href);
+    new Date(e.resolvedAt).toISOString(), e.caseRef, e.type||'', e.personName, e.outcome,
+    e.reason, e.note, e.rep, e.lang, e.state, e.escalated].map(q).join(','))).join('\n');
+  download('assignment-log-'+new Date().toISOString().slice(0,10)+'.csv', csv, 'text/csv');
   toast('Exported.');
 });
 
-/* ============================================================
-   RENDER
-   ============================================================ */
+/* ============================================================ RENDER */
 function render(){
-  renderAssign(); renderQueue(); renderSusp(); renderRoster(); renderLog();
+  renderAssign(); renderQueue(); renderHolds();
+  renderRoster('cm', $('#cmRosterBox'));
+  renderRoster('atty', $('#attyRosterBox'));
+  wireRosterButtons();
+  renderLog();
 }
+refreshOptionLists();
 applyRoleVisibility();
 render();
-setInterval(()=>{ if($('#v-susp').classList.contains('on')) renderSusp(); }, 30000);
+setInterval(()=>{ if($('#v-holds').classList.contains('on')) renderHolds(); }, 30000);
 </script>
 </body>
 </html>

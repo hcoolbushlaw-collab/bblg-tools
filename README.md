@@ -57,6 +57,24 @@ Case types are MVA, CVA, PL, and GVA. Column order doesn't matter and the header
 
 **Saving between sessions:** the roster clears on refresh. Use "Save current roster as .json" to keep it, then reload that file next time. Keep that file on your machine — `.gitignore` blocks `roster.json` and `roster*.csv` from being committed, but the safest habit is storing it outside the repo folder entirely.
 
+## Three ways someone leaves the queue
+
+| | Trigger | Duration | Penalty? |
+|---|---|---|---|
+| **Penalty** | Declined, or the timer ran out | 48 hours | Yes |
+| **Cool-off** | Took a case, or marked out of office | Until end of day | No |
+| **On leave** | Set by a supervisor | Until cleared | No |
+
+The cool-off exists so nobody picks up two cases in one day.
+
+**One thing to confirm with stakeholders:** the request said "the rest of that day (for 24 hours)," which are different rules. Taking a case at 4pm means free at midnight under one reading, and free at 4pm tomorrow under the other. This is built as **end of day**, since the stated goal is one case per day. To switch it, change `COOLOFF_MODE` near the top of the script in `index.html` from `'endOfDay'` to `'rolling24'`.
+
+## Attorneys
+
+There's a second roster with the same fields as case managers. Attorney case counts come from the weekly import — the importer defaults to **column N** for the attorney name, and you can remap it if the export layout shifts.
+
+Attorney *assignment* isn't built yet. This is the roster and count infrastructure only.
+
 ## What it implements
 
 Rules are numbered to match the technical specification document.
@@ -67,9 +85,11 @@ Rules are numbered to match the technical specification document.
 | R2 | Ranked by active case count ascending, ties broken alphabetically |
 | R3 | 120-second timer, started manually by the rep after they message the case manager |
 | R4 | A timeout is treated exactly like a decline, penalty included |
-| R5 | Decline or timeout writes a 48-hour suspension |
-| R6 | Only supervisor mode can clear a suspension early |
-| R7 | Leave is a separate status from suspension and carries no penalty |
+| R5 | Decline or timeout writes a 48-hour penalty hold |
+| R5a | Accepting a case starts a cool-off until end of day — one case per person per day |
+| R5b | Out of office is its own button, not a decline reason. Cool-off until tomorrow, no penalty |
+| R6 | Only supervisor mode can clear a hold early |
+| R7 | Leave is a separate status from any hold and carries no penalty |
 | R8 | No eligible match returns an explicit error; filters are never widened |
 | R10 | Every offer and outcome is recorded, with reason and handling rep |
 | R11 | Case count increments on acceptance; the weekly import resets it |
@@ -89,7 +109,8 @@ These are the honest gaps between the prototype and the specified tool. Worth st
 - **Client-side timers.** Closing the tab stops the countdown. The spec requires server-authoritative timers.
 - **No SmartAdvocate API.** Case counts come from a manual CSV import, by design at this stage.
 - **No Teams integration.** Messaging case managers stays a manual step, as specified. Supervisor escalation alerts are shown in-app only.
-- **Roster is not persisted.** You can add, edit, and load case managers in the interface, but it clears on refresh. Save it to a file and reload it next session.
+- **Rosters are not persisted.** You can add, edit, and load people in the interface, but it clears on refresh. Save to a file and reload next session.
+- **Attorney assignment is not built.** The roster and case counts exist; there's no attorney assignment flow yet.
 
 ---
 
