@@ -20,7 +20,8 @@ To share it with others, either send them the file, or push this repo and turn o
 4. Either accept, decline with a reason, or let the timer run out and watch the 48-hour suspension land.
 5. Check **Do not assign**, then flip on **Supervisor mode** in the sidebar to clear someone early. Supervisor mode also reveals the roster, roster loading, weekly import, and audit log — those four screens are hidden from CS reps.
 6. **Load the roster** — download the blank template, or load `sample-data/sample-caseload-export.csv` on the Weekly import screen to see the case-count refresh.
-7. **Audit log** — every offer is recorded, and exports to CSV.
+7. **Assign an Attorney** — pick Texas to see the ranked bench, or Florida to see a single-attorney state.
+8. **Audit log** — every offer and assignment is recorded, filterable by role, and exports to CSV.
 
 Tip for demos: the timer is a real two minutes. To shorten it, change `TIMER_SECONDS` near the top of the script block in `index.html`.
 
@@ -71,9 +72,15 @@ The cool-off exists so nobody picks up two cases in one day.
 
 ## Attorneys
 
-There's a second roster with the same fields as case managers. Attorney case counts come from the weekly import — the importer defaults to **column N** for the attorney name, and you can remap it if the export layout shifts.
+A second roster with the same fields as case managers, and its own assignment screen.
 
-Attorney *assignment* isn't built yet. This is the roster and count infrastructure only.
+**Attorney assignment is deliberately simpler than the case manager flow.** No timer, no reason codes, no cool-off, no penalty. State is the deciding filter, then lowest active caseload, ties broken alphabetically.
+
+Texas isn't special-cased. The same rule covers both situations: in a state with one attorney it returns that attorney, and in Texas it ranks the deeper pool. One code path, nothing to keep in sync.
+
+"Show next attorney" walks down the ranked list when the recommended one isn't right. Skipping records nothing against anyone — it isn't a decline.
+
+Attorney case counts come from the weekly import. The importer defaults to **column N** for the attorney name and can be remapped if the export layout shifts.
 
 ## What it implements
 
@@ -94,6 +101,9 @@ Rules are numbered to match the technical specification document.
 | R10 | Every offer and outcome is recorded, with reason and handling rep |
 | R11 | Case count increments on acceptance; the weekly import resets it |
 | R12 | Someone who passed on a case isn't offered that same case again |
+| A1 | Attorneys: filter by state and case type, rank by lowest caseload, ties alphabetical |
+| A2 | Attorney assignment carries no timer, no reason code, no cool-off, and no penalty |
+| A3 | Skipping an attorney is not recorded against them |
 
 Escalation (pool exhausted) is detected and flagged in the audit log.
 
@@ -110,7 +120,6 @@ These are the honest gaps between the prototype and the specified tool. Worth st
 - **No SmartAdvocate API.** Case counts come from a manual CSV import, by design at this stage.
 - **No Teams integration.** Messaging case managers stays a manual step, as specified. Supervisor escalation alerts are shown in-app only.
 - **Rosters are not persisted.** You can add, edit, and load people in the interface, but it clears on refresh. Save to a file and reload next session.
-- **Attorney assignment is not built.** The roster and case counts exist; there's no attorney assignment flow yet.
 
 ---
 

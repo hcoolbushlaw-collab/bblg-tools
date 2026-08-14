@@ -141,6 +141,7 @@ tr:last-child td{border-bottom:0}
     <div class="brand"><h1>Case Manager Assignment</h1><p>PROTOTYPE v0.3</p></div>
     <nav class="nav" id="nav">
       <button data-v="assign" class="on">Assign a Case Manager</button>
+      <button data-v="attyassign">Assign an Attorney</button>
       <button data-v="queue">Queue <span class="pip" id="pipQ">0</span></button>
       <button data-v="holds">Do not assign <span class="pip" id="pipS">0</span></button>
       <div class="sep" data-sup>Supervisor</div>
@@ -197,6 +198,45 @@ tr:last-child td{border-bottom:0}
               <div class="chips" id="workChips"></div>
               <div class="attempts" id="attemptsBox"></div>
               <button class="btn ghost sm wide" id="btnAbandon" style="margin-top:16px">Cancel this case</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATTORNEY ASSIGN -->
+    <section class="view" id="v-attyassign">
+      <div class="head"><h2>Assign an Attorney</h2><p>State first, then the lightest caseload. No timer, no reason codes.</p></div>
+      <div id="attySetup">
+        <div class="card">
+          <div class="bar">
+            <div class="field"><label>Case reference</label><input type="text" id="aCaseRef" placeholder="e.g. 2026-04871"></div>
+            <div class="field"><label>State</label><select id="aState"></select></div>
+            <div class="field"><label>Case type</label><select id="aType"></select></div>
+            <div class="field"><label>Language</label><select id="aLang"></select></div>
+            <button class="btn" id="btnFindAtty">Find attorney</button>
+          </div>
+          <p class="note">Ranked by lowest active caseload, ties broken alphabetically. States with one attorney return that attorney; Texas ranks the full pool.</p>
+        </div>
+      </div>
+      <div id="attyLive" style="display:none">
+        <div id="attyBanner"></div>
+        <div class="stage">
+          <div class="card cand" style="padding:34px 20px">
+            <div class="eyebrow" id="aEyebrow">Recommended</div>
+            <h3 id="aName">—</h3>
+            <div class="meta" id="aMeta"></div>
+            <div class="handle" id="aHandle"></div>
+            <div class="acts" id="aActs" style="margin-top:26px"></div>
+            <div class="stepnote" id="aNote"></div>
+          </div>
+          <div>
+            <div class="card">
+              <div style="font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)">Working case</div>
+              <div style="font-family:var(--mono);font-size:18px;margin:6px 0 10px" id="aWorkRef">—</div>
+              <div class="chips" id="aWorkChips"></div>
+              <div class="attempts" id="aSkipped"></div>
+              <button class="btn ghost sm wide" id="btnAttyCancel" style="margin-top:16px">Cancel this case</button>
             </div>
           </div>
         </div>
@@ -295,9 +335,13 @@ tr:last-child td{border-bottom:0}
       <div class="stat" id="logStats"></div>
       <div class="card">
         <div class="bar">
-          <div class="field"><label>Case manager</label><select id="fCm"></select></div>
+          <div class="field"><label>Role</label><select id="fRole">
+            <option value="">Everyone</option><option value="cm">Case managers</option><option value="atty">Attorneys</option>
+          </select></div>
+          <div class="field"><label>Person</label><select id="fCm"></select></div>
           <div class="field"><label>Outcome</label><select id="fOut">
-            <option value="">All</option><option value="accepted">Accepted</option>
+            <option value="">All</option><option value="assigned">Assigned (attorney)</option>
+            <option value="accepted">Accepted</option>
             <option value="declined">Declined</option><option value="timeout">Timed out</option>
             <option value="out_of_office">Out of office</option>
           </select></div>
@@ -367,7 +411,7 @@ function mk(kind,name,handle,langs,states,types,count){
           languages:langs, states, caseTypes:types, caseCount:count, status:'active'};
 }
 let state = {
-  rep:'', supervisor:false, seq:1,
+  rep:'', supervisor:false, seq:1, attyOffer:null,
   cms: [
     mk('cm','Alvarez, Marisol','@malvarez',['English','Spanish'],['CA','NV','AZ'],['MVA','PL'],38),
     mk('cm','Boone, Dana','@dboone',['English'],['TX','NM'],['MVA','CVA'],44),
@@ -383,11 +427,18 @@ let state = {
     mk('cm','Lozano, Beatriz','@blozano',['English','Spanish'],['TX','FL'],['MVA','CVA','PL'],33),
   ],
   attorneys: [
-    mk('atty','Marchetti, Sofia','@smarchetti',['English','Spanish'],['CA','NV'],['MVA','PL'],86),
+    // Texas is the home state, so the bench is deepest there
+    mk('atty','Barnes, Ruth','@rbarnes',['English'],['TX'],['MVA','PL'],71),
+    mk('atty','Delgado, Hector','@hdelgado',['English','Spanish'],['TX','NM'],['MVA','CVA','GVA'],88),
     mk('atty','Okonkwo, Daniel','@dokonkwo',['English'],['TX','NM','CO'],['MVA','CVA'],94),
-    mk('atty','Reyes, Adriana','@areyes',['English','Spanish'],['CA','AZ','NV'],['MVA','GVA','PL'],71),
-    mk('atty','Sandoval, Peter','@psandoval',['English'],['FL','GA'],['CVA','GVA'],103),
-    mk('atty','Thornbury, Alice','@athornbury',['English'],['NY','IL'],['MVA','PL','GVA'],78),
+    mk('atty','Prewitt, Sam','@sprewitt',['English'],['TX'],['MVA','GVA','PL'],71),
+    mk('atty','Reyes, Adriana','@areyes',['English','Spanish'],['TX','AZ','NV'],['MVA','GVA','PL'],63),
+    mk('atty','Vance, Lorraine','@lvance',['English'],['TX','CO'],['CVA','PL'],80),
+    // one attorney per outlying state
+    mk('atty','Marchetti, Sofia','@smarchetti',['English','Spanish'],['CA','NV'],['MVA','CVA','GVA','PL'],86),
+    mk('atty','Sandoval, Peter','@psandoval',['English'],['FL','GA'],['MVA','CVA','GVA','PL'],103),
+    mk('atty','Thornbury, Alice','@athornbury',['English'],['NY','IL'],['MVA','CVA','GVA','PL'],78),
+    mk('atty','Whitlock, Grant','@gwhitlock',['English'],['OR','WA'],['MVA','CVA','GVA','PL'],69),
   ],
   holds: [],
   events: [],
@@ -484,11 +535,14 @@ function refreshOptionLists(){
   fillSelect($('#reqType'),  tys.length?tys:CASE_TYPES);
   fillSelect($('#reqLang'),  langs.length?langs:LANGUAGES);
   fillSelect($('#reqState'), sts.length?sts:STATES);
+  fillSelect($('#aState'), sts.length?sts:STATES);
+  fillSelect($('#aType'),  tys.length?tys:CASE_TYPES);
+  fillSelect($('#aLang'),  langs.length?langs:LANGUAGES, 'Any language');
   fillSelect($('#qType'),  tys.length?tys:CASE_TYPES, 'Any case type');
   fillSelect($('#qLang'),  langs.length?langs:LANGUAGES, 'Any language');
   fillSelect($('#qState'), sts.length?sts:STATES, 'Any state');
 }
-['#qWho','#qType','#qLang','#qState','#fCm','#fOut'].forEach(s=>$(s).addEventListener('change', render));
+['#qWho','#qType','#qLang','#qState','#fRole','#fCm','#fOut'].forEach(s=>$(s).addEventListener('change', render));
 
 /* ============================================================ ASSIGN */
 $('#btnFind').addEventListener('click', () => {
@@ -544,7 +598,7 @@ function resolve(outcome, reason, note){
     id:'e_'+(state.seq++), caseRef:o.caseRef, personId:p.id, personName:p.name,
     rep:state.rep||'—', offeredAt:o.offeredAt, timerStartedAt:o.timerStartedAt,
     resolvedAt:now(), outcome, reason:reason||'', note:note||'',
-    lang:o.lang, state:o.state, type:o.type, escalated:false
+    role:'cm', lang:o.lang, state:o.state, type:o.type, escalated:false
   });
 
   if(outcome==='accepted'){
@@ -638,6 +692,85 @@ function renderAssign(){
     $('#btnOoo').onclick = () => resolve('out_of_office','Out of office','');
     $('#stepnote').innerHTML = `If the timer runs out it counts as a pass — 48 hours off the list. <b>Out of office</b> carries no penalty; they come back tomorrow.`;
   }
+}
+
+/* ============================================================ ATTORNEY ASSIGN
+   Simpler than the case manager flow by design: no timer, no reason codes,
+   no cool-off, no penalty. State is the deciding filter, then lowest caseload.
+   ============================================================ */
+$('#btnFindAtty').addEventListener('click', () => {
+  const ref = $('#aCaseRef').value.trim();
+  if(!ref) return toast('Add a case reference first.');
+  if(!state.rep.trim()) return toast('Add your name in the sidebar first.');
+  state.attyOffer = {caseRef:ref, state:$('#aState').value, type:$('#aType').value,
+                     lang:$('#aLang').value, skipped:[], person:null};
+  nextAttorney();
+});
+function nextAttorney(){
+  const o = state.attyOffer;
+  const pool = eligible('atty', o.lang, o.state, o.type, o.skipped);
+  o.person = pool.length ? pool[0] : null;
+  o.remaining = Math.max(0, pool.length-1);
+  render();
+}
+function assignAttorney(){
+  const o = state.attyOffer; if(!o || !o.person) return;
+  const p = o.person;
+  p.caseCount += 1;
+  state.events.push({
+    id:'e_'+(state.seq++), caseRef:o.caseRef, personId:p.id, personName:p.name,
+    rep:state.rep||'—', offeredAt:now(), timerStartedAt:null, resolvedAt:now(),
+    outcome:'assigned', reason:'', note: o.skipped.length ? (o.skipped.length+' skipped') : '',
+    role:'atty', lang:o.lang, state:o.state, type:o.type, escalated:false
+  });
+  toast(p.name.split(',')[0] + ' assigned to ' + o.caseRef);
+  state.attyOffer = null; $('#aCaseRef').value=''; render();
+}
+$('#btnAttyCancel').addEventListener('click', ()=>{ state.attyOffer=null; render(); toast('Case cancelled.'); });
+
+function renderAttyAssign(){
+  const o = state.attyOffer;
+  $('#attySetup').style.display = o ? 'none' : 'block';
+  $('#attyLive').style.display  = o ? 'block' : 'none';
+  if(!o) return;
+
+  $('#aWorkRef').textContent = o.caseRef;
+  $('#aWorkChips').innerHTML = [o.state, o.type, o.lang||'Any language']
+    .map(x=>`<span class="chip">${esc(x)}</span>`).join('');
+  $('#aSkipped').innerHTML = o.skipped.length
+    ? `<h5>Skipped</h5><ul>` + o.skipped.map(id=>{
+        const p=findPerson(id)||{name:'(removed)'};
+        return `<li><span>${esc(p.name.split(',')[0])}</span><span class="tag">skipped</span></li>`;
+      }).join('') + `</ul>` : '';
+
+  if(!o.person){
+    $('#attyBanner').innerHTML = o.skipped.length
+      ? `<div class="banner esc"><h4>No attorneys left to suggest</h4>
+         <p>Every attorney matching ${esc(o.state)} has been skipped. Start over, or widen the case type.</p></div>`
+      : `<div class="banner err"><h4>No attorney covers ${esc(o.type)} in ${esc(o.state)}</h4>
+         <p>Nobody on the attorney roster matches. Check the roster before escalating.</p></div>`;
+    $('#aEyebrow').textContent='No candidate'; $('#aName').textContent='—';
+    $('#aMeta').textContent=''; $('#aHandle').textContent='';
+    $('#aActs').innerHTML = `<button class="btn ghost" id="btnAttyReset">Start over</button>`;
+    $('#btnAttyReset').onclick = ()=>{ state.attyOffer=null; $('#aCaseRef').value=''; render(); };
+    $('#aNote').style.display='none';
+    return;
+  }
+
+  $('#attyBanner').innerHTML=''; $('#aNote').style.display='block';
+  const p=o.person;
+  $('#aEyebrow').textContent = o.skipped.length ? 'Next option · '+(o.skipped.length+1) : 'Recommended';
+  $('#aName').textContent = p.name;
+  $('#aMeta').innerHTML = `<span class="num">${p.caseCount}</span> active cases · ${esc((p.caseTypes||[]).join(', '))} · ${esc(p.states.join(', '))}`;
+  $('#aHandle').textContent = p.handle;
+  $('#aActs').innerHTML = `<button class="btn ok" id="btnAssignAtty">Assign this attorney</button>` +
+    (o.remaining ? `<button class="btn ghost" id="btnSkipAtty">Show next attorney</button>` : '');
+  $('#btnAssignAtty').onclick = assignAttorney;
+  const skip = $('#btnSkipAtty');
+  if(skip) skip.onclick = ()=>{ o.skipped.push(p.id); nextAttorney(); };
+  $('#aNote').innerHTML = o.remaining
+    ? `${o.remaining} other attorney${o.remaining===1?'':'s'} also cover${o.remaining===1?'s':''} ${esc(o.state)}. Skipping carries no penalty and records nothing against them.`
+    : `The only attorney covering ${esc(o.type)} in ${esc(o.state)}.`;
 }
 
 /* ============================================================ QUEUE */
@@ -1042,26 +1175,34 @@ function preview(){
 /* ============================================================ LOG */
 function renderLog(){
   $('#pipL').textContent = state.events.length;
+  const role=$('#fRole').value;
   const sel=$('#fCm'), keep=sel.value;
-  sel.innerHTML = `<option value="">All</option>` + state.cms.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('');
-  sel.value = keep;
-  const rows = state.events.filter(e=>(!sel.value||e.personId===sel.value) && (!$('#fOut').value||e.outcome===$('#fOut').value)).slice().reverse();
+  const pool = role==='atty' ? state.attorneys : role==='cm' ? state.cms : allPeople();
+  sel.innerHTML = `<option value="">All</option>` + pool.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('');
+  sel.value = pool.some(p=>p.id===keep) ? keep : '';
+  const rows = state.events.filter(e =>
+      (!role || (e.role||'cm')===role) &&
+      (!sel.value || e.personId===sel.value) &&
+      (!$('#fOut').value || e.outcome===$('#fOut').value)
+    ).slice().reverse();
   const n = o => state.events.filter(e=>e.outcome===o).length;
   $('#logStats').innerHTML = `
-    <div><b>${state.events.length}</b><span>offers</span></div>
+    <div><b>${state.events.length}</b><span>total</span></div>
+    <div><b style="color:var(--navy)">${n('assigned')}</b><span>attorneys assigned</span></div>
     <div><b style="color:var(--green)">${n('accepted')}</b><span>accepted</span></div>
     <div><b style="color:var(--red)">${n('declined')}</b><span>declined</span></div>
     <div><b style="color:var(--amber)">${n('timeout')}</b><span>no reply</span></div>
     <div><b style="color:var(--teal)">${n('out_of_office')}</b><span>out of office</span></div>`;
   $('#logTable').innerHTML = rows.length ? `<table><thead><tr>
-      <th>When</th><th>Case</th><th>Type</th><th>Case manager</th><th>Outcome</th><th>Reason</th><th>Handled by</th></tr></thead><tbody>`
+      <th>When</th><th>Case</th><th>Type</th><th>Role</th><th>Name</th><th>Outcome</th><th>Reason</th><th>Handled by</th></tr></thead><tbody>`
     + rows.map(e=>{
         const lbl = e.outcome==='timeout'?'no reply':e.outcome==='out_of_office'?'out of office':e.outcome;
-        const cls = e.outcome==='accepted'?'g':e.outcome==='out_of_office'?'t':e.outcome==='timeout'?'a':'r';
+        const cls = (e.outcome==='accepted'||e.outcome==='assigned')?'g':e.outcome==='out_of_office'?'t':e.outcome==='timeout'?'a':'r';
         return `<tr>
           <td style="white-space:nowrap;font-size:12.5px;color:var(--muted)">${fmtTime(e.resolvedAt)}</td>
           <td class="num">${esc(e.caseRef)}${e.escalated?' <span class="tag a">escalated</span>':''}</td>
           <td><span class="chip">${esc(e.type||'')}</span></td>
+          <td><span class="tag">${(e.role||'cm')==='atty'?'attorney':'CM'}</span></td>
           <td>${esc(e.personName)}</td>
           <td><span class="tag ${cls}">${lbl}</span></td>
           <td style="font-size:12.5px">${esc(e.reason)}${e.note?`<div style="color:var(--muted)">${esc(e.note)}</div>`:''}</td>
@@ -1071,10 +1212,10 @@ function renderLog(){
 }
 $('#btnExport').addEventListener('click', ()=>{
   if(!state.events.length) return toast('Nothing to export yet.');
-  const cols=['resolved_at','case_ref','case_type','case_manager','outcome','reason','note','handled_by','language','state','escalated'];
+  const cols=['resolved_at','case_ref','case_type','role','name','outcome','reason','note','handled_by','language','state','escalated'];
   const q=v=>`"${String(v??'').replace(/"/g,'""')}"`;
   const csv=[cols.join(',')].concat(state.events.map(e=>[
-    new Date(e.resolvedAt).toISOString(), e.caseRef, e.type||'', e.personName, e.outcome,
+    new Date(e.resolvedAt).toISOString(), e.caseRef, e.type||'', e.role||'cm', e.personName, e.outcome,
     e.reason, e.note, e.rep, e.lang, e.state, e.escalated].map(q).join(','))).join('\n');
   download('assignment-log-'+new Date().toISOString().slice(0,10)+'.csv', csv, 'text/csv');
   toast('Exported.');
@@ -1082,7 +1223,7 @@ $('#btnExport').addEventListener('click', ()=>{
 
 /* ============================================================ RENDER */
 function render(){
-  renderAssign(); renderQueue(); renderHolds();
+  renderAssign(); renderAttyAssign(); renderQueue(); renderHolds();
   renderRoster('cm', $('#cmRosterBox'));
   renderRoster('atty', $('#attyRosterBox'));
   wireRosterButtons();
